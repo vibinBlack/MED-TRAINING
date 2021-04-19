@@ -13,7 +13,7 @@ the <optional message>. If is evaluates to True, nothing happens.
 
 def test_assert_true():
     #throws assertion error
-    assert ___  #This should be True -- replace ___ with True.
+    assert True  #This should be True -- replace ___ with True.
 
 def test_assert_true_with_message():
     assert ___, "This is the failure message" # replace ___ with True to stop seeing the assertion error
