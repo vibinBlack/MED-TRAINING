@@ -2,45 +2,41 @@ __author__ = 'Hari'
 
 from placeholders import *
 
-# For most of these tests use the interpreter to fill up the blanks.
-# type(object) -> returns the object's type.
+notes = '''
+This lesson introduces the basic assert statement in python. assert is generally used to 'assert' the truth of an
+expression. It takes the form assert <expr>, <optional message>. If <expr> evaluates to False an AssertionError is raised with
+the <optional message>. If is evaluates to True, nothing happens.
+ In the tests below, replace the blanks with values so that the resulting expression is True.
+'''
 
-def test_numbers_types():
-    assert __ == type(7).__name__
-    assert __ == type(7.5).__name__
-    assert __ == type(10L).__name__
 
-def test_numbers_int_arithmetic_operations():
-    assert __ == 10 + 20
-    assert __ == 10 * 20
-    assert __ == 2 ** 5
-    assert __ == 10 - 20
-    assert __ == 7/3
+def test_assert_true():
+    #throws assertion error
+    assert True  #This should be True -- replace ___ with True.
 
-def test_numbers_string_to_int():
-    """hint: execute  print int.__doc__ in python console
-       to find out what int(..) does"""
-    assert __ == int("FF", 16)
-    assert __ == int("77", 8)
+def test_assert_true_with_message():
+    assert True, "This is the failure message" # replace ___ with True to stop seeing the assertion error
 
-def test_numbers_int_to_string():
-    assert __ == oct(10)
-    assert __ == hex(100)
-    assert __ == bin(255)
+def test_assert_equality():
+    assert 7 == 2 + 5   #replace __ with the expected value
 
-def test_numbers_long():
-    """Long is not the long in c"""
-    assert __ == 2 ** 200
+#Fill in __ in the statements below to make the asserts succeed
+def test_make_assert_true_1():
+    assert 8 > 7, "Fill in a value greater than 7"
 
+#you can use the interpreter to find the value of 2**30
+def test_make_assert_true_2():
+    assert 2**30+1 > 2**30, "Fill in value greater than 2**30"
+
+def test_make_assert_true_3():
+    s1 = "Hello, World"
+    s2 = "Hello, World"
+    assert s1 == s2
 
 three_things_i_learnt = """
--
--
--
+- numbers and operators
+- strings
+- 
 """
 
-time_taken_minutes = __
-
-
-
-
+time_taken_minutes = 10
