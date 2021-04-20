@@ -26,7 +26,7 @@ def test_make_assert_true_1():
 
 #you can use the interpreter to find the value of 2**30
 def test_make_assert_true_2():
-    assert 2**31 > 2**30, "Fill in value greater than 2**30"
+    assert 2**30+1 > 2**30, "Fill in value greater than 2**30"
 
 def test_make_assert_true_3():
     s1 = "Hello, World"
@@ -34,9 +34,9 @@ def test_make_assert_true_3():
     assert s1 == s2
 
 three_things_i_learnt = """
--
--
--
+- pytest and assert
+- assert with failure message
+- string comparison with assert  
 """
 
-time_taken_minutes = __
+time_taken_minutes = 10
