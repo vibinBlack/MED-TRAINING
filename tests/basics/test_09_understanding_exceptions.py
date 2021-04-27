@@ -169,7 +169,7 @@ http://blogs.msdn.com/b/brada/archive/2003/09/30/50403.aspx
 
 three_things_i_learnt = """
 -
--
+- try, except, finally blocks along with else
 -
 """
 
