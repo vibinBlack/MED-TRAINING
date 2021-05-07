@@ -1,16 +1,21 @@
 
-a = [3,4,6,8,9,12]
-t=7
+def rev_digit(m):
+    n=abs(m)
+    s=0
+    while(n>0):
+        r=n%10
+        s=s*10+r
+        n//=10
+    if m>0:
+        return s
+    else:
+        return -s
+        
+a=rev_digit(123)
+# print(a)
 
-def index(a,t):
-    f=0
-    for i in range(len(a)):
-        if (a[i]==t):
-            return i
-        elif(a[i]!=t and a[i]>t):
-            return i
-    
-b=index(a,t)
-assert 3 == b
+def test_01():
+    assert -321 == rev_digit(-123)  
 
-assert 0 == index(a,2)
+def test_02():
+    assert 45 == rev_digit(54)

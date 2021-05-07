@@ -22,12 +22,12 @@ def can_make_str(s1, s2):
 
     return True 
     
-    
-assert True == can_make_str("iItsimlpsietnecseacne","it is a simple sentence")
+def test_01():
+        assert True == can_make_str("iItsimlpsietnecseacne","it is a simple sentence")
 
-
-try:
-    assert False == can_make_str("aeiou","abb")
-except KeyError as e:
-    # print('error at ',e)
-    assert True
+def test_02():
+    try:
+        assert False == can_make_str("aeiou","abb")
+    except KeyError as e:
+        # print('error at ',e)
+        assert True

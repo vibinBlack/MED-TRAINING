@@ -59,17 +59,19 @@ def multi_str(bigString, smallStrings):
     return solution
 
 
-str1 = "this is a big string"
-substr = ["this", "not", "a", "small", "string", "kappa"] 
 
-assert [True, False, True, False, True, False] == multi_str(str1, substr) 
 
-str1 ="optival medplus training"
-str2=["medplus","customfur","training","medplus"]
+def test_01():
+    str1 = "this is a big string"
+    substr = ["this", "not", "a", "small", "string", "kappa"] 
+    assert [True, False, True, False, True, False] == multi_str(str1, substr) 
+
 
 #print(multi_str(str1,str2)); 
-
-assert [True, False, True, True]  == multi_str(str1,str2)
+def test_02():
+    str1 ="optival medplus training"
+    str2=["medplus","customfur","training","medplus"]
+    assert [True, False, True, True]  == multi_str(str1,str2)
 
 
     
