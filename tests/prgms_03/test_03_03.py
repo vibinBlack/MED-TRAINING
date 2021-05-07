@@ -12,11 +12,11 @@ def can_make_str(s1, s2):
     for i in range(len(s2)): 
        #  print(s2[i]) 
         if s2[i]==' ' : 
-            continue
+            continue            #    based on constraint , string having multiple spaces test case should pass
 
         if count[s2[i]] == 0:
 
-            return False
+            return False         #   when there is no character in the given string that able to generate given sentence 
 
         count[s2[i]] -= 1
 

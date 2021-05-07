@@ -11,13 +11,13 @@ class Single_Linked_List:
     def __init__(self):
         self.head=None 
         
-    def add_at_begin(self,data):
-        NewNode=Node(data)
+    def add_at_begin(self,data):          # node adition from beginning of single linked list
+        NewNode=Node(data)          
         NewNode.next=self.head
         self.head=NewNode   
         
         
-    def add_at_position(self, pos,data):
+    def add_at_position(self, pos,data):     # node adition from specific position of single linked list
       newNode = Node(data)
       if (pos < 1) :
             return "Invalid position"
@@ -38,7 +38,7 @@ class Single_Linked_List:
       
         
                 
-    def add_at_end(self,data):
+    def add_at_end(self,data):        # node adition from end of single linked list
         NewNode=Node(data)
         if self.head is None:
             self.head=NewNode 
@@ -49,7 +49,7 @@ class Single_Linked_List:
                last.next=NewNode   
                 
                    
-    def delete_node(self,key):
+    def delete_node(self,key):         # deleting a node 
         temp=self.head
         if (temp is None):
             return "List is empty"
@@ -68,14 +68,14 @@ class Single_Linked_List:
         prev.next=temp.next 
         
        
-    def search(self,value):
+    def search(self,value):       # searching a specific node
         temp=self.head
         if (temp is None):
             return "List is empty"
         if (temp.data==value):
             return "Given value is present in the List at 0 index"
         c=0
-        while(temp is not None):
+        while(temp is not None):     # linear search 
             if temp.data==value:
                 return "Given value is present in the List at %d index"% c
             temp=temp.next
@@ -83,7 +83,7 @@ class Single_Linked_List:
         return "Given value is 'not' present in the List"
         
         
-    def loop_finding(self):
+    def loop_finding(self):        # checking a linked loop in the linked list
         s_p=f_p= self.head
         while(s_p and f_p and f_p.next):
             s_p=s_p.next
@@ -94,7 +94,7 @@ class Single_Linked_List:
         
         
         
-    def rotate(self, k):
+    def rotate(self, k):    # shift left operation  
         if k==0:
             return llist.convert_to_list()
         current=self.head

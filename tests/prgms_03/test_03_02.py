@@ -2,8 +2,8 @@
 def index(a,t):
     start=0
     end=len(a)-1
-    while start<=end:            # binary search
-        mid=(start+end)//2
+    while start<=end:            # binary search => here , 'a' must be sorted
+        mid=(start+end)//2       # floor division
         if a[mid] == t:
             return mid
         elif a[mid] < t:

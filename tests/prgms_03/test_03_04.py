@@ -11,7 +11,7 @@ def is_Bigstr2(bigString,smallString,startIdx):
 
   
 
-    while (leftBigIdx <= rightBigIdx): 
+    while (leftBigIdx <= rightBigIdx):         #iterate until leftBigIdx variable reaches <= rightBigIdx 
 
         if (bigString[leftBigIdx] != smallString[leftSmallIdx] or 
 
@@ -34,11 +34,11 @@ def is_Bigstr2(bigString,smallString,startIdx):
 
 def is_Bigstr1(bigString, smallString): 
 
-    for i in range(len(bigString)):   
+    for i in range(len(bigString)):                  # iterating in the bigstring  
 
-        if (i + len(smallString) > len(bigString)): 
+        if (i + len(smallString) > len(bigString)):     #  condition when smallString is not available after 'i'th position
 
-            break
+            break                                    
 
         if (is_Bigstr2(bigString, smallString, i)): 
 
@@ -50,7 +50,7 @@ def is_Bigstr1(bigString, smallString):
 
 def multi_str(bigString, smallStrings): 
 
-    solution = []
+    solution = []                                   #  storing list for boolean entries
 
     for smallString in smallStrings: 
 
