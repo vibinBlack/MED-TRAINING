@@ -77,4 +77,8 @@ three_things_i_learnt = """
 -
 """
 
+<<<<<<< Updated upstream
 #time_taken_minutes = ___
+=======
+#time_taken_minutes = ___
+>>>>>>> Stashed changes
