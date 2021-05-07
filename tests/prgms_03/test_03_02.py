@@ -1,12 +1,16 @@
 
 def index(a,t):
-    f=0
-    for i in range(len(a)):
-        if (a[i]==t):
-            return i
-        elif(a[i]!=t and a[i]>t):
-            return i
-
+    start=0
+    end=len(a)-1
+    while start<=end:            # binary search
+        mid=(start+end)//2
+        if a[mid] == t:
+            return mid
+        elif a[mid] < t:
+            start = mid+1
+        else:
+            end = mid-1
+    return end + 1
 
 a = [3,4,6,8,9,12]
 t=7
@@ -22,3 +26,4 @@ def test_02():
 
 def test_03():
     assert 5 == index(a,10)
+
