@@ -99,9 +99,9 @@ def test_find_builtins_that_work_on_iterables():
 
 
 three_things_i_learnt = """
--
--
--
+- StopIteration is raised as it has no items left.
+- iter
+- next(iterable_object)
 """
 
 time_taken_minutes = 25

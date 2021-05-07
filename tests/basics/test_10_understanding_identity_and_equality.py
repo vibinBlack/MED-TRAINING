@@ -99,7 +99,8 @@ readable code like if x is None: instead of if x == None:
 
 three_things_i_learnt = """
 -
--
+- Integer objects for all integers between -5 and 256, when you create an int in that 
+  range you actually just get back a reference to the existing object.
 -
 """
 

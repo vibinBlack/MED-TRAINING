@@ -85,9 +85,9 @@ def test_function_unpacking():
 
 
 three_things_i_learnt = """
--
--
--
+- *args is added to the function definition as one of the parameters if number of parameteers are unknown
+-  The asterisk(*) is important here. The name args is just a convention.
+- **kwargs expects a dictionary as parameter.
 """
 
 time_taken_minutes = 25
