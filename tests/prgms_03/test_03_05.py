@@ -96,7 +96,7 @@ class Single_Linked_List:
         
     def rotate(self, k):    # shift left operation  
         if k==0:
-            return llist.convert_to_list()
+            return slist.convert_to_list()
         current=self.head
         count=1
         while(count<k and current is not None):
@@ -106,7 +106,7 @@ class Single_Linked_List:
             count-=1
             k-=(k//count)*count
             if k==0:
-                return llist.convertArr()
+                return slist.convertArr()
             current=self.head
             count=1
             while(count<k and current is not None):
