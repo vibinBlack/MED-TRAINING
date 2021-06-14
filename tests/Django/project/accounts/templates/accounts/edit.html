@@ -1,0 +1,71 @@
+{% extends 'accounts/navbar.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Employees List</title>    
+        <style>
+            body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+            .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+            .fa-anchor,.fa-coffee {font-size:200px}
+            .header{text-align:center}
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script>
+            $('#Edit').addClass('w3-bar-item w3-button w3-padding-large w3-white');
+
+            $('#Home').removeClass('w3-bar-item w3-button w3-padding-large w3-white');
+            $('#Home').addClass('w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white');
+            $('#Profile').addClass('w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white');
+            $('#ApplyForLeave').addClass('w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white');
+            $('#ApproveLeave').addClass('w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white');
+            $('#Logout').addClass('w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white');
+        </script>
+    </head>
+    <body>
+        <div class="w3-row-padding w3-padding-64 w3-container" id="editemployee">
+            <div class="w3-content">
+                <h1>Employees List</h1>
+                <form method="get" class="w3-container w3-light-grey w3-margin-top w3-card-4">
+                    {{myFilter.form}}
+                    <button class="w3-btn w3-black w3-hover-white" type="submit"><i class="fa fa-search"></i> Search</button>
+                </form>
+                <table class="w3-table-all w3-margin-top w3-centered tr th w3-auto">
+                    <tr class="w3-black">
+                        <th>Emp_No</th>
+                        <th>First Name</th>
+                        <th>Gender</th>
+                        <th>Mobile Number</th>
+                        <th>Email Address</th>
+                        <th>Designation</th>
+                        <th>Hire Date</th>
+                        <th><a href="{% url 'add' %}" class="w3-button w3-white w3-hover-black"><i class="fas fa-plus"></i> Add New</a></th>
+                    </tr>
+                    {% for i in employees %}
+                    <tr>
+                        <td>{{i.Emp_No}}</td>
+                        <td>{{i.First_Name}}</td>
+                        <td>{{i.Gender}}</td>       
+                        <td>{{i.Mobile_Number}}</td>
+                        <td>{{i.Email_Address}}</td>  
+                        <td>{{i.Designation}}</td> 
+                        <td>{{i.Hire_Date}}</td>    
+                        <td>
+                            <a href="{% url 'update' i.Emp_No %}" class="w3-button ">
+                                <i class="far fa-edit fa-lg "></i>
+                            </a>
+                            <form action="{% url 'delete' i.Emp_No %}" method="post" class="w3-show-inline-block">
+                                {% csrf_token %}
+                                <button type="submit" class="w3-text-red">
+                                    <i class="far fa-trash-alt fa-lg text-danger float-right "></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </body>
+</html>
+{% endblock %}

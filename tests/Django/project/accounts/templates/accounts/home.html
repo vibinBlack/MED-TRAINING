@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Home</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" type="text/css" />
+</head>
+<body>
+{% include 'accounts/navbar.html' %}
+{% block content %}
+{% endblock %}
+<div>
+    <div>
+        <header class="w3-container w3-center" style="padding:200px 16px" id="home">
+            <h1 class="w3-margin w3-jumbo">Home Page</h1>
+            <p class="w3-xlarge">Welcome to the Leave Management System</p>
+            <p class="w3-large">Name of Employee: {{request.user}}</p>
+            <p class="w3-large">Designation :</p>
+        </header>
+     </div>
+</div>
+</body>
+</html>

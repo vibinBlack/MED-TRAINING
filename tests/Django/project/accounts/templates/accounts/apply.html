@@ -1,0 +1,151 @@
+{% extends 'accounts/navbar.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Apply For Leave</title>
+        <style>
+            body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+            .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+            .fa-anchor,.fa-coffee {font-size:200px}
+            .header{text-align:center}
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script>
+            $('#ApplyForLeave').addClass('w3-bar-item w3-button w3-padding-large w3-white');
+
+            $('#Home').removeClass('w3-bar-item w3-button w3-padding-large w3-white');
+            $('#Home').addClass('w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white');
+            $('#Profile').addClass('w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white');
+            $('#ApproveLeave').addClass('w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white');
+            $('#Edit').addClass('w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white');
+            $('#Logout').addClass('w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white');
+        </script>
+    </head>
+    <body>
+        <div class="w3-row-padding w3-padding-64 w3-container" id="applyforleave">
+            <div class="w3-content">
+                <h1>Apply For Leave</h1>
+                <div class="w3-row w3-padding-32">
+                    <div class="w3-col m12">
+                        <div class="w3-row-padding" style="margin: 0 -16px 16px -16px">
+                            <div class="w3-half">
+                                <div class="w3-btn w3-black">
+                                    <button class="w3-bar-item w3-button w3-hover-white w3-large w3-half" onclick="openLeave('Request Leave')"> Request Leave </button>
+                                    <button class="w3-bar-item w3-button w3-hover-white w3-large w3-half" onclick="openLeave('Leave History')"> Leave History </button>
+                                </div>
+                                <div style="display:none;" class="w3-row w3-padding-32" id="Request Leave">
+                                    <h4>Request Leave</h4>
+                                    <form action="" class="w3-container w3-light-grey w3-margin-top w3-card-4" method="post">
+                                        {% csrf_token %}
+                                        <div class="w3-row-padding" style="margin:0 -16px 16px -16px">
+                                            <div class="w3-half">
+                                                {{form.Emp_No|as_crispy_field}}
+                                            </div>
+                                        </div>
+                                        <div class="w3-row-padding" style="margin:0 -16px 16px -16px">
+                                            <div class="w3-half">
+                                                {{form.Emp_FullName|as_crispy_field}}
+                                            </div>
+                                        </div>
+                                        <div class="w3-row-padding" style="margin:0 -16px 16px -16px">
+                                            <div class="w3-half">
+                                                {{form.Manager_Emp_No|as_crispy_field}}
+                                            </div>
+                                        </div>
+                                        <div class="w3-row-padding" style="margin:0 -16px 16px -16px">
+                                            <div class="w3-half">
+                                                {{form.Manager_FullName|as_crispy_field}}
+                                            </div>
+                                        </div>
+                                        <div class="w3-row-padding" style="margin:0 -16px 16px -16px">
+                                            <div class="w3-half">
+                                                {{form.Leave_Type|as_crispy_field}}
+                                            </div>
+                                        </div>
+                                        <div class="w3-row-padding" style="margin:0 -16px 16px -16px">
+                                            <div class="w3-half">
+                                                {{form.Begin_Date|as_crispy_field}}
+                                            </div>
+                                        </div>
+                                        <div class="w3-row-padding" style="margin:0 -16px 16px -16px">
+                                            <div class="w3-half">
+                                                {{form.End_Date|as_crispy_field}}
+                                            </div>
+                                        </div>
+                                        <div class="w3-row-padding" style="margin:0 -16px 16px -16px">
+                                            <div class="w3-half">
+                                                {{form.Requested_Days|as_crispy_field}}
+                                            </div>
+                                        </div>
+                                        <div class="w3-row-padding" style="margin:0 -16px 16px -16px">
+                                            <div class="w3-half">
+                                                {{form.Emp_Comments|as_crispy_field}}
+                                            </div>
+                                        </div>
+                                        <div class="w3-row-padding" style="margin:0 -16px 16px -16px">
+                                            <div class="w3-half">
+                                                <input type="submit" name="submit" class="w3-btn w3-black w3-hover-white">
+                                            </div>
+                                        </div>                                            
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w3-container">
+                        <div class="w3-row w3-padding-32" id="Leave History" style="display:none">
+                            <div class="w3-row-padding w3-margin-top" style="margin:0 -16px 16px -16px">
+                                <div>
+                                    <h4>Leave History</h4>
+                                    <table class="w3-table-all w3-margin-top w3-centered tr th w3-auto" action="LeaveHistory"  method="post">
+                                        <thead>
+                                        <tr class="w3-black">
+                                            <th>Absence Type</th>
+                                            <th>Begin Date</th>
+                                            <th>End Date</th>
+                                            <th>Requested Days</th>
+                                            <th>Request Status</th>
+                                            <th>Cancel Leave</th>
+                                            {% for leaves in history %}
+                                        <tr>
+                                            <td>{{leaves.Leave_Type}}</td>
+                                            <td>{{leaves.Begin_Date}}</td>
+                                            <td>{{leaves.End_Date}}</td>
+                                            <td>{{leaves.Requested_Days}}</td>
+                                            <td>{{leaves.Leave_Status}}</td>
+                                            <td>
+                                                <form action="{% url 'Cancel' leaves.EmpLeave_Req_ID %}" method="post" class="w3-show-inline-block">
+                                                    {% csrf_token %}
+                                                    <input type="submit" value="Cancel"/>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        </thead>
+                                        {% endfor %}
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script>
+    function openLeave(leave) {
+        if(leave === 'Leave History') 
+        {
+            document.getElementById('Leave History').style.display = "block";
+            document.getElementById('Request Leave').style.display = "none";
+        } 
+        else 
+        {
+            document.getElementById('Leave History').style.display = "none";
+            document.getElementById('Request Leave').style.display = "block";
+        }
+    }
+    </script>
+</html>
+{% endblock %}

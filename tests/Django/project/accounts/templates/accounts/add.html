@@ -1,0 +1,106 @@
+{% extends 'accounts/navbar.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Edit Employee</title>    
+        <style>
+            body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+            .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+            .fa-anchor,.fa-coffee {font-size:200px}
+            .header{text-align:center}
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script>
+            $('#Edit').addClass('w3-bar-item w3-button w3-padding-large w3-white');
+
+            $('#Home').removeClass('w3-bar-item w3-button w3-padding-large w3-white');
+            $('#Home').addClass('w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white');
+            $('#Profile').addClass('w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white');
+            $('#ApplyForLeave').addClass('w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white');
+            $('#ApproveLeave').addClass('w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white');
+            $('#Logout').addClass('w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white');
+        </script>
+    </head>
+    <body>
+        <div class="w3-row-padding w3-padding-64 w3-containe" id="editemployee" style="margin:16px -16px 8px 32px">
+            <form action="" method="post">
+                {% csrf_token %}  
+                <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                    <div class="w3-quarter">
+                        {{form.First_Name|as_crispy_field}}
+                    </div>
+                    <div class="w3-quarter">
+                        {{form.Middle_Name|as_crispy_field}}
+                    </div>
+                </div>
+                <div class="w3-row-padding"  style="margin:0 -16px 8px -16px">
+                    <div class="w3-quarter">
+                        {{form.Last_Name|as_crispy_field}}
+                    </div>
+                    <div class="w3-quarter">
+                        {{form.Gender|as_crispy_field}}
+                    </div>
+                </div>
+                <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                    <div class="w3-quarter">
+                        {{form.Birth_Date|as_crispy_field}}
+                    </div>
+                    <div class="w3-quarter">
+                        {{form.Hire_Date|as_crispy_field}}
+                    </div>
+                </div>
+                <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                    <div class="w3-quarter">
+                        {{form.Street_Address|as_crispy_field}}
+                    </div>
+                    <div class="w3-quarter">
+                        {{form.Address2|as_crispy_field}}
+                    </div>
+                </div>
+                <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                    <div class="w3-quarter">
+                        {{form.City|as_crispy_field}}
+                    </div>
+                    <div class="w3-quarter">
+                        {{form.State|as_crispy_field}}
+                    </div>
+                </div>
+                <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                    <div class="w3-quarter">
+                        {{form.Postal_Code|as_crispy_field}}
+                    </div>
+                    <div class="w3-quarter">
+                        {{form.Country|as_crispy_field}}
+                    </div>
+                </div>
+                <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                    <div class="w3-quarter">
+                        {{form.Mobile_Number|as_crispy_field}}
+                    </div>
+                    <div class="w3-quarter">
+                        {{form.Email_Address|as_crispy_field}}
+                    </div>
+                </div>
+                <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                    <div class="w3-quarter">
+                        {{form.Designation|as_crispy_field}}
+                    </div>
+                    <div class="w3-quarter">
+                        {{form.Salary|as_crispy_field}}
+                    </div>
+                </div>
+                <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                    <div class="w3-quarter">
+                        <input type="submit" name="submit" class="w3-btn w3-black w3-hover-white">
+                    </div>
+                    <div class="w3-quarter">
+                        <a href="{% url 'edit' %}" class="w3-btn w3-black w3-hover-white">Back to list</a>
+                    </div>
+                </div>
+            </form> 
+        </div>    
+    </body>
+</html>
+{% endblock %}
