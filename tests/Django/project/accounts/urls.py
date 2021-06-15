@@ -10,6 +10,7 @@ urlpatterns = [
     path('apply/',views.apply, name="apply"),
     path('approve/',views.approve, name="approve"),
     path('edit/',views.edit, name="edit"),
+    path('edit/<int:sort>/',views.edit, name="Sort"),
     path('add/',views.add, name="add"),
     path('add/<int:Emp_No>/',views.add, name="update"),
     path('edit/delete/<int:Emp_No>/',views.delete, name="delete"),

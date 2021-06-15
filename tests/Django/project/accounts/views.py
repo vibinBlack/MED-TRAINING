@@ -47,17 +47,18 @@ def logoutPage(request):
 
 @login_required(login_url='login')
 def home(request):
-    return render(request,'accounts/home.html')
+    employee_list = Employee.objects.get(Email_Address=request.user.email)
+    return render(request,'accounts/home.html',{'employees': employee_list})
 
 @login_required(login_url='login')
 def profile(request):
-    employees=Employee.objects.all()
-
+    employees=Employee.objects.get(Email_Address=request.user.email)
     return render(request,'accounts/profile.html',{'employees':employees})
 
 @login_required(login_url='login')
 def apply(request):
-    history=EmpLeaveRequest.objects.all()
+    employees=Employee.objects.get(Email_Address=request.user.email)
+    id=employees.Emp_No
     form=EmpLeaveRequestForm()
     if request.method == 'POST':
         form=EmpLeaveRequestForm(request.POST)
@@ -66,7 +67,23 @@ def apply(request):
             return redirect('/apply')
         else:
             print(form.errors)
-    return render(request,'accounts/apply.html',{'history':history,'form':form})
+    history = []
+    for e in EmpLeaveRequest.objects.filter(Emp_No=id):
+        leaves = {}
+        leaves['Emp_No'] = e.Emp_No
+        leaves['Leave_Type'] = e.Leave_Type
+        leaves['Begin_Date'] = e.Begin_Date.strftime("%Y-%m-%d")
+        leaves['End_Date'] = e.End_Date.strftime("%Y-%m-%d")
+        leaves['Requested_Days'] = e.Requested_Days
+        leaves['Leave_Status'] = e.Leave_Status
+        leaves['EmpLeave_Req_ID'] = e.EmpLeave_Req_ID
+        if e.Leave_Status == 'Pending':
+            leaves['Display'] = 'inline'
+        else:
+            leaves['Display'] = 'none'
+
+        history.append(leaves)
+    return render(request,'accounts/apply.html',{'history':history,'form':form,'id':id})
 
 @login_required(login_url='login')
 def approve(request):
@@ -74,9 +91,20 @@ def approve(request):
     return render(request,'accounts/approve.html',{'history':history})
 
 @login_required(login_url='login')
-def edit(request):
+def edit(request,sort=0):
     employees = Employee.objects.all()
-
+    if sort==1:
+        employees = Employee.objects.all().order_by('First_Name')
+    if sort==2:
+        employees = Employee.objects.all().order_by('Gender')
+    if sort==3:
+        employees = Employee.objects.all().order_by('Mobile_Number')
+    if sort==4:
+        employees = Employee.objects.all().order_by('Email_Address')
+    if sort==5:
+        employees = Employee.objects.all().order_by('Designation')
+    if sort==6:
+        employees = Employee.objects.all().order_by('Hire_Date')
     myFilter=EmployeeFilter(request.GET, queryset=employees)
     employees=myFilter.qs
 
