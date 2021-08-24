@@ -1,0 +1,7 @@
+{"Subject":"OS","StudentA":90,"StudentB":60,"StudentC","80","StudentF":90,"StudentH":60,"StudentJ","80"}
+{"Subject":"DAA","StudentA":80,"StudentC":75,"StudentD","60","StudentG":90,"StudentH":60,"StudentJ","80"}
+{"Subject":"CAO","StudentB":70,"StudentD":75,"StudentE","60","StudentG":90,"StudentI":60}
+{"Subject":"DBMS","StudentA":85,"StudentC":60,"StudentE","80","StudentF":90,"StudentH":60,"StudentJ","80"}
+{"Subject":"ToC","StudentB":70,"StudentD":60,"StudentF","80","StudentG":90,"StudentI":60}
+{"Subject":"CD","StudentB":70,"StudentC":60,"StudentE","80","StudentG":90,"StudentI":60,"StudentJ","80"}
+{"Subject":"WT","StudentA":70,"StudentD":60,"StudentE","80","StudentF":90,"StudentH":60,"StudentI","80"}
