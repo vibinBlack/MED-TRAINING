@@ -1,0 +1,65 @@
+{% extends "index.html" %}
+{% block content %}
+    <div class="mt-5 col-md-12">
+        <div class="mr-10 ml-10">
+        <form class="d-flex" method="GET" >
+            {{bookFilter.form}}
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>   
+        </div>
+        <div class="d-flex flex-row-reverse col-md-10">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+             Sort
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="namesort">Sort by id</a></li>
+            </ul>
+          </li>
+        </div>
+        <div class="mt-3 col-md-12" >
+          <table class="table table-striped table-bordered table-sm">
+             <thead class="table-dark">
+                <tr>
+                <th scope="col">Student ID</th>
+                <th scope="col">Student Name</th>
+                <th scope="col">Email Id</th>
+                <th scope="col">Contact</th>
+                <th scope="col">ISBN</th>
+                <th scope="col">Title of book</th>
+                <th scope="col">Issue Date</th>
+                <th scope="col">Renewal Date</th>
+                <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for data in books %}
+                <tr>
+                    <td>{{data.student.student_id}}</td>
+                    <td>{{data.student.name}}</td>
+                    <td>{{data.student.email}}</td>
+                    <td>{{data.student.contact}}</td>
+                    <td>{{data.book.ISBN}}</td>
+                    <td>{{data.book.title}}</td>
+                    <td>{{data.issue_date}}</td>
+                    <td>{{data.Renewal_date}}</td>
+                    <td><a href="/edituser/{{ data.student.id }}"><span class="glyphicon glyphicon-pencil" >Edit</span></a>
+                      <a href="/deleteuser/{{ data.id}}">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+          <center>
+              <a href="borrowdata" class="btn btn-primary">Add Books taken</a>
+              <a href="adduser" class="btn btn-primary">Add Student data</a>
+        </center>
+        </div>
+    </div>
+    {%block data%}{%endblock%}
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+{% endblock %}

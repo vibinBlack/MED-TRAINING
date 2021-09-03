@@ -1,0 +1,53 @@
+<mat-toolbar class="navbar" color="primary">
+    <a>Library System</a>
+    <button mat-button [routerLink]="'home'" *ngIf="authenticated ">
+        <mat-icon>home</mat-icon> Home 
+      </button>
+          <button mat-button [routerLink]="'students'" *ngIf="authenticated ">
+            <mat-icon>people</mat-icon>Students
+          </button>
+          <button mat-button [routerLink]="'staff'" *ngIf="authenticated ">
+            <mat-icon>people</mat-icon>Staff
+          </button>
+          <button mat-button [routerLink]="'books'" *ngIf="authenticated ">
+            <mat-icon>books</mat-icon>Books
+          </button>
+          <span class="spacer"></span>
+          <button mat-button [routerLink]="'register'" *ngIf="authenticated && is_superuser">
+              <mat-icon>person_add_alt_1</mat-icon>
+            Register
+          </button>
+          <button mat-button (click)="logout()" *ngIf="authenticated">
+              <mat-icon>logout</mat-icon>
+              Logout  
+          </button>
+</mat-toolbar>
+
+
+<!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>My App</span>
+      <a class="nav-link" mat-icon-button routerLink="home">
+      <mat-icon>book</mat-icon>
+      <span>Library</span> 
+    </a>
+      <button mat-icon-button routerLink="home">
+      </button>
+      <span>Home</span>
+      <button mat-icon-button routerLink="students">
+      </button>
+      <span>Student</span>
+      <button mat-icon-button routerLink="staff">
+      </button>
+      <span>Staff</span>
+      <button mat-icon-button routerLink="books">
+      </button>
+      <span>Books</span>
+      <span class="spacer"></span>
+      <button mat-icon-button  *ngIf="authenticated && is_superuser" routerLink="register">
+      </button>
+      <span>Register</span>
+      <button mat-icon-button (click)='logout()' *ngIf="authenticated " routerLink="register">
+      </button>
+      <span>Logout</span> -->

@@ -1,0 +1,67 @@
+{% extends "index.html" %}
+{%block content%}
+<script >
+  function validate() {
+      if( document.myForm.student.value == "---" ) {
+         alert( "Please select the student!" );
+         document.myForm.student.focus() ;
+         return false;
+      }
+      if( document.myForm.isbn.value == "---" ) {
+         alert( "Please provide valid isbn!" );
+         document.myForm.isbn.focus() ;
+         return false;
+      }
+      if( !document.myForm.issuedate.value.match( /^\d{4}-\d{2}-\d{2}$/)) {
+         alert( "Please provide valid issue date!" );
+         document.myForm.issuedate.focus() ;
+         return false;
+      }
+      if( !document.myForm.renewdate.value.match( /^\d{4}-\d{2}-\d{2}$/) ) {
+         alert( "Please provide valid renewal date!" );
+         document.myForm.renewdate.focus() ;
+         return false;
+      }
+     /* if( document.myForm.issuedate.value < document.myForm.renewdate.value ){
+         
+         alert( "Please provide issue date" );
+         document.myForm.issuedate.focus() ;
+         return false;
+      }*/
+      
+      return( true );
+  }
+</script>
+<form method="POST" class="post-form" action="/borrowdata" name = "myForm" onsubmit = "return validate()">
+    {% csrf_token %}
+    <div class="form-group ">
+      <label>Name of Student</label>
+      <select name="student">
+        <option value="---" selected>---------</option>
+        {%for student in students%}
+            <option value="{{student.name}}">{{student.name}}</option>
+        {%endfor%}
+      </select>
+    </div>
+    <div class="form-group ">
+        <label>ISBN of Book Taken</label>
+        <select name="isbn">
+          <option value="---" selected>---------</option>
+          {%for book in books%}
+              <option value="{{book.ISBN}}">{{book.ISBN}}</option>
+          {%endfor%}
+        </select>
+      </div>
+      <div class="form-group ">
+        <label>Issue Date</label>
+        <input type="text" class="form-control" id="issue date" name='issuedate' placeholder="Enter the issue date" >
+      </div>
+      <div class="form-group ">
+        <label>Renewal Date</label>
+        <input type="text" class="form-control" id="renew date" name='renewdate' placeholder="Enter the renewal date" >
+      </div>
+      <button type="submit" class="btn btn-primary">Add</button>
+  </form>
+
+{%endblock%}
+

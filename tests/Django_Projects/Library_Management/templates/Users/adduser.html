@@ -1,0 +1,52 @@
+{% extends "index.html" %}
+{%block content%}
+<script >
+  function validate() {
+      if( document.myForm.name.value == "" ) {
+         alert( "Please provide name!" );
+         document.myForm.name.focus() ;
+         return false;
+      }
+      if( document.myForm.email.value == "" ) {
+         alert( "Please provide valid email!" );
+         document.myForm.email.focus() ;
+         return false;
+      }
+      if( document.myForm.contact.value == "" || isNaN( document.myForm.contact.value ) || document.myForm.contact.value.length < 10 || document.myForm.contact.value.length > 10) {
+         alert( "Please provide valid contact!" );
+         document.myForm.contact.focus() ;
+         return false;
+      }
+      if( document.myForm.publication.value == "" ){
+         
+         alert( "Please provide publication" );
+         document.myForm.publication.focus() ;
+         return false;
+      }
+      
+      return( true );
+  }
+</script>
+<form method="POST" action="/adduser" name = "myForm" onsubmit = "return validate()">
+    {% csrf_token %}
+    <div class="form-group ">
+      <label for="exampleInputEmail1">ID</label>
+      <input type="text" class="form-control" id="exampleInputEmail1"  name='ID' placeholder="Enter Student name" >
+    </div>
+    <div class="form-group ">
+      <label for="exampleInputEmail1">Name of Student</label>
+      <input type="text" class="form-control" id="exampleInputEmail1"  name='name' placeholder="Enter Student name" >
+    </div>
+    <div class="form-group">
+        <label for="Author">Email</label>
+        <input type="email" class="form-control" id="Author" name='email' placeholder="Enter the emailId" >
+      </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Contact No: </label>
+      <input type="text" class="form-control" id="exampleInputPassword1" name='contact' placeholder="Enter the Contact number" >
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add</button>
+  </form>
+{%endblock%}
+

@@ -1,0 +1,40 @@
+<div class="container mt-3 col-md-12 text-center">
+    <mat-form-field appearance="outline">
+        <mat-label>Search</mat-label>
+        <input matInput  [(ngModel)] = "search" >
+        <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error> -->
+    </mat-form-field>
+</div>
+<div class="container mt-3 col-md-12" >
+    <table class="table table-striped ">
+       <thead style="background-color: #3f51b5; color:aliceblue">
+          <tr>
+          <th (click)="sort('title')" >Title</th>
+          <th (click)="sort('author')">Author</th>
+          <th (click)="sort('ISBN')">ISBN number</th>
+          <th (click)="sort('publication')">Publication</th>
+          <th scope="col">Actions</th>
+          </tr>
+      </thead>
+
+      <tbody>
+                <tr *ngFor='let data of Books | filter : search | orderBy : key : reverse'>
+                    <td>{{data.title}}</td>
+                    <td>{{data.author}}</td>
+                    <td>{{data.isbn}}</td>
+                    <td>{{data.publication}}</td>
+                    <td>
+                        <button class='btn ' (click)="edit(data.isbn)" Button><mat-icon>edit</mat-icon></button>
+                        <button class='btn ' (click)="delete(data)" Button><mat-icon>delete</mat-icon></button>
+                    </td>
+                    <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
+                        <p style="color: white">Please Wait. </p>  
+                    </ngx-spinner>
+                </tr>
+      </tbody>
+    </table>
+    <div class="text-center">
+    <button class="btn btn-primary" (click)="addClick()" Button>Add Books data</button>
+    </div>
+  </div>
+

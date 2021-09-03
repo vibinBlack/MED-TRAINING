@@ -1,0 +1,65 @@
+<div >
+    <button class='btn' [routerLink]="'staff-data'"><mat-icon>arrow_back</mat-icon>Back</button>
+</div>
+<mat-card class="mx-auto mt-5 " style="width: 400px;">
+    <form [formGroup]="borrowform" >
+    <mat-card-title>{{formname}}</mat-card-title>
+    <mat-form-field appearance="outline">
+            <mat-label>Book Taken</mat-label>
+            <select formControlName="book" matNativeControl required >
+                <option *ngFor="let data of bookdata"  [value]="data.isbn" >{{data.isbn}}</option>          
+            </select>
+            <mat-error *ngIf="book.hasError('required')">
+                This Field is Required 
+            </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Issue Date</mat-label>
+        <input matInput  formControlName="issue_date" placeholder="YYYY-MM-DD" required>
+        <mat-error *ngIf="issue_date.hasError('required')">
+            This Field is Required 
+        </mat-error>
+        <mat-error *ngIf="issue_date.hasError('pattern')">
+            Enter a valid date
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Renewal Date</mat-label>
+        <input matInput  formControlName="renewal_date" placeholder="YYYY-MM-DD" required>
+        <mat-error *ngIf="renewal_date.hasError('required')">
+            This Field is Required 
+        </mat-error>
+        <mat-error *ngIf="renewal_date.hasError('pattern')">
+            Enter a valid date 
+        </mat-error>
+    </mat-form-field>
+    <div class="text-center">
+        <button (click)="updateBookinfo()" *ngIf="!status" mat-raised-button color="primary" [disabled]="!borrowform.valid">Update</button>
+
+        <button (click)="addBookinfo()" *ngIf="status" mat-raised-button color="primary" [disabled]="!borrowform.valid">Add</button>
+    </div>
+    <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
+        <p style="color: white">Please Wait. </p>  
+    </ngx-spinner>
+    </form>
+</mat-card>
+
+
+
+
+<!-- <div class="container form-froup-row"> -->
+    <!-- <label>ID</label>
+    <input type="text" class="form-control" [(ngModel)]="id" placeholder="Enter id"> -->
+    <!-- <label>Book Taken</label>
+    <select class="form-control"  [(ngModel)]="bid">
+        <option *ngFor="let data of bookdata"  [value]="data.ISBN"  ngDefaultControl>{{data.ISBN}}</option>          
+    </select> -->
+    <!-- <input type="text" class="form-control" [(ngModel)]="bid" placeholder="Enter id"> -->
+    <!-- <label>Issue Date</label>
+    <input type="text" class="form-control" [(ngModel)]="issue_date" placeholder="Enter name">
+    <label>Renewal Date</label>
+    <input type="email" class="form-control" [(ngModel)]="renew_date" placeholder="Enter email">
+</div>
+<button (click)="updateBookinfo()" *ngIf="!status" class="btn btn-primary" Button>Update</button>
+
+<button (click)="addBookinfo()" *ngIf="status" class="btn btn-primary" Button>Add</button> -->

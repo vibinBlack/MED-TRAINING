@@ -1,0 +1,66 @@
+<div >
+    <button class='btn' [routerLink]="'staff'"><mat-icon>arrow_back</mat-icon>Back</button>
+</div>
+<div class="container mt-3 col-md-12" >
+    <table class="table table-striped ">
+       <thead style="background-color: #3f51b5; color:aliceblue">
+          <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Name</th>
+          </tr>
+      </thead>
+
+      <tbody>
+                <tr >
+                    <td>{{staffinfo.emp_id}}</td>
+                    <td>{{staffinfo.staff_name}}</td>
+                </tr>
+      </tbody>
+    </table>
+</div>
+
+
+<div class="container mt-3 col-md-12 text-center">
+    <mat-form-field appearance="outline">
+        <mat-label>Search</mat-label>
+        <input matInput  [(ngModel)] = "search" >
+        <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error> -->
+    </mat-form-field>
+</div>
+<div class="container mt-3 col-md-12" >
+    <table class="table table-striped ">
+       <thead style="background-color: #3f51b5; color:aliceblue">
+          <tr>
+          <!-- <th scope="col">Book Taken</th> -->
+          <th (click)="sort('book')">Book ISBN</th>
+          <th (click)="sort('issue_date')">Issue Date</th>
+          <th (click)="sort('Renewal_date')">Renewal Date</th>
+          <th scope="col">Actions</th>
+          </tr>
+      </thead>
+
+      <tbody>
+                <tr *ngFor='let i of data | filter : search | orderBy : key : reverse'>
+                    <!-- <td *ngFor='let j of booksinfo' >
+                       <table>
+                        <tr *ngIf='j.ISBN==i.book'>
+                            {{j.title}}
+                        </tr> 
+                    </table>
+                    </td> -->
+                    <td>{{i.book}}</td>
+                    <td>{{i.issue_date}}</td>
+                    <td>{{i.renewal_date}}</td>
+                    <td>
+                        <button class='btn' (click)="editstaffData(i)" Button><mat-icon>edit</mat-icon></button>
+                        <button class='btn' (click)="deletestaffData(i)" Button><mat-icon>delete</mat-icon></button>
+                    </td>
+                    <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
+                        <p style="color: white">Please Wait. </p>  
+                    </ngx-spinner>
+                </tr>
+      </tbody>
+    </table>
+    <button class="btn btn-primary" (click)="addStaffbooks()" Button>Add User Books </button>
+  </div>
+

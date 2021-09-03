@@ -1,0 +1,53 @@
+{%extends "index.html"%}
+{%block content%} 
+<script >
+  function validate() {
+      
+      if( document.myForm.title.value == "" ) {
+         alert( "Please provide title!" );
+         document.myForm.title.focus() ;
+         return false;
+      }
+      if( document.myForm.author.value == "" ) {
+         alert( "Please provide author!" );
+         document.myForm.author.focus() ;
+         return false;
+      }
+      if( document.myForm.ISBN.value == "" || isNaN( document.myForm.ISBN.value )) {
+         alert( "Please provide ISBN!" );
+         document.myForm.ISBN.focus() ;
+         return false;
+      }
+      if( document.myForm.publication.value == "" ){
+         
+         alert( "Please provide publication" );
+         document.myForm.publication.focus() ;
+         return false;
+      }
+      
+      return( true );
+  }
+</script>
+<form method="post" action="/add" name = "myForm" onsubmit = "return validate()">
+    {% csrf_token %}
+    <div class="form-group ">
+      <label for="exampleInputEmail1">Title</label>
+      <input type="text" class="form-control" id="exampleInputEmail1"  name='title' placeholder="Enter Title of book"  >
+    </div>
+    <div class="form-group">
+        <label for="Author">Author</label>
+        <input type="text" class="form-control" id="Author" name='author' placeholder="Enter the Author" >
+      </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">ISBN</label>
+      <input type="text" class="form-control" id="exampleInputPassword1" name='ISBN' placeholder="Enter the ISBN number"  >
+    </div>
+    
+      <div class="form-group">
+        <label for="Publication">Publication</label>
+        <input type="text" class="form-control" id="Publication" name='publication' placeholder="Enter the Publication" >
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add</button>
+  </form>
+{%endblock%}

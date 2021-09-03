@@ -1,0 +1,37 @@
+<div class="container mt-3 col-md-12 text-center">
+    <mat-form-field appearance="outline">
+        <mat-label>Search</mat-label>
+        <input matInput  [(ngModel)] = "search" >
+        <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error> -->
+    </mat-form-field>
+</div>
+<div class="container mt-3 col-md-12 mx-auto" >
+    <table class="table table-striped  ">
+       <thead style="background-color: #3f51b5; color:aliceblue">
+          <tr>
+          <th (click)="sort('emp_id')">ID</th>
+          <th (click)="sort('staff_name')">Name</th>
+          <th scope="col">Action</th>
+          </tr>
+      </thead>
+
+      <tbody>
+                <tr *ngFor='let data of Staff | filter : search | orderBy : key : reverse'>
+                    <td>{{data.emp_id}}</td>
+                    <td>{{data.staff_name}}</td>
+                    <td>
+                        <button class='btn ' *ngIf="is_superuser" (click)="editStaff(data)" ><mat-icon>edit</mat-icon></button>
+                        <button class='btn ' *ngIf="is_superuser" (click)="deleteStaff(data)" ><mat-icon>delete</mat-icon></button>
+                        <button class='btn ' (click)="staffStatus(data)" ><mat-icon>details</mat-icon></button>
+                    </td>
+                    <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
+                        <p style="color: white">Please Wait. </p>  
+                    </ngx-spinner>
+                </tr>
+      </tbody>
+    </table>
+    <div class="text-center">
+    <button class="btn btn-primary" *ngIf="is_superuser" (click)="addFunct()" Button>Add Staff</button>
+    </div>
+  </div>
+

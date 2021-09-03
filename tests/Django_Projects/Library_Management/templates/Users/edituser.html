@@ -1,0 +1,66 @@
+{%extends 'index.html' %}
+{%block content%}
+<script >
+    function validate() {
+        if( document.myForm.name.value == "" ) {
+           alert( "Please provide name!" );
+           document.myForm.name.focus() ;
+           return false;
+        }
+        if( document.myForm.email.value == "" ) {
+           alert( "Please provide valid email!" );
+           document.myForm.email.focus() ;
+           return false;
+        }
+        if( document.myForm.contact.value == "" || isNaN( document.myForm.contact.value ) || document.myForm.contact.value.length < 10 || document.myForm.contact.value.length > 10) {
+           alert( "Please provide valid contact!" );
+           document.myForm.contact.focus() ;
+           return false;
+        }
+        if( document.myForm.publication.value == "" ){
+           
+           alert( "Please provide publication" );
+           document.myForm.publication.focus() ;
+           return false;
+        }
+        
+        return( true );
+    }
+  </script>
+<form method="POST" class="post-form" action="/updateuser/{{book.id}}" name = "myForm" onsubmit = "return validate()">  
+    {% csrf_token %}  
+<div class="container">  
+<br>  
+<div class="form-group row">  
+<label class="col-sm-1 col-form-label"></label>  
+<div class="col-sm-4">  
+<h3>Update Details</h3>  
+</div>  
+</div>  
+<div class="form-group row">  
+<label class="col-sm-2 col-form-label">name:</label>  
+<div class="col-sm-4">  
+    <input type="text" name="name"  id="id_name" value="{{ book.name }}" required/>  
+</div>  
+</div>    
+<div class="form-group row">  
+<label class="col-sm-2 col-form-label">email:</label>  
+<div class="col-sm-4">  
+    <input type="email" name="email"   value="{{ book.email }}" required/>  
+</div>  
+</div> 
+<div class="form-group row">  
+    <label class="col-sm-2 col-form-label">Contact no:</label>  
+    <div class="col-sm-4">  
+        <input type="number" name="contact"   value="{{ book.contact }}" required/>  
+    </div>  
+    </div> 
+<div class="form-group row">  
+<label class="col-sm-1 col-form-label"></label>  
+<div class="col-sm-4">  
+<button type="submit" class="btn btn-success">Update</button>  
+</div>  
+</div>  
+</div>  
+</form>
+{%endblock%}

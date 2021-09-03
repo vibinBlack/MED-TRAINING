@@ -1,0 +1,50 @@
+<div >
+    <button class='btn' [routerLink]="'books'"><mat-icon>arrow_back</mat-icon>Back</button>
+</div>
+<mat-card class="mx-auto mt-5 " style="width: 400px;">
+    <form [formGroup]="bookform" >
+    <mat-card-title>{{formname}}</mat-card-title>
+    <mat-form-field appearance="outline">
+            <mat-label>ISBN</mat-label>
+            <input matInput  [readonly]="!status" formControlName="isbn" required>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Title</mat-label>
+        <input matInput  formControlName="title" required>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Author</mat-label>
+        <input matInput  formControlName="author"  required>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Publication</mat-label>
+        <input matInput  formControlName="publication"  required>
+    </mat-form-field>
+    <div class="text-center">
+        <button (click)="updateBook()" *ngIf="!status" mat-raised-button color="primary" [disabled]="!bookform.valid">Update</button>
+
+        <button (click)="addBook()" *ngIf="status" mat-raised-button color="primary" [disabled]="!bookform.valid">Add</button>
+    </div>
+    <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
+        <p style="color: white">Please Wait. </p>  
+        </ngx-spinner>
+    </form>
+</mat-card>
+
+
+
+<!-- <div class="container form-froup-row">
+    <label>ISBN</label>
+    <input type="text" class="form-control" [(ngModel)]="ISBN" placeholder="Enter ISBN">
+    <label>title</label>
+    <input type="text" class="form-control" [(ngModel)]="title" placeholder="Enter title">
+    <label>author</label>
+    <input type="text" class="form-control" [(ngModel)]="author" placeholder="Enter author">
+    <label>publication</label>
+    <input type="text" class="form-control" [(ngModel)]="publication" placeholder="Enter publication">
+    <div class="text-center">
+        <button (click)="updateBook()" *ngIf="!status" class="btn btn-primary" Button>Update</button>
+
+        <button (click)="addBook()" *ngIf="status" class="btn btn-primary" Button>Add</button>
+    </div>
+</div> -->

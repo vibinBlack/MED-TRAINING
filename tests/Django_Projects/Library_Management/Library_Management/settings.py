@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,6 +29,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -37,12 +39,26 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'catalog.apps.CatalogConfig'
+    'catalog.apps.CatalogConfig',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'corsheaders'
 ]
 
+# CORS_ORIGIN_ALLOW_ALL = False
+# CORS_ORIGIN_ALLOWED = (
+#   'http://localhost:4200',
+# )
+# CORS_ALLOW_ORIGINS= ['http://localhost:4200']
+# CORS_ALLOW_CREDENTIALS= True
+
+
+
 MIDDLEWARE = [
+    # 'django_cookies_samesite.middleware.CookiesSameSite',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -55,7 +71,7 @@ ROOT_URLCONF = 'Library_Management.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, "templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -68,6 +84,7 @@ TEMPLATES = [
     },
 ]
 
+# AUTH_USER_MODEL='catalog.UsersAccount'
 WSGI_APPLICATION = 'Library_Management.wsgi.application'
 
 
@@ -76,8 +93,15 @@ WSGI_APPLICATION = 'Library_Management.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'myproject',
+        'USER': 'root',
+        'PASSWORD': 'revanth',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+        }
     }
 }
 
@@ -124,3 +148,26 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+#     # Use Django's standard `django.contrib.auth` permissions,
+#     # or allow read-only access for unauthenticated users.
+'DEFAULT_AUTHENTICATION_CLASSES': [
+#         'rest_framework_jwt.authentication.JSONWebTokenAuthentication'
+#     #    ' rest_framework.authtoken',
+#         # 'knox.auth.TokenAuthentication',
+            'rest_framework.authentication.TokenAuthentication'
+            ] ,
+    'DEFAULT_PERMISSION_CLASSES': [
+       'rest_framework.permissions.IsAuthenticated'
+    ]
+      
+        }
+
+# Access_Control_Allow_Origin = '*'
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
+
+
+

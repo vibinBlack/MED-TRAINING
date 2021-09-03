@@ -1,0 +1,51 @@
+<mat-card class="mx-auto mt-5 " style="width: 400px;">
+        <form [formGroup]="loginform" (ngSubmit)="onSubmit()">
+        <mat-card-title>Please Log in</mat-card-title>
+        <mat-error *ngIf="error">
+                {{message}} 
+        </mat-error>
+        <mat-form-field appearance="outline">
+                <mat-label>Username</mat-label>
+                <input  matInput   formControlName="username" required>
+                <span matSuffix style="padding-right:40px !important"></span>
+                <mat-error *ngIf="username.hasError('required')">
+                        This Field is Required 
+                    </mat-error>
+                <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error> -->
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+                <mat-label>Password</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required>
+                <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error *ngIf="password.hasError('required')">
+                        This Field is Required 
+                    </mat-error>
+                <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error> -->
+        </mat-form-field>
+        <div class="text-center">
+                <button  type="submit" mat-raised-button color="primary" [disabled]="!loginform.valid">Login</button>
+        </div>
+        <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
+                <p style="color: white">Please Wait. </p>  
+                </ngx-spinner>
+        </form>
+</mat-card>
+
+
+
+
+
+<!-- <div class="container form-froup-row mt-5">
+        <h1 class="h3 mb-3 fw-normal text-center">Please sign in</h1>
+        <div class="mx-auto " style="width: 400px;">
+                <input   class="form-control mb-3" [(ngModel)]="username" placeholder="Username" required>
+        
+                <input  type="password" class="form-control mb-3" [(ngModel)]="password" placeholder="Password" required>
+                <div class="mb-4 text-center">
+                        <button (click)="onSubmit()" class="btn btn-lg btn-primary" >Log in</button>
+                </div>
+        </div>
+                
+</div> -->

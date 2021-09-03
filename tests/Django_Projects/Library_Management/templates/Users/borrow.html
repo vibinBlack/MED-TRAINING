@@ -1,0 +1,13 @@
+{% extends "search.html" %}
+{%block content%}
+<form method="POST" action="/student_books/{{book.ISBN}}">
+    {%csrf_token%}
+    <select >
+    {%for book in books%}
+        <option value="{{book.ISBN}}">{{book.ISBN}}</option>
+    {%endfor%}
+    </select>
+    <button type="submit">add</button>
+</form>
+{%endblock%}
+
