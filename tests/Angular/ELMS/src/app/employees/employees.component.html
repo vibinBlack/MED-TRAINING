@@ -1,0 +1,41 @@
+<div *ngIf="unauth">
+    <div class="w3-row-padding w3-padding-64 w3-content" id="editemployee">
+        <h1>Employees List</h1>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search" [(ngModel)]="filterTerm">
+        </div>
+        <table class="w3-table-all w3-margin-top w3-centered tr th w3-auto">
+            <thead>
+                <tr class="w3-black">
+                    <th (click)="sort('Emp_No')" class="w3-btn">Emp_No &nbsp;<i class="fa fa-sort"></i></th>
+                    <th (click)="sort('First_Name')" class="w3-btn">First Name &nbsp;<i class="fa fa-sort"></i></th>
+                    <th (click)="sort('Gender')" class="w3-btn">Gender &nbsp;<i class="fa fa-sort"></i></th>
+                    <th (click)="sort('Mobile_Number')" class="w3-btn">Mobile Number &nbsp;<i class="fa fa-sort"></i></th>
+                    <th (click)="sort('Email_Address')" class="w3-btn">Email Address &nbsp;<i class="fa fa-sort"></i></th>
+                    <th (click)="sort('Designation')" class="w3-btn">Designation &nbsp;<i class="fa fa-sort"></i></th>
+                    <th (click)="sort('Hire_Date')" class="w3-btn">Hire Date &nbsp;<i class="fa fa-sort"></i></th>
+                    <th><button class='w3-white btn' (click)='add()'><span class="fa fa-plus fa-lg"></span> Add New</button></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let i of Employee | filter:filterTerm | orderBy: key: reverse | paginate: {itemsPerPage:8,currentPage:p}">
+                    <!--  -->
+                    <td>{{i.Emp_No}}</td>
+                    <td>{{i.First_Name}}</td>
+                    <td>{{i.Gender}}</td>       
+                    <td>{{i.Mobile_Number}}</td>
+                    <td>{{i.Email_Address}}</td>  
+                    <td>{{i.Designation}}</td> 
+                    <td>{{i.Hire_Date | date:"d-M-y"}}</td>    
+                    <td>
+                        <button class="btn btn-lg" (click)='edit(i)'><mat-icon>edit</mat-icon></button>
+                        <button class="btn" (click)='delete(i)'><span class="material-icons text-danger">delete_outline</span></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="form-group  pt-md-3">
+            <pagination-controls (pageChange) = "p = $event"></pagination-controls>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,80 @@
+<div class="w3-row-padding w3-padding-64 w3-content" id="applyforleave">
+    <h1>Apply For Leave</h1>
+    <div class="w3-row w3-padding-32">
+        <div class="w3-row-padding w3-threequarter w3-black" style="margin: 16px -16px 16px -16px">
+            <mat-tab-group dynamicHeight>
+                <mat-tab label="Leave History">
+                    <div class="example-small-box mat-elevation-z4">
+                        <div class="w3-row-padding w3-margin-top w3-padding-32 w3-container">
+                            <h2>Leave History</h2>
+                            <table class="w3-table-all w3-text-black w3-margin-top w3-centered tr th w3-auto">
+                                <thead>
+                                    <tr class="w3-black">
+                                        <th>Absence Type</th>
+                                        <th>Reason</th>
+                                        <th>Begin Date</th>
+                                        <th>End Date</th>
+                                        <th>Requested Days</th>
+                                        <th>Request Status</th>
+                                        <th>Cancel Leave</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let leaves of Leave">
+                                        <td>{{leaves.Leave_Type}}</td>
+                                        <td>{{leaves.Emp_Comments}}</td>
+                                        <td>{{leaves.Begin_Date | date:"d-M-yy"}}</td>
+                                        <td>{{leaves.End_Date | date:"d-M-yy"}}</td>
+                                        <td>{{leaves.Requested_Days}}</td>
+                                        <td>{{leaves.Leave_Status}}</td>
+                                        <td>
+                                            <button class="btn btn-warning" [disabled]='disable(leaves)' (click)='Cancel(leaves)'> Cancel </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </mat-tab>
+                <mat-tab label="Request Leave">
+                    <div class="example-small-box mat-elevation-z4">
+                        <div class="w3-row-padding w3-margin-top w3-padding-32 w3-container">
+                            <h2>Request Leave</h2>
+                            <form [formGroup]="leaveForm" (ngSubmit)='onSubmit()'>
+                                <div class="form-group  pt-md-3">   
+                                    <select class="form-control custom-select" [formControl]="LeaveType" >
+                                        <option value="" disabled selected> Select LeaveType </option>
+                                        <option> Personal </option>
+                                        <option> Sick </option>
+                                    </select>
+                                    <small class="w3-center w3-text-red" *ngIf="LeaveType.hasError('required') && LeaveType.touched">Leave Type is <strong>Required</strong></small>         
+                                </div>
+                                <div class="form-group  pt-md-3">
+                                    <label for="BeginDate">Begin Date</label>
+                                    <input class="form-control " placeholder="Begin Date" type="Date" [formControl]="BeginDate">
+                                    <small class="w3-center w3-text-red" *ngIf="BeginDate.hasError('required') && BeginDate.touched">Begin Date is <strong>Required</strong></small>
+                                </div>
+                                <div class="form-group  pt-md-3">
+                                    <label for="EndDate">End Date</label>
+                                    <input class="form-control " type="Date" placeholder="End Date" [formControl]="EndDate">
+                                    <small class="w3-center w3-text-red" *ngIf="EndDate.hasError('required') && EndDate.touched">End Date is <strong>Required</strong></small>
+                                </div>
+                                <div class="form-group  pt-md-3">
+                                    <input class="form-control " type="number" placeholder="Requested Days" [formControl]="RequestedDays">
+                                    <small class="w3-center w3-text-red" *ngIf="RequestedDays.hasError('required') && RequestedDays.touched">Requested Days is <strong>Required</strong></small>
+                                </div>
+                                <div class="form-group  pt-md-3">
+                                    <input class="form-control " type="text" placeholder="Reason" [formControl]="EmpComments">
+                                    <small class="w3-center w3-text-red" *ngIf="EmpComments.hasError('required') && EmpComments.touched">Reason is <strong>Required</strong></small>
+                                </div>
+                                <div class="w3-half form-group  pt-md-3 pb-md-4">
+                                    <button [disabled]="leaveForm.invalid" class="w3-white w3-hover-yellow btn btn-primary"  type="submit" name="submit">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </mat-tab>
+            </mat-tab-group> 
+        </div>
+    </div>
+</div>

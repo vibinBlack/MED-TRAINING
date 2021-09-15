@@ -1,0 +1,109 @@
+<div class="col-md-10 container offset-md-2 w3-padding-64">
+    <h1>ADD</h1>
+    <form [formGroup]='createForm' (ngSubmit)="onSubmit()">
+        <div class="w3-row-padding" style="margin:0 -16px 8px -16px"> 
+            <div class="w3-half form-group col-md-4" >
+                <label>First Name</label>
+                <input class="form-control" type="text" placeholder="First Name" [formControl]="FirstName">
+                <small class="w3-center w3-text-red" *ngIf="FirstName.hasError('required') && FirstName.touched">First Name Is <strong>Required</strong></small>
+            </div>
+            <div class="w3-half form-group col-md-4 offset-md-1">
+                <label>Middle Name</label>
+                <input class="form-control" type="text" placeholder="Middle Name" [formControl]="MiddleName" >
+            </div>
+        </div>
+        <div class="w3-row-padding" style="margin:0 -16px 8px -16px"> 
+            <div class="w3-half form-group col-md-4 pt-md-3">
+                <label>Last Name</label>
+                <input class="form-control" type="text" placeholder="Last Name" [formControl]="LastName" >
+                <small class="w3-center w3-text-red" *ngIf="LastName.hasError('required') && LastName.touched">Last Name Is <strong>Required</strong></small>
+            </div>
+            <div class="w3-half form-group col-md-4 offset-md-1 pt-md-3">
+                <label>Gender</label>
+                <input class="form-control" type="text" placeholder="Gender" [formControl]="Gender">
+                <small class="w3-center w3-text-red" *ngIf="Gender.hasError('required') && Gender.touched">Gender Is <strong>Required</strong></small>
+            </div>
+        </div>
+        <div class="w3-row-padding" style="margin:0 -16px 8px -16px"> 
+            <div class="w3-half form-group col-md-4 pt-md-3">
+                <label>Birth Date</label>
+                <input class="form-control" type="date" placeholder="Birth Date" [formControl]="BirthDate">
+                <small class="w3-center w3-text-red" *ngIf="BirthDate.hasError('required') && BirthDate.touched">Birth Date Is <strong>Required</strong></small>
+            </div>
+            <div class="w3-half form-group col-md-4 offset-md-1 pt-md-3">
+                <label>Hire Date</label>
+                <input class="form-control" type="date" placeholder="Hire Date" [formControl]="HireDate">
+                <small class="w3-center w3-text-red" *ngIf="HireDate.hasError('required') && HireDate.touched">Hire Date Is <strong>Required</strong></small>
+            </div>
+        </div>
+        <div class="w3-row-padding" style="margin:0 -16px 8px -16px"> 
+            <div class="w3-half form-group col-md-4 pt-md-3">
+                <label>Street Address Line 1</label>
+                <input class="form-control" type="text" placeholder="Street Address" [formControl]="StreetAddress" >
+                <small class="w3-center w3-text-red" *ngIf="StreetAddress.hasError('required') && StreetAddress.touched">Street Address Is <strong>Required</strong></small>
+            </div>
+            <div class="w3-half form-group col-md-4 offset-md-1 pt-md-3">
+                <label>Street Address Line 2</label>
+                <input class="form-control" type="text" placeholder="Address2" [formControl]="Address2">
+            </div>
+        </div>
+        <div class="w3-row-padding" style="margin:0 -16px 8px -16px"> 
+            <div class="w3-half form-group col-md-4 pt-md-3">
+                <label>City</label>
+                <input class="form-control" type="text" placeholder="City" [formControl]="City">
+                <small class="w3-center w3-text-red" *ngIf="City.hasError('required') && City.touched">City Is <strong>Required</strong></small>
+            </div>
+            <div class="w3-half form-group col-md-4 offset-md-1 pt-md-3">
+                <label>State</label>
+                <input class="form-control" type="text" placeholder="State" [formControl]="State">
+                <small class="w3-center w3-text-red" *ngIf="State.hasError('required') && State.touched">State Is <strong>Required</strong></small>
+            </div>
+        </div>
+        <div class="w3-row-padding" style="margin:0 -16px 8px -16px"> 
+            <div class="w3-half form-group col-md-4 pt-md-3">
+                <label>Postal Code</label>
+                <input class="form-control" type="number" placeholder="Postal Code" [formControl]="PostalCode" >
+                <small class="w3-center w3-text-red" *ngIf="PostalCode.hasError('required') && PostalCode.touched">PostalCode Is <strong>Required</strong></small>
+            </div>
+            <div class="w3-half form-group col-md-4 offset-md-1 pt-md-3">
+                <label>Country</label>
+                <input class="form-control" type="text" placeholder="Country" [formControl]="Country">
+                <small class="w3-center w3-text-red" *ngIf="Country.hasError('required') && Country.touched">Country Is <strong>Required</strong></small>
+            </div>
+        </div>
+        <div class="w3-row-padding" style="margin:0 -16px 8px -16px"> 
+            <div class="w3-half form-group col-md-4 pt-md-3">
+                <label>Email Address</label>
+                <input class="form-control" type="email" placeholder="Email Address" [formControl]="EmailAddress">
+                <small class="w3-center w3-text-red" *ngIf="EmailAddress.hasError('required') && EmailAddress.touched">Email Address Is <strong>Required</strong></small>
+                <small class="w3-center w3-text-red" *ngIf="EmailAddress.hasError('email') && EmailAddress.touched">Email Address Pattern Is <strong>Invalid</strong></small>
+            </div>
+            <div class="w3-half form-group col-md-4 offset-md-1 pt-md-3">
+                <label>Mobile Number</label>
+                <input class="form-control" type="number" placeholder="Mobile Number" [formControl]="MobileNumber" pattern="[789][0-9]{9}">
+                <small class="w3-center w3-text-red" *ngIf="MobileNumber.hasError('required') && MobileNumber.touched">Mobile Number Is <strong>Required</strong></small>
+                <small class="w3-center w3-text-red" *ngIf="MobileNumber.hasError('pattern') && MobileNumber.touched">Mobile Number Pattern Is <strong>Invalid</strong></small>
+            </div>
+        </div>
+        <div class="w3-row-padding" style="margin:0 -16px 8px -16px"> 
+            <div class="w3-half form-group col-md-4 pt-md-3">
+                <label>Designation</label>
+                <input class="form-control" type="text" placeholder="Designation" [formControl]="Designation" >
+                <small class="w3-center w3-text-red" *ngIf="Designation.hasError('required') && Designation.touched">Designation Is <strong>Required</strong></small>
+            </div>
+            <div class="w3-half form-group col-md-4 offset-md-1 pt-md-3">
+                <label>Salary</label>
+                <input class="form-control" type="number" placeholder="Salary" [formControl]="Salary" >
+                <small class="w3-center w3-text-red" *ngIf="Salary.hasError('required') && Salary.touched">Salary Is <strong>Required</strong></small>
+            </div>
+        </div>
+        <div class="w3-row-padding" style="margin:0 -16px 8px -16px"> 
+            <div class="w3-half form-group col-md-4 pt-md-3 pb-md-4">
+                <button [disabled]="createForm.invalid" class="w3-black btn btn-primary"  type="submit" name="submit">Submit</button>
+            </div>
+            <div class="w3-half form-group col-md-4 pt-md-3 pb-md-4 offset-md-1">
+                <button (click)="back()" class="w3-black btn btn-primary"  type="submit" name="back">Back</button>
+            </div>
+        </div>        
+    </form>
+</div>

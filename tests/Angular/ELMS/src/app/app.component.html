@@ -1,0 +1,23 @@
+<ngx-ui-loader
+delay= 0
+text= "Please wait..."
+textColor=#5cddd9
+fastFadeOut= true
+fgsPosition= "center-center"
+fgsType= "three-strings">
+</ngx-ui-loader>
+<div ngxUiLoaderBlurred [blur]="3">
+  <mat-toolbar color="warm">
+    <span>Leave Management System</span>
+    <button *ngIf='service.isUserLogedIn()' mat-button routerLink='home'><span class="fa fa-home fa-lg"></span> Home</button>
+    <button *ngIf='service.isUserLogedIn()' mat-button routerLink='profile'><mat-icon>person</mat-icon> Profile</button>
+    <button *ngIf='service.isUserLogedIn()  ' mat-button routerLink='apply'><mat-icon>history</mat-icon> Leave History</button>
+    <button *ngIf='service.isUserLogedIn() && employee()' mat-button routerLink='approve'><span class="fa fa-address-card fa-lg"></span> Approve Leave</button>
+    <button *ngIf='service.isUserLogedIn() && employee()' mat-button routerLink='employees'><mat-icon>list</mat-icon> Employees List</button>
+    <div class="right"></div>
+    <button *ngIf='!service.isUserLogedIn()' mat-button routerLink=''><span class="fa fa-sign-in fa-lg"></span> Login</button>
+    <button *ngIf='service.isUserLogedIn() && employee()' mat-button routerLink='register'><mat-icon>person_add</mat-icon> Register</button>
+    <button *ngIf='service.isUserLogedIn()' (click)='service.aLogout()' mat-button><span class="fa fa-sign-out fa-lg"></span> Logout</button>
+  </mat-toolbar>
+  <router-outlet></router-outlet>
+</div>

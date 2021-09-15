@@ -1,0 +1,75 @@
+<div class="w3-row-padding w3-content w3-padding-64" id="profile">
+    <h1>Profile</h1>
+    <form>
+        <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+            <div class="w3-half">
+                <p class="w3-small">First Name</p>
+                <input class="w3-input w3-border" type="text" placeholder="First Name" required name="First Name" value='{{employees.First_Name}}' readonly>
+            </div>
+            <div class="w3-half">
+                <p class="w3-small">Middle Name</p>
+                <input class="w3-input w3-border" type="text" placeholder="Middle Name" required name="Middle Name" value='{{employees.Middle_Name}}' readonly>
+            </div>
+        </div>
+        <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+            <div class="w3-half">
+                <p class="w3-small">Last Name</p>
+                <input class="w3-input w3-border" type="text" placeholder="Last Name" required name="Last Name" value='{{employees.Last_Name}}' readonly>
+            </div>
+            <div class="w3-half">
+                <p class="w3-small">Gender</p>
+                <input class="w3-input w3-border" type="text" placeholder="Gender" required name="Gender" value='{{employees.Gender}}' readonly>
+            </div>
+        </div>
+        <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+            <div class="w3-half">
+                <p class="w3-small">Birth Date</p>
+                <input class="w3-input w3-border" type="text" placeholder="Birth Date" required name="Birth Date" value='{{employees.Birth_Date | date:"dd-MM-y"}}' readonly>
+            </div>
+            <div class="w3-half">
+                <p class="w3-small">Hire Date</p>
+                <input class="w3-input w3-border" type="text" placeholder="Hire Date" required name="Hire Date" value='{{employees.Hire_Date | date:"dd-MM-y"}}' readonly>
+            </div>
+        </div>
+        <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+            <div class="w3-half">
+                <p class="w3-small">Street Address Line 1</p>
+                <input class="w3-input w3-border" type="text" placeholder="Street Address" required name="Street Address" value='{{employees.Street_Address}}' readonly>
+            </div>
+            <div class="w3-half">
+                <p class="w3-small">Street Address Line 2</p>
+                <input class="w3-input w3-border" type="text" placeholder="Address2" required name="Address2" value='{{employees.Address2}}' readonly>
+            </div>
+        </div>
+        <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+            <div class="w3-half">
+                <p class="w3-small">City</p>
+                <input class="w3-input w3-border" type="text" placeholder="City" required name="City" value='{{employees.City}}' readonly>
+            </div>
+            <div class="w3-half">
+                <p class="w3-small">State</p>
+                <input class="w3-input w3-border" type="text" placeholder="State" required name="State" value='{{employees.State}}' readonly>
+            </div>
+        </div>
+        <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+            <div class="w3-half">
+                <p class="w3-small">Postal Code</p>
+                <input class="w3-input w3-border" type="text" placeholder="Postal Code" required name="Postal Code" value='{{employees.Postal_Code}}' readonly>
+            </div>
+            <div class="w3-half">
+                <p class="w3-small">Country</p>
+                <input class="w3-input w3-border" type="text" placeholder="Country" required name="Country" value='{{employees.Country}}' readonly>
+            </div>
+        </div>
+        <div class="w3-row-padding" style="margin:0 -16px 0px -16px">
+            <div class="w3-half">
+                <p class="w3-small">Email Address</p>
+                <input class="w3-input w3-border" type="text" placeholder="Email Address" required name="Email Address" value='{{employees.Email_Address}}' readonly>
+            </div>
+            <div class="w3-half">
+                <p class="w3-small">Mobile Number</p>
+                <input class="w3-input w3-border" type="text" placeholder="Mobile Number" required name="Mobile Number" value='{{employees.Mobile_Number}}' readonly>
+            </div>
+        </div>
+    </form>
+</div>

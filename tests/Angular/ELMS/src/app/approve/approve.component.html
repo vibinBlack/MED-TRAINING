@@ -1,0 +1,40 @@
+<div *ngIf="unauth"> 
+    <div class="w3-row-padding w3-content w3-padding-64" id="approveleave">
+        <h1>Approve Leave</h1>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search" [(ngModel)]="filterTerm">
+        </div>
+        <table class="w3-table-all w3-margin-top w3-centered tr th w3-auto" action="ApproveLeave"  method="post">
+            <thead>
+                <tr class="w3-black">
+                    <th (click)="sort('Emp_No')" class="w3-btn">Leave Id &nbsp;<i class="fa fa-sort"></i></th>
+                    <th (click)="sort('Emp_No')" class="w3-btn">Emp No &nbsp;<i class="fa fa-sort"></i></th>
+                    <th (click)="sort('Emp_FullName')" class="w3-btn">Name &nbsp;<i class="fa fa-sort"></i></th>
+                    <th (click)="sort('Emp_Comments')" class="w3-btn">Reason &nbsp;<i class="fa fa-sort"></i></th>
+                    <th (click)="sort('Leave_Type')" class="w3-btn">Leave Type &nbsp;<i class="fa fa-sort"></i></th>
+                    <th (click)="sort('Begin_Date')" class="w3-btn">Begin Date &nbsp;<i class="fa fa-sort"></i></th>
+                    <th (click)="sort('End_Date')" class="w3-btn">End Date &nbsp;<i class="fa fa-sort"></i></th>
+                    <th (click)="sort('Requested_Days')" class="w3-btn">Requested Days &nbsp;<i class="fa fa-sort"></i></th>
+                    <th (click)="sort('Leave_Status')" class="w3-btn">Status &nbsp;<i class="fa fa-sort"></i></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let leaves2 of Leave | filter:filterTerm | orderBy: key: reverse">
+                    <td>{{leaves2.EmpLeave_Req_ID}}</td>
+                    <td>{{leaves2.Emp_No}}</td>
+                    <td>{{leaves2.Emp_FullName}}</td>
+                    <td>{{leaves2.Emp_Comments}}</td>
+                    <td>{{leaves2.Leave_Type}}</td>
+                    <td>{{leaves2.Begin_Date | date:"d-M-yy"}}</td>
+                    <td>{{leaves2.End_Date | date:"d-M-yy"}}</td>
+                    <td>{{leaves2.Requested_Days}}</td> 
+                    <td>
+                        <button *ngIf='!Status(leaves2)'class="btn btn-dark">{{leaves2.Leave_Status}}</button>
+                        <button *ngIf='Status(leaves2)' class="btn btn-success" (click)='Change(leaves2,"Approved")'> Accept </button>&nbsp;
+                        <button *ngIf='Status(leaves2)' class="btn btn-danger" (click)='Change(leaves2,"Declined")'> Reject</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+<!-- <div *ngIf="!unauth">
+</div> -->
+<div *ngIf=service.isUserLogedIn() class="w3-centered  w3-padding-64 pt-md-12">
+    <h1 class="w3-center">Register</h1>
+    <div class="w3-card-4 w3-centered col-md-4 offset-md-4 w3-padding-32">
+        <form [formGroup]="registerForm" (ngSubmit)='onSubmit()'>
+            <div class="form-group col-md-10 offset-md-1">
+                <input class="form-control " type="text" placeholder="Username" [formControl]="Username" autocomplete="off" required >
+                <small class="w3-center w3-text-red" *ngIf="Username.hasError('required') && Username.touched">Username is <strong>Required</strong></small>
+            </div>
+            <div class="form-group col-md-10 offset-md-1 pt-md-4">
+                <input class="form-control " type="email" placeholder="Email" [formControl]="Email" autocomplete="off">
+                <small class="w3-center w3-text-red" *ngIf="Email.hasError('required') && Email.touched">Email is <strong>Required</strong></small>
+                <small class="w3-center w3-text-red" *ngIf="Email.hasError('email') && Email.touched">Email is <strong>Invalid</strong></small>
+            </div>
+            <div class="form-group col-md-10 offset-md-1 pt-md-4">
+                <input class="form-control " type="password" placeholder="Password" [formControl]="Password" autocomplete="off">
+                <small class="w3-center w3-text-red" *ngIf="Password.hasError('required') && Password.touched">Password is <strong>Required</strong></small>
+            </div>
+            <div class="form-group col-md-10 offset-md-1 pt-md-4">
+                <button [disabled]="registerForm.invalid" class="w3-black btn "  type="submit" name="submit">SignUp</button>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- <div  *ngIf=service.isUserLogedIn() class="w3-centered  w3-padding-64 pt-md-12" >
+    <div class="w3-card-4 w3-centered col-md-4 offset-md-4 w3-padding-32">
+        <h1 class="w3-center w3-text-black"><p> You are already Logged In</p></h1>
+    </div>
+</div> -->

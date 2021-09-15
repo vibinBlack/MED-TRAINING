@@ -1,0 +1,78 @@
+<div *ngIf=!service.isUserLogedIn() class="w3-centered  w3-padding-64 pt-md-12">
+    <h1 class="w3-center">Login</h1>
+    <div class="w3-card-4 w3-centered col-md-4 offset-md-4 w3-padding-32 w3-black">
+        <p class='w3-center w3-text-red' *ngIf="credentials"><strong>Invalid Credentials</strong></p>    
+        <form class="w3-center" [formGroup]="loginForm" (ngSubmit)='onSubmit()'>
+            <!-- <div class="form-group col-md-10 offset-md-1">
+                <mat-form-field appearance="outline">
+                  <mat-label >Name</mat-label>
+                  <input matInput type="text" [formControl]="Username">
+                </mat-form-field>
+            </div> -->
+            <div class="form-group col-md-6 offset-md-3">
+                <input class="form-control " type="text" placeholder="Username" [formControl]="Username" autocomplete="off">
+                <small class="w3-center w3-text-red" *ngIf="Username.hasError('required') && Username.touched">Username is <strong>Required</strong></small>
+            </div>
+            <div class="form-group col-md-6 offset-md-3 pt-md-4">
+                <!-- <div class="input-group" id="show_hide_password">
+                    <input class="form-control " [type]="hide ? 'password' : 'text'" placeholder="Password" [formControl]="Password" autocomplete="off">
+                    <div class="input-group-addon">
+                        <mat-icon class="btn-lg" matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </div>
+                </div> -->
+                <input class="form-control" [type]="hide ? 'password' : 'text'" placeholder="Password" [formControl]="Password" autocomplete="off">
+                <!-- [type]="hide ? 'password' : 'text'"
+                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> -->
+                <small class="w3-center w3-text-red" *ngIf="Password.hasError('required') && Password.touched">Password is <strong>Required</strong></small>
+            </div>
+            <div class="form-group col-md-10 offset-md-1 pt-md-2">
+                Show Password <mat-icon class="btn-lg" matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </div>
+            <div class="form-group col-md-10 offset-md-1 pt-md-4">
+                <button [disabled]="loginForm.invalid" class="w3-white btn "  type="submit" name="submit">Login</button>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- <div  *ngIf=service.isUserLogedIn() class="w3-centered w3-padding-64 pt-md-12" >
+    <div class="w3-card-4 w3-centered col-md-4 offset-md-4 w3-padding-32">
+        <h1 class="w3-center w3-text-black"><p> You are already Logged In</p></h1>
+    </div>
+</div> -->
+
+<!-- <div  *ngIf=!service.isUserLogedIn()>
+    <h1 class="w3-center">Login</h1>
+    <mat-card  class=" w3-centered col-md-4 offset-md-4 w3-padding-32 w3-black">
+        <mat-card-title class="w3-center">
+        </mat-card-title>
+        <mat-error *ngIf="credentials">
+            <p >Username or Password is<strong> Incorrect</strong></p>
+        </mat-error>
+        <mat-card-content>
+            <form class="w3-center" [formGroup]="loginForm">
+                <div class="form-group col-md-6 offset-md-3">
+                    <mat-form-field appearance="outline">
+                        <mat-label>User Name : </mat-label>
+                        <input matInput  [formControl]="Username">
+                        <mat-error *ngIf="Username.hasError('required')">Username is <strong>Required</strong></mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="form-group col-md-6 offset-md-3">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Password : </mat-label>
+                        <input [type]="hide ? 'password' : 'text'" matInput [formControl]="Password">
+                        <mat-error *ngIf="Password.hasError('required')">
+                            Password is <strong>Required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="form-group col-md-10 offset-md-1 pt-md-2">
+                    Show Password <mat-icon class="btn-lg" matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </div>
+                <div class="form-group col-md-10 offset-md-1 pt-md-4">
+                    <button [disabled]="loginForm.invalid" class="w3-white btn "  type="submit" name="submit">Login</button>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div> -->
