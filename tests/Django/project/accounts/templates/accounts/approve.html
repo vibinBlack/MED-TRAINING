@@ -9,7 +9,6 @@
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <style>
             body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
             .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
@@ -42,8 +41,7 @@
                         <th>Begin Date</th>
                         <th>End Date</th>
                         <th>Requested Days</th>
-                        <th>Approve</th>
-                        <th>Decline</th>
+                        <th>Status</th>
                         {% for leaves2 in history %}
                             <tr>
                                 <form class="w3-container w3-margin-top w3-card-4" action="ApproveLeave"  method="post">
@@ -54,8 +52,18 @@
                                 <td>{{leaves2.Begin_Date}}</td>
                                 <td>{{leaves2.End_Date}}</td>
                                 <td>{{leaves2.Requested_Days}}</td>
-                                <td><input type="submit" value="Approve"/></td>
-                                <td><input type="submit" value="Decline"/></td>
+                                <td>
+                                    {% if leaves2.Leave_Status == 'Pending' %}
+                                    <a href="{% url 'accept' leaves2.EmpLeave_Req_ID %}" class="w3-btn w3-green">Approve</a>
+                                    <a href="{% url 'decline' leaves2.EmpLeave_Req_ID %}" class="w3-btn w3-red">Decline</a>
+                                    {% elif leaves2.Leave_Status == 'Approved'  %}
+                                    <button class="w3-btn w3-green" disabled="disabled" data-toggle="modal" data-target="#reply_modal">Approved</button>
+                                    {% elif leaves2.Leave_Status == 'Declined'  %}
+                                    <button class="w3-btn w3-red" disabled="disabled" data-toggle="modal" data-target="#reply_modal">Declined</button>
+                                    {% else %}
+                                    <button class="w3-btn w3-orange" disabled="disabled" data-toggle="modal" data-target="#reply_modal">Cancelled</button>
+                                    {% endif %}
+                                </td>
                                 </form>
                             </tr>
                                 </thead>

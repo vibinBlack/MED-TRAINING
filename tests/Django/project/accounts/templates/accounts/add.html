@@ -24,82 +24,89 @@
         </script>
     </head>
     <body>
-        <div class="w3-row-padding w3-padding-64 w3-containe" id="editemployee" style="margin:16px -16px 8px 32px">
-            <form action="" method="post">
-                {% csrf_token %}  
-                <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
-                    <div class="w3-quarter">
-                        {{form.First_Name|as_crispy_field}}
-                    </div>
-                    <div class="w3-quarter">
-                        {{form.Middle_Name|as_crispy_field}}
+        <div class="w3-row-padding w3-padding-64 w3-container" id="editemployee" >
+            <div class="w3-content">
+                <h1>Edit/Add</h1>
+                <div class="w3-row w3-padding-32">
+                    <div class="w3-col m12">
+                        <form action="" method="post">
+                            {% csrf_token %}  
+                            <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                                <div class="w3-half">
+                                    {{form.First_Name|as_crispy_field}}
+                                </div>
+                                <div class="w3-half">
+                                    {{form.Middle_Name|as_crispy_field}}
+                                </div>
+                            </div>
+                            <div class="w3-row-padding"  style="margin:0 -16px 8px -16px">
+                                <div class="w3-half">
+                                    {{form.Last_Name|as_crispy_field}}
+                                </div>
+                                <div class="w3-half">
+                                    {{form.Gender|as_crispy_field}}
+                                </div>
+                            </div>
+                            <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                                <div class="w3-half">
+                                    {{form.Birth_Date|as_crispy_field}}
+                                </div>
+                                <div class="w3-half">
+                                    {{form.Hire_Date|as_crispy_field}}
+                                </div>
+                            </div>
+                            <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                                <div class="w3-half">
+                                    {{form.Street_Address|as_crispy_field}}
+                                </div>
+                                <div class="w3-half">
+                                    {{form.Address2|as_crispy_field}}
+                                </div>
+                            </div>
+                            <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                                <div class="w3-half">
+                                    {{form.City|as_crispy_field}}
+                                </div>
+                                <div class="w3-half">
+                                    {{form.State|as_crispy_field}}
+                                </div>
+                            </div>
+                            <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                                <div class="w3-half">
+                                    {{form.Postal_Code|as_crispy_field}}
+                                </div>
+                                <div class="w3-half">
+                                    {{form.Country|as_crispy_field}}
+                                </div>
+                            </div>
+                            <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                                <div class="w3-half">
+                                    {{form.Mobile_Number|as_crispy_field}}
+                                </div>
+                                <div class="w3-half">
+                                    {{form.Email_Address|as_crispy_field}}
+                                </div>
+                            </div>
+                            <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                                <div class="w3-half">
+                                    {{form.Designation|as_crispy_field}}
+                                </div>
+                                <div class="w3-half">
+                                    {{form.Salary|as_crispy_field}}
+                                </div>
+                            </div>
+                            <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                                <div class="w3-half">
+                                    <input type="submit" name="submit" class="w3-btn w3-black w3-hover-white">
+                                </div>
+                                <div class="w3-half">
+                                    <a href="{% url 'edit' %}" class="w3-btn w3-black w3-hover-white">Back to list</a>
+                                </div>
+                            </div>
+                        </form> 
                     </div>
                 </div>
-                <div class="w3-row-padding"  style="margin:0 -16px 8px -16px">
-                    <div class="w3-quarter">
-                        {{form.Last_Name|as_crispy_field}}
-                    </div>
-                    <div class="w3-quarter">
-                        {{form.Gender|as_crispy_field}}
-                    </div>
-                </div>
-                <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
-                    <div class="w3-quarter">
-                        {{form.Birth_Date|as_crispy_field}}
-                    </div>
-                    <div class="w3-quarter">
-                        {{form.Hire_Date|as_crispy_field}}
-                    </div>
-                </div>
-                <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
-                    <div class="w3-quarter">
-                        {{form.Street_Address|as_crispy_field}}
-                    </div>
-                    <div class="w3-quarter">
-                        {{form.Address2|as_crispy_field}}
-                    </div>
-                </div>
-                <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
-                    <div class="w3-quarter">
-                        {{form.City|as_crispy_field}}
-                    </div>
-                    <div class="w3-quarter">
-                        {{form.State|as_crispy_field}}
-                    </div>
-                </div>
-                <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
-                    <div class="w3-quarter">
-                        {{form.Postal_Code|as_crispy_field}}
-                    </div>
-                    <div class="w3-quarter">
-                        {{form.Country|as_crispy_field}}
-                    </div>
-                </div>
-                <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
-                    <div class="w3-quarter">
-                        {{form.Mobile_Number|as_crispy_field}}
-                    </div>
-                    <div class="w3-quarter">
-                        {{form.Email_Address|as_crispy_field}}
-                    </div>
-                </div>
-                <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
-                    <div class="w3-quarter">
-                        {{form.Designation|as_crispy_field}}
-                    </div>
-                    <div class="w3-quarter">
-                        {{form.Salary|as_crispy_field}}
-                    </div>
-                </div>
-                <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
-                    <div class="w3-quarter">
-                        <input type="submit" name="submit" class="w3-btn w3-black w3-hover-white">
-                    </div>
-                    <div class="w3-quarter">
-                        <a href="{% url 'edit' %}" class="w3-btn w3-black w3-hover-white">Back to list</a>
-                    </div>
-                </div>
-            </form> 
+            </div>
         </div>    
     </body>
 </html>

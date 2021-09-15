@@ -9,6 +9,16 @@
             .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
             .fa-anchor,.fa-coffee {font-size:200px}
             .header{text-align:center}
+            .dropbtn {
+                display: inline-block;
+                color: black;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+              }
+              .dropdown {
+                display: inline-block;
+              }
         </style>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script>
@@ -20,6 +30,10 @@
             $('#ApplyForLeave').addClass('w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white');
             $('#ApproveLeave').addClass('w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white');
             $('#Logout').addClass('w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white');
+            $(".dropdown-menu li a").click(function(){
+                $(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');
+                $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
+              });
         </script>
     </head>
     <body>
@@ -30,6 +44,16 @@
                     {{myFilter.form}}
                     <button class="w3-btn w3-black w3-hover-white" type="submit"><i class="fa fa-search"></i> Search</button>
                 </form>
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      sort
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <a class="dropdown-item" href="{% url 'Sort' 0 %}">Normal</a>
+                      <a class="dropdown-item" href="{% url 'Sort' 1 %}">Name</a>
+                      <a class="dropdown-item" href="{% url 'Sort' 2 %}">Gender</a>
+                    </div>
+                  </div>
                 <div class="w3-container w3-black w3-card w3-center w3-margin-top w3-card-4">
                     <a href="{% url 'Sort' 0 %}" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Normal</a>
                     <a href="{% url 'Sort' 1 %}" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Sort By Name</a>

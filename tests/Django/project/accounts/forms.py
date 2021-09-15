@@ -15,6 +15,20 @@ class EmployeeForm(ModelForm):
         self.fields['Gender'].empty_label = "please choose value"
         self.fields['Address2'].required = False
         self.fields['Middle_Name'].required = False
+        self.fields['Gender'].required = False
+        self.fields['First_Name'].required = False
+        self.fields['Last_Name'].required = False
+        self.fields['Street_Address'].required = False
+        self.fields['City'].required = False
+        self.fields['State'].required = False
+        self.fields['Postal_Code'].required = False
+        self.fields['Country'].required = False
+        self.fields['Mobile_Number'].required = False
+        self.fields['Email_Address'].required = False
+        self.fields['Hire_Date'].required = False
+        self.fields['Designation'].required = False
+        self.fields['Salary'].required = False
+        
 
 class EmpLeaveRequestForm(ModelForm):
 
@@ -24,6 +38,7 @@ class EmpLeaveRequestForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(EmpLeaveRequestForm,self).__init__(*args, **kwargs)
         self.fields['Leave_Status'].required = False
+        
 
 class RegisterForm(UserCreationForm):
 	class Meta:
