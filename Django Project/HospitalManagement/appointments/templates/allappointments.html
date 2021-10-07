@@ -1,0 +1,39 @@
+{% extends "base.html "%}
+
+{% block content %}
+<div class="centre">
+<h1>All Appointments</h1>
+{% if appointments %}
+<div class="container">
+    
+    <div class="row">
+       <h4> 
+        <div class="col-md-3" style="background-color:lavender; text-align: center;">Doctor</div> 
+        <div class="col-md-2" style="background-color:lavenderblush; text-align: center;">Patient</div>
+        <div class="col-md-2" style="background-color:lavender; text-align: center;">Appointment Date</div>
+       </h4>
+    </div>
+    
+</div>
+<!-- <ul> -->
+<div class="container">
+    
+    {% for appointment in appointments%}
+    <div class="row">
+       <h4> 
+        <div class="col-md-3" style="background-color:lavender; text-align: center;">{{appointment.doctor}}</div> 
+        <div class="col-md-2" style="background-color:lavenderblush; text-align: center;">{{appointment.patient}}</div>
+        <div class="col-md-2" style="background-color:lavender; text-align: center;">{{appointment.date}}</div>
+       </h4>
+    </div>
+    {% endfor %}
+    
+</div>
+<!-- </ul> -->
+{% else %}
+<div class="alert alert-warning" style="width: 50%; text-align: center; margin: auto;">
+    No Appointments Exist
+     </div>
+</div>
+{% endif %}
+{% endblock %}

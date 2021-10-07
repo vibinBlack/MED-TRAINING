@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="centre">
+  <h1>All Available Doctors on {{date}}</h1>
+  {% if user.is_superuser %}
+  <h3><a href="{% url 'adddoctor' %}" class="btn btn-success" >Add Doctor</a></h3>
+  {% endif %}
+  {% if doctor_list %}
+  <ul>
+    {% for doctor in doctor_list %}
+      <li>
+        <h4>{{doctor.first_name}} {{doctor.last_name}} ({{doctor.type}})
+        <a href="{% url 'success' pk=doctor.pk %}" class="btn btn-primary">Book Appointment</a>
+        {% if user.is_superuser %}
+        <a href="{% url 'deletedoctor' pk=doctor.pk %}" class="btn btn-danger">Delete Doctor</a> 
+        <a href="{% url 'updatedoctor' pk=doctor.pk %}" class="btn btn-warning">Update Doctor</a> </h4>
+        {% endif %}
+      </li>
+    {% endfor %}
+    
+      {% for message in messages%}
+      <div class="alert alert-warning" style="width: 50%; text-align: center; margin: auto;">
+      {{message}}
+    </div>
+      {% endfor %}
+    
+  </ul>
+  {% else %}
+    <p>There are no Doctors Available</p>
+  {% endif %}
+{% endblock %}
+</div>

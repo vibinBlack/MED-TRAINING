@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content%}
+    {% if msg %}
+    <div class="alert alert-warning" style="width: 50%; text-align: center; margin: auto;">
+     {{msg}}
+      </div>
+    {% else %}
+    <h2 class="centre">Your Appointment Details</h2>
+    <div class="container">
+    
+        <div class="row">
+           <h4> 
+            <div class="col-md-2" style="background-color:lavender; text-align: center;">{{patient_name}}</div> 
+            <div class="col-md-3" style="background-color:lavenderblush; text-align: center;">{{doctor_name}} ({{type}})</div>
+            <div class="col-md-2" style="background-color:lavender; text-align: center;">{{date}}</div>
+           </h4>
+        </div>
+        
+    </div>
+    <!-- <h3>{{patient_name}} -- {{doctor_name}} ({{type}}) -- {{date}}</h3> -->
+    {% endif %}
+{% endblock %}

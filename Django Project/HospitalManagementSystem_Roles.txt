@@ -1,0 +1,18 @@
+Hospital Management System
+
+Roles:
+
+Patient:
+Can Book Appointment of Required Doctor.
+Can Check all his Appointments
+Can Delete the Appointments also
+
+Admin:
+Can check all the appointments of patients.
+
+Requirements:
+
+Django
+MySQL
+HTML,CSS
+
