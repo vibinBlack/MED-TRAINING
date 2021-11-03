@@ -1,15 +1,12 @@
 from django.shortcuts import render
 
 # Create your views here.
-from .models import Doctor, Patient, Appointment
-from django.views import generic
+from .models import Doctor, Patient, Appointment, Timeslot
 from django.shortcuts import redirect, get_object_or_404
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from datetime import datetime,timedelta
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required, permission_required
-
 # class DoctorListView(LoginRequiredMixin, generic.ListView):
 #     model = Doctor
 
@@ -45,17 +42,45 @@ def login(request):
         return render(request,'login.html')
 
 @login_required
-def success(request,pk):
-    patient = get_object_or_404(Patient,name=request.user.username)
-    doctor = get_object_or_404(Doctor, pk=pk)
-    date = datetime.now().date() + timedelta(1)
-    msg = None
-    if Appointment.objects.filter(patient=patient, doctor=doctor, date=date).exists():
-        msg= 'Appointment already Exists'
+def booking(request,pk):
+
+    if request.method == 'POST':
+        doctor = get_object_or_404(Doctor, pk=pk)
+        # date = datetime.now().date() + timedelta(1)
+        slot = request.POST['time']
+        date = request.POST['date']
+        # print(slot,date)
+        patient = get_object_or_404(Patient,name=request.user.username)
+        msg = None
+        if Appointment.objects.filter(patient=patient, doctor=doctor, date=date).count() > 0:
+            msg= 'Appointment already Exists'
+        else:
+            obj = Appointment(patient = patient, doctor=doctor, date=date,time=slot)
+            obj.save()
+            # obj = Availability(doctor=doctor,date=date,time=slot,available=False)
+            # obj.save()
+        return render(request, 'success.html',{'patient_name':patient.name, 'type':doctor.type, 'doctor_name':doctor.first_name+' '+doctor.last_name, 'date':date,'time':slot, 'msg':msg})
     else:
-        obj = Appointment(patient = patient, doctor=doctor, date=date)
-        obj.save()
-    return render(request, 'success.html',{'patient_name':patient.name, 'type':doctor.type, 'doctor_name':doctor.first_name+' '+doctor.last_name, 'date':date, 'msg':msg})
+        doctor = get_object_or_404(Doctor, pk=pk)
+        each_date_slots=[]
+        all_dates = []
+        all_dates_slots = {}
+        for i in range(1,8):
+            date = datetime.now().date() + timedelta(i)
+            if Timeslot.objects.filter(doctor=doctor,date=date).count() == 0: 
+                continue
+            all_dates.append(str(date))
+            obj = get_object_or_404(Timeslot,doctor=doctor,date=date)
+            time = obj.slots.split(',')
+            time = time[0:len(time)-1]
+            final_slots=[]
+            for t in time:
+                if Appointment.objects.filter(doctor=doctor,date=date,time=t).count() == 0:
+                    final_slots.append(t)
+            each_date_slots.append(final_slots)
+            all_dates_slots[str(date)] = final_slots
+            # print(all_dates_slots)
+    return render(request,'booking.html',{'each_date_slots':each_date_slots, 'all_dates':all_dates,'all_dates_slots':all_dates_slots})
 
 @login_required
 def myappointments(request):
@@ -71,6 +96,7 @@ def logout(request):
 
 @login_required
 def deleteappointment(request,pk):
+    # print(time)
     Appointment.objects.filter(pk=pk).delete()
     return redirect('myappointments')
 
@@ -139,3 +165,4 @@ def addpatient(request):
         return redirect('addpatient')
     else:
         return render(request, 'addpatient.html')
+

@@ -24,5 +24,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('appointments/', include('appointments.urls')),
     path('', RedirectView.as_view(url='appointments/', permanent=True)),
+    path('timeslot/',include('timeslots.urls')),
 
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

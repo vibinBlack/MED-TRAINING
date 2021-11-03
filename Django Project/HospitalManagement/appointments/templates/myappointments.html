@@ -5,7 +5,7 @@
 <h1>My Appointments</h2>
  {%if appointments%}
  {% for appointment in appointments %}
-   <h4> {{appointment.doctor}}  {{appointment.date}} <a class="btn btn-danger"  href="{% url 'deleteappointment' pk=appointment.pk %}">Delete Appointment</a></h4>
+   <h4> {{appointment.doctor}}  {{appointment.date}} {{appointment.time}}<a class="btn btn-danger"  href="{% url 'deleteappointment' pk=appointment.pk %}">Delete Appointment</a></h4>
  {% endfor %}
  {% else %}
  <div class="alert alert-warning" style="width: 50%; text-align: center; margin: auto;">

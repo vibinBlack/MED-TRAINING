@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <!-- {{all_dates_slots}} -->
+    {% for date,slot in all_dates_slots.items %}
+    <form action="" method="post">
+        {% csrf_token%}
+    <label for="date">Date</label>
+     <input type="date" id="date" name="date" value="{{date}}" readonly>
+
+    <label for="time">Choose a Slot:</label>
+    <select name="time" id="time" class="form-select" aria-label="Default select example">
+    {% for time in slot%}
+      <option value="{{time}}">{{time}}</option>
+    {% endfor %}
+    </select>
+    <input type="submit" value="Submit">
+    <br>
+    </form>
+    {% endfor %}
+  
+{% endblock %}
