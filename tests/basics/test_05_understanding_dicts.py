@@ -124,12 +124,12 @@ def test_valid_dictionary_keys():
 
 
 three_things_i_learnt = """
--
--
--
+- Dictionary -> keys and value pairs
+- Dictionaries are mutable
+- Dictionaries are unordered
 """
 
-time_taken_minutes = ___
+time_taken_minutes = '7 min'
 
 notes2= '''
 It is  a good idea to figure out how dictionaries are generally implemented

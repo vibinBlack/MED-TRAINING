@@ -39,12 +39,12 @@ def test_numbers_long():
 
 
 three_things_i_learnt = """
--
--
--
+- Python3 doesn't have long type. Integer value are handled by int 
+- Number systems
+- Long is not the long in c
 """
 
-time_taken_minutes = __
+time_taken_minutes = '2 min'
 
 
 

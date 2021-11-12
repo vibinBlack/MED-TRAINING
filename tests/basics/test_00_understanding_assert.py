@@ -35,10 +35,10 @@ def test_make_assert_true_3():
     assert s1 == s2
 
 three_things_i_learnt = """
--
--
--
+- If expression evaluates to Fasle AssertionError is raised
+- If expression evaluates to True nothing happens
+- assert syntax
 """
 
-time_taken_minutes = __
+time_taken_minutes = '2 min'
 

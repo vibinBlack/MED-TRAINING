@@ -145,9 +145,9 @@ def test_list_range():
     assert range(1,5,2)== numbers
 
 three_things_i_learnt = """
--
--
--
+- list slicing
+- list methods
+- list membership
 """
 
-time_taken_minutes = __
+time_taken_minutes = '7 min'

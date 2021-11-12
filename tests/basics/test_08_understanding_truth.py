@@ -72,9 +72,9 @@ def test_equality():
 
 
 three_things_i_learnt = """
--
--
--
+- Truthy values and Falsy values
+- 0,[], None, {}, (), '' are falsy values
+- 1, [1], {1,2}, (1,2), '11p' are truthy values
 """
 
-time_taken_minutes = ___
+time_taken_minutes = '4 min'

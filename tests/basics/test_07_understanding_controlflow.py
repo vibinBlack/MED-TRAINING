@@ -183,9 +183,9 @@ def test_while_loop_else():
 
 
 three_things_i_learnt = """
--
--
--
+- loops and nested loops
+- enumerate
+- break and continue
 """
 
-time_taken_minutes = ___
+time_taken_minutes = '8 min'

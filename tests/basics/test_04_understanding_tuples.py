@@ -96,9 +96,9 @@ def test_sequence_conversion():
     assert 'testing' == word4
 
 three_things_i_learnt = """
--
--
--
+- tuples are immutable
+- tuple unpacking
+- nested tuples
 """
 
-time_taken_minutes = __
+time_taken_minutes = '5 min'
