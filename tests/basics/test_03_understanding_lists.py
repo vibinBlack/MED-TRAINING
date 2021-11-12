@@ -144,10 +144,11 @@ def test_list_range():
     numbers = range(1, 5, 2)
     assert range(1,5,2)== numbers
 
+
 three_things_i_learnt = """
--
--
--
+-list testing
+-list methods
+-membership operator 
 """
 
-time_taken_minutes = __
+time_taken_minutes ="5 min"

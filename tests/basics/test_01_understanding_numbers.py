@@ -39,12 +39,12 @@ def test_numbers_long():
 
 
 three_things_i_learnt = """
--
--
--
+-type(object)
+-oct()
+-bin()
 """
 
-time_taken_minutes = __
+time_taken_minutes = "2 min"
 
 
 

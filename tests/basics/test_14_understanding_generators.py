@@ -3,10 +3,8 @@ __author__ = 'Hari'
 notes = '''
 Generators are a easy way to create your own custom iterators. They look like
 functions but do a lot of heavy lifting under the covers.
-
 There are also useful when you want to 'generate' data on demand rather than
 create all data at one shot - typically in memory constrained scenarios.
-
 You can also think of generators as resumable functions. The caller needs to keep
 calling next() to keep moving the function forward and at every stop point where you
 have a yield or return the function can return something new.
@@ -21,24 +19,24 @@ def demo_generator():
     yield "you?"
 
 def test_generator_type():
-    assert __ == type(demo_generator).__name__  #definition is a function
-    assert __ == type(demo_generator()).__name__ #once you invoke it, you get a generator
+    assert 'function' == type(demo_generator).__name__  #definition is a function
+    assert 'generator' == type(demo_generator()).__name__ #once you invoke it, you get a generator
 
 def test_generator_is_an_iterator1():
-    assert __ == hasattr(demo_generator, "next")
-    assert __ == hasattr(demo_generator(), "next")
+    assert False == hasattr(demo_generator, "next")
+    assert False == hasattr(demo_generator(), "next")
 
 def test_generator_is_an_iterator2():
     result = demo_generator()
     try:
-        assert __ == next(result)  # builtin which calls the iterator.next()
-        assert __ == next(result)
-        assert __ == next(result)
-        assert __ == next(result)
-    except __:
+        assert 'how' == next(result)  # builtin which calls the iterator.next()
+        assert 'are' == next(result)
+        assert 'you?' == next(result)
+        assert '' == next(result)
+    except StopIteration:
         assert True
 
-    assert __ == ".".join(demo_generator()) #join takes a iterable
+    assert 'how.are.you?' == ".".join(demo_generator()) #join takes a iterable
 
 # Note that this function takes any sequence, and returns a reversed form
 # element by element, so at no point is a new reversed sequence object
@@ -52,14 +50,14 @@ def test_generator_reverse():
     result = []
     for item in demo_reverse("Hello World"):
         result.append(item)
-    assert __ == result
+    assert ['d','l','r','o','W',' ','o','l','l','e','H'] == result
 
 def test_range_allocates_memory():
     try:
         for item in range(1000 * (10**6)):
             if item%5 == 1:
                 break
-    except __ :  # what error do you get when you allocate 1 billion ints?
+    except MemoryError :  # what error do you get when you allocate 1 billion ints?
         assert True
 
 # range using a generator (xrange does something similar)
@@ -73,12 +71,13 @@ def test_generator_range_does_not_allocate_memory():
     for item in demo_range(1000 * (10**6)):
         if item%5 ==1:
             break
-    assert ___ # did you reach here without any memory exception?
+    assert True # did you reach here without any memory exception?
 
 
 #write a statement that can collect all results from the generator into a list
 def demo_generator_to_list(generator):
-    __ # fill code here.
+     # fill code here.
+     return [x for x in generator]
 
 
 def test_collapse_generator():
@@ -91,14 +90,14 @@ def test_generator_return():
         yield 2
         return
         yield 3
-    assert [__] == demo_generator_to_list(func())
+    assert [1,2] == demo_generator_to_list(func())
 
 def test_generator_control_flow():
     def func():
         for x in range(5):
             yield x
         yield 10
-    assert __ == demo_generator_to_list(func())
+    assert [0,1,2,3,4,10] == demo_generator_to_list(func())
 
 def test_generator_exception():
     def func():
@@ -113,7 +112,7 @@ def test_generator_exception():
             yield 50
         yield 30
 
-    assert [__] == demo_generator_to_list(func())
+    assert [10,20,50,30] == demo_generator_to_list(func())
 
 
 three_things_i_learnt = """
@@ -122,4 +121,4 @@ three_things_i_learnt = """
 -
 """
 
-time_taken_minutes = ___
+time_taken_minutes = "10 min"

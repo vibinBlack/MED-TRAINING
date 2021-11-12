@@ -123,13 +123,13 @@ def test_valid_dictionary_keys():
     assert {1:1,'one':'string',(1, 2): 'tuple with immutable elements'} == test_dict
 
 
+
 three_things_i_learnt = """
--
--
--
+-dictionary testing
+-dictionary creation
 """
 
-time_taken_minutes = ___
+time_taken_minutes = "5 min"
 
 notes2= '''
 It is  a good idea to figure out how dictionaries are generally implemented

@@ -72,9 +72,8 @@ def test_equality():
 
 
 three_things_i_learnt = """
--
--
+-testing none type
 -
 """
 
-time_taken_minutes = ___
+time_taken_minutes = "5 min"
