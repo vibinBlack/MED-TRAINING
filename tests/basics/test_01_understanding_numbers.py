@@ -39,12 +39,12 @@ def test_numbers_long():
 
 
 three_things_i_learnt = """
--
--
+-arithmetic operators
+-strings
 -
 """
 
-time_taken_minutes = __
+time_taken_minutes = 10
 
 
 

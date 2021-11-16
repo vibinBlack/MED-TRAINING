@@ -183,9 +183,9 @@ def test_while_loop_else():
 
 
 three_things_i_learnt = """
--
--
--
+-conditional statements
+-loops for, while
+-break, continue 
 """
 
-time_taken_minutes = ___
+time_taken_minutes = 30

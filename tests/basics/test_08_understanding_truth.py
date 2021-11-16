@@ -72,9 +72,9 @@ def test_equality():
 
 
 three_things_i_learnt = """
--
--
--
+-truth and false values
+-any object having a value treated as true
+-empty values, empty string, 0 will be treated as false
 """
 
-time_taken_minutes = ___
+time_taken_minutes = 30

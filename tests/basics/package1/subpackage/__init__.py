@@ -1,3 +1,3 @@
 __author__ = 'Hari'
 
-import m1
+from package1.subpackage import m1

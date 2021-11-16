@@ -124,12 +124,12 @@ def test_valid_dictionary_keys():
 
 
 three_things_i_learnt = """
--
--
+-dictionaries
+-dict methods
 -
 """
 
-time_taken_minutes = ___
+time_taken_minutes = 25
 
 notes2= '''
 It is  a good idea to figure out how dictionaries are generally implemented
