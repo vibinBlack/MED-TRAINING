@@ -12,7 +12,8 @@ notes = '''
 from placeholders import *
 import sys
 
-from tests.basics.package1.subpackage import m1
+# from tests.basics.package1.subpackage import m1
+from package1 import module1
 
 # Look at the package1 and package2 directories before starting...
 
@@ -101,17 +102,23 @@ def test_package_sub_packages():
     assert False == ("module1" in sys.modules)
     assert False == ("package1.module1" in sys.modules)
     assert True == ("package1.subpackage" in sys.modules)
-    assert True == ("package1.subpackage.m1" in sys.modules)
+    assert False == ("package1.subpackage.m1" in sys.modules)
 
     #why is this not raising an exception here?
-    print (subpackage.m1.__doc__)
+    # TODO: Fixed the import statement
+    try:
+        from package1.subpackage import m1
+        print(subpackage.m1.__doc__)
+    except NameError as e:
+        print(e)
+    
 
     assert True == ("package1.subpackage.m1" in sys.modules)
 
 three_things_i_learnt = """
--
--
--
+- packages and subpackages
+- Handling Errors while importing
+- Try except block
 """
 
 #time_taken_minutes = '30 min'
