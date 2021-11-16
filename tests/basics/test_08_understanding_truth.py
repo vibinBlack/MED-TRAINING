@@ -72,9 +72,9 @@ def test_equality():
 
 
 three_things_i_learnt = """
--
--
+- testing truth values 
+- checking equality statements
 -
 """
 
-time_taken_minutes = ___
+time_taken_minutes = 20

@@ -98,11 +98,11 @@ def test_set_valid_members():
     assert {1,'hello',(1,2)} == test_set
 
 three_things_i_learnt = """
--
--
--
+- Sets
+- Sets methods
+- Sets operations
 """
 
-time_taken_minutes = ___
+time_taken_minutes = 20
 
 

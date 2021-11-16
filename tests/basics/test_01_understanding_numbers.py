@@ -27,7 +27,7 @@ def test_numbers_string_to_int():
        to find out what int(..) does"""
     assert 255 == int("FF", 16)
     assert 63 == int("77", 8)
-
+False
 def test_numbers_int_to_string():
     assert '0o12' == oct(10)
     assert '0x64' == hex(100)
@@ -39,12 +39,13 @@ def test_numbers_long():
 
 
 three_things_i_learnt = """
--
--
--
+- arithematic operations
+- string to integer
+- integer to string
+- long numbers
 """
 
-time_taken_minutes = __
+time_taken_minutes = 10
 
 
 
