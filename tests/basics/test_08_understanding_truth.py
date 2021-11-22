@@ -1,8 +1,9 @@
+''' Testing the truth values'''
 __author__ = 'Hari'
 
-from placeholders import *
+# from placeholders import *
 
-notes = '''
+NOTES = '''
 Just like C, python has notions on what values are considered true
 and what values are considered false.
 
@@ -13,12 +14,14 @@ with base values of the data types like 0, '', [] etc.
 
 #None is a first class object in python
 def test_none_type():
-    assert 'NoneType' == type(None).__name__
+    ''' testing noneType'''
+    assert type(None).__name__ == 'NoneType'
 
 #In control flow, builtin objects like string, list, tuple have truth
 #and false values
 
 def test_truth_none():
+    ''' testing the truth is none'''
     value = None
     result = "not-set"
     #is None treated as true or false? =>flase(else loop)
@@ -27,54 +30,56 @@ def test_truth_none():
     else:
         result = "false"
 
-    assert 'false' == result
+    assert result == 'false'
 
 # a helper function used to test the truth value of an object.
-def truth_test(object, description):
-    if object:
+def truth_test(obj, description):
+    ''' function for testing truth'''
+    if obj:
         return description + " is treated as true"
-    else:
-        return description + " is treated as false"
+    return description + " is treated as false"
 
 def test_truth_values():
-    assert 'empty string is treated as false' == truth_test("", "empty string")
-    assert  'empty tuple is treated as false' == truth_test((), "empty tuple")
-    assert  'empty list is treated as false' == truth_test([], "empty list")
-    assert 'empty dict is treated as false' == truth_test({}, "empty dict")
-    assert 'empty set is treated as false' == truth_test(set(), "empty set")
-    assert 'white space is treated as true' == truth_test(" ", "white space")
-    assert '0 is treated as false' == truth_test(0, "0")
-    assert '1 is treated as true' == truth_test(1, "1")
-    assert 'non-empty-string is treated as true' == truth_test("a", "non-empty-string")
-    assert 'non-empty-tuple is treated as true' == truth_test((1,2), "non-empty-tuple")
-    assert 'non-empty-list is treated as true' == truth_test([1], "non-empty-list")
-    assert 'non-empty-dict is treated as true' == truth_test({1:2}, "non-empty-dict")
-    assert 'non-empty-set is treated as true' == truth_test({1}, "non-empty-set")
+    ''' testing truth values '''
+    assert truth_test("", "empty string") == 'empty string is treated as false'
+    assert truth_test((), "empty tuple") == 'empty tuple is treated as false'
+    assert truth_test([], "empty list") == 'empty list is treated as false'
+    assert truth_test({}, "empty dict") == 'empty dict is treated as false'
+    assert truth_test(set(), "empty set") == 'empty set is treated as false'
+    assert truth_test(" ", "white space") == 'white space is treated as true'
+    assert truth_test(0, "0") == '0 is treated as false'
+    assert truth_test(1, "1") == '1 is treated as true'
+    assert truth_test("a", "non-empty-string") == 'non-empty-string is treated as true'
+    assert truth_test((1,2), "non-empty-tuple") == 'non-empty-tuple is treated as true'
+    assert truth_test([1], "non-empty-list") == 'non-empty-list is treated as true'
+    assert truth_test({1:2}, "non-empty-dict") == 'non-empty-dict is treated as true'
+    assert truth_test({1}, "non-empty-set") == 'non-empty-set is treated as true'
 
 # The fact that certain things are treated as True or False by
 # control flow statements does not mean that they are equal to True or False.
 def test_equality():
-    assert False == ("" == True)
-    assert False == (() == True)
-    assert False == ([] == True)
-    assert False == (set() == True)
-    assert False == (0 == True)
-    assert False == ("" == False)
-    assert False == (() == False)
-    assert False == ([] == False)
-    assert False == (set() == False)
-    assert True == (0 == False)
-    assert True == (1 == True)
-    assert False == ("a" == True)
-    assert False == ((1,2) == True)
-    assert False == ([1] == True)
-    assert False == ({1} == True)
+    ''' testing equality '''
+    assert ("" is True) is False
+    assert (() is True) is False
+    assert ([] is True) is False
+    assert (set() is True) is False
+    assert (0 is True) is False
+    assert ("" is False) is False
+    assert (() is False) is False
+    assert ([] is False) is False
+    assert (set() is False) is False
+    assert (0 == False) is True
+    assert (1 == True) is True
+    assert ("a" is True) is False
+    assert ((1,2) is True) is False
+    assert ([1] is True) is False
+    assert ({1} is True) is False
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 - testing truth values 
 - checking equality statements
 -
 """
 
-time_taken_minutes = 20
+TIME_TAKEN_MINUTES = 20

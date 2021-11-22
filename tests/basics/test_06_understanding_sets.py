@@ -1,30 +1,37 @@
+'''
+Sets and It's Methods
+'''
 __author__ = 'Hari'
 
-notes = '''
+NOTES = '''
 sets are  unordered collection of elements without duplicates. Conceptually they are similar to dicts except that
 the keys are not associated with any values.
 '''
 
-from placeholders import  *
+# from placeholders import  *
 
 def test_set_type():
+    ''' type '''
     test_set = {"one", "two", "three"}   # note the new syntax
-    assert 'set' == type(test_set).__name__
+    assert type(test_set).__name__ == 'set'
 
 def test_set_empty():
-    empty_set_wrong = {}  #curly braces are used for both sets and dicts, so how do you disambiguate?
-    assert False == isinstance(empty_set_wrong, set)
+    '''empty set'''
+    empty_set_wrong = {}  #curly braces are used for both
+    # sets and dicts, so how do you disambiguate?
+    assert isinstance(empty_set_wrong, set) is False
 
     empty_set = set()
-    assert True == isinstance(empty_set, set)
-    assert 0 == len(empty_set)
+    assert isinstance(empty_set, set) is True
+    assert len(empty_set) == 0
 
 def test_set_length():
+    ''' length of the set'''
     fruits = {"apple", "apple", "apple"}
-    assert 1 == len(fruits)  #are duplicates removed?
+    assert len(fruits) == 1 #are duplicates removed?
 
     veggies = {"beetroot", "potato", "spinach"}
-    assert 3 == len(veggies)
+    assert len(veggies) == 3
 
 def test_set_creation():
     """
@@ -32,52 +39,55 @@ def test_set_creation():
     """
     test_list = [1, 2, 1, 3]
     set1 = set(test_list)
-    assert {1,2,3} == set1
+    assert set1 == {1, 2, 3}
 
     test_string = "apple"
     set2 = set(test_string)
-    assert {'a','p','p','l','e'} == set2
+    assert set2 == {'a','p','p','l','e'}
 
     test_dict = { 1: "one", 2 : "two"}
     set3 = set(test_dict)
-    assert {1,2} == set3
+    assert set3 == {1, 2}
 
     set4 = set(test_dict.values())
-    assert {'one','two'} == set4
+    assert set4 == {'one','two'}
 
     set5 = set(test_dict.items())
-    assert {(1,'one'),(2,'two')} == set5
+    assert set5 == {(1,'one'),(2,'two')}
 
 def test_set_membership():
+    '''members of a set'''
     fruits = {"apple", "mango", "kiwi"}
-    assert 'apple' == "apple" in fruits
-    assert False == ("dog" in fruits)
+    assert ("apple" in fruits) is True
+    assert ("dog" in fruits) is False
 
 def test_set_operations():
+    ''' set operations'''
     set1 = {"one", "two", "three"}
     set2  =  {"three", "four"}
 
-    all = set1 | set2 # union
-    assert {'one','two','three','four'} == all
+    total = set1 | set2 # union
+    assert total == {'one','two','three','four'}
 
     common = set1 & set2
-    assert {'three'} == common
+    assert common == {'three'}
 
     diff1 = set1 - set2
-    assert {'one','two'} == diff1
+    assert diff1 == {'one','two'}
 
     diff2 = set2 - set1
-    assert {'four'} == diff2
+    assert diff2 == {'four'}
 
     diff3 = set1 - set1
-    assert set() == diff3
+    assert diff3 == set()
 
     diff4 = set1.symmetric_difference(set2)
-    assert {'one','two','four'} == diff4
+    assert diff4 == {'one','two','four'}
 
     #read up help on other method using the help method in the python console.
 
 def test_set_valid_members():
+    ''' testing the members of the set are valid?'''
     test_set = set()
     test_set.add("hello")
     test_set.add(1)
@@ -85,24 +95,22 @@ def test_set_valid_members():
 
     try:
         test_set.add([])
-    except TypeError as te:
-        print (te)
+    except TypeError:
+        # print (te)
         assert True
 
     try:
         test_set.add((1,[]))   #  TypeError: unhashable type: 'list'
-    except TypeError as te:
-        print (te)
-        assert True  
+    except TypeError:
+        # print (te)
+        assert True
 
-    assert {1,'hello',(1,2)} == test_set
+    assert test_set == {1,'hello',(1,2)}
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 - Sets
 - Sets methods
 - Sets operations
 """
 
-time_taken_minutes = 20
-
-
+TIME_TAKEN_MINUTES = 20
