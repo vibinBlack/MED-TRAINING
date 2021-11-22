@@ -1,8 +1,9 @@
+'''Understanding identity and equality'''
 __author__ = 'Hari'
 
 from placeholders import *
 
-notes = '''
+NOTES = '''
  Identity and equality are 2 concepts which most beginners are confused about.
  The 'is' operator is used to test identity and == is used to test equality.
 
@@ -13,80 +14,82 @@ notes = '''
 '''
 
 def test_identity_equality_lists():
-    a = []
-    b = []
-    assert False == (a is b)
-    assert True == (a == b)
+    '''testing identity and equality of lists'''
+    list_1 = []
+    list_2 = []
+    assert (list_1 is list_2) is False
+    assert (list_1 == list_2) is True
 
-    a.append("one")
-    assert False == (a is b)
-    assert False == (a == b)
+    list_1.append("one")
+    assert (list_1 is list_2) is False
+    assert (list_1 == list_2) is False
 
-    c = []
-    d = c
-    assert True == (c is d)
-    assert True == (c == d)
+    list_3 = []
+    list_4 = list_3
+    assert (list_3 is list_4) is True
+    assert (list_3 == list_4) is True
 
-    c.append("one")
-    assert True == (c is d)
-    assert True == (c == d)
+    list_3.append("one")
+    assert (list_3 is list_4) is True
+    assert (list_3 == list_4) is True
 
 def test_identity_equality_string():
-    a = b = "hello"
+    '''testing identity and equaltiy of strings'''
+    str_1 = str_2 = "hello"
 
-    assert True == (a is b)
-    assert True == (a == b)
+    assert (str_1 is str_2) is True
+    assert (str_1 == str_2) is True
 
-    c = "hello"
-    d = "".join(["hel", "lo"])
-    assert False == (c is d)
-    assert True == (c == d)
+    str_3 = "hello"
+    str_4 = "".join(["hel", "lo"])
+    assert (str_3 is str_4) is False
+    assert (str_3 == str_4) is True
 
 def test_identity_equality_numbers():
-    a = b = 10000
-    assert True == (a is b)
-    assert True == (a == b)
+    '''testing equality of numbers'''
+    num_1 = num_2 = 10000
+    assert (num_1 is num_2) is True
+    assert (num_1 == num_2) is True
 
-    c = 10000
-    d = int("10000")
-    assert False == (c is d)
-    assert True == (c == d)
+    num_3 = 10000
+    num_4 = int("10000")
+    assert (num_3 is num_4) is False
+    assert (num_3 == num_4) is True
 
 def test_identity_equality_small_numbers():
     """
     why do small numbers behave differently? google and find out!
     """
-    a = b = 10
-    assert True == (a is b)
-    assert True == ( a == b)
+    num_1 = num_2 = 10
+    assert (num_1 is num_2) is True
+    assert (num_1 == num_2) is True
 
-    c = 10
-    d = int("10")
-    assert True == (c is d)
-    assert True == (c == d)
+    num_3 = 10
+    num_4 = int("10")
+    assert (num_3 is num_4) is True
+    assert (num_3 == num_4) is True
 
 def test_identity_equality_None():
-    a = b = None
-    assert True == (a is b)
-    assert True == (a == b)
+    '''testing identitiy and equality of None type'''
+    val_1 = val_2 = None
+    assert (val_1 is val_2) is True
+    assert (val_1 == val_2) is True
 
-    a = None
-    b = None
-    assert True == (a is b)
-    assert True == (a == b)
+    val_1 = None
+    val_2 = None
+    assert (val_1 is val_2) is True
+    assert (val_1 == val_2) is True
 
 
-notes_on_none = '''
+NOTES_ON_NONE = '''
 None is a builtin constant as you can see above. This allows you to write more
 readable code like if x is None: instead of if x == None:
 '''
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -equal to operator is used for checking values of both the operands
 -"is" is used for checking whether both the operands refer to the same object or not
 -
 """
 
-time_taken_minutes = 30
-
-
+TIME_TAKEN_MINUTES = 30

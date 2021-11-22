@@ -1,137 +1,162 @@
+'''Understanding inheritance'''
 __author__ = 'Hari'
 
-notes = '''
+from placeholders import *
+
+NOTES = '''
  Inheritance is another standard feature of object oriented programming.
  This exercise illustrates the syntax and language features for using inheritance in Python.
 '''
 
-from placeholders import *
-
 def test_inheritance_basic():
-    class A(object): # A inherits from object.
-        def f(self):
-            pass
+    '''Inheritance basic'''
+    class ParentA: # ParentA inherits from object.
+        '''Parent class'''
+        def fun_f(self):
+            '''Parent A Function f'''
 
-    class B(A):      #B inherits from A or B derives A
-        def g(self):
-            pass
+    class ChildB(ParentA):      #ChildB inherits from ParentA or ChildB derives ParentA
+        '''Child class'''
+        def fun_g(self):
+            '''Child B Function g'''
 
-    assert True == issubclass(A, object)
-    assert True == issubclass(A, A)
-    assert False == issubclass(A, B)
+    assert issubclass(ParentA, object) is True
+    assert issubclass(ParentA, ParentA) is True
+    assert issubclass(ParentA, ChildB) is False
 
-    assert True == issubclass(B, A)
-    assert True == issubclass(B, B)
-    assert True == issubclass(B, object)
+    assert issubclass(ChildB, ParentA) is True
+    assert issubclass(ChildB, ChildB) is True
+    assert issubclass(ChildB, object) is True
 
 # base class methods are available for derived class objects
 def test_inheritance_methods():
-    class A(object): # A inherits from object.
-        def f(self):
+    '''Testing inheritance methods'''
+    class ParentA: # ParentA inherits from object.
+        '''Parent class'''
+        def fun_f(self):
+            '''Parent A Function f'''
             return "A:f()"
 
-    class B(A):      #B inherits A's behavior (attributes)
-        def g(self):
+    class ChildB(ParentA):      #ChildB inherits ParentA's behavior (attributes)
+        '''child class'''
+        def fun_g(self):
+            '''Child B Function g'''
             return "B:g()"
 
-    b = B()
-    assert "A:f()" == b.f()
-    assert "B:g()" == b.g()
+    obj_b = ChildB()
+    assert obj_b.fun_f() == "A:f()"
+    assert obj_b.fun_g() == "B:g()"
 
-    a = A()
-    assert "A:f()" == a.f()
+    obj_a = ParentA()
+    assert obj_a.fun_f() == "A:f()"
     try:
-        assert None == a.g()
-    except AttributeError as ex:
-        print(ex)  #uncomment this line after filling up
-        pass
+        assert obj_a.fun_g() is None
+    except AttributeError as exp:
+        print(exp)  #uncomment this line after filling up
 
 def test_inheritance_overrides():
-    class A(object): # A inherits from object.
-        def f(self):
+    '''Testing inheritance overiding methods'''
+    class ParentA: # ParentA inherits from object.
+        '''Parent class'''
+        def fun_f(self):
+            '''Parent A Function f'''
             return "A:f()"
 
-        def g(self):
+        def fun_g(self):
+            '''Parent A Function g'''
             return "A:g()"
 
-    class B(A):      #B can override A's methods
-        def g(self):
+    class ChildB(ParentA):      #ChildB can override ParentA's methods
+        '''child class'''
+        def fun_g(self):
+            '''Child B Function g'''
             return "B:g()"
 
-    a = A()
-    assert "A:f()" == a.f()
-    assert "A:g()" == a.g()
+    obj_a = ParentA()
+    assert obj_a.fun_f() == "A:f()"
+    assert obj_a.fun_g() == "A:g()"
 
-    b = B()
-    assert "A:f()" == b.f()
-    assert "B:g()" == b.g()
+    obj_b = ChildB()
+    assert obj_b.fun_f() == "A:f()"
+    assert obj_b.fun_g() == "B:g()"
 
 def test_inheritance_init():
-    class A(object):
+    '''Checking __init__ cases using inheritance'''
+    class ParentA:
+        '''Parent class'''
         def __init__(self):
-            self.a1 = []
+            self.a_1 = []
 
         def append(self, obj):
-            self.a1.append(obj)
+            '''Appends a new object'''
+            self.a_1.append(obj)
 
-    class B(A):
+    class ChildB(ParentA):
+        '''child class'''
         def __init__(self):
-            self.b1 = []
+            self.b_1 = []
 
-    a = A()
-    assert [] == getattr(a, "a1", None)
-    assert None == getattr(a, "b1", None)
+    obj_a = ParentA()
+    assert getattr(obj_a, "a_1", None) == []
+    assert getattr(obj_a, "b_1", None) is None
 
-    b = B()
-    assert None == getattr(b, "a1", None)
-    assert [] == getattr(b, "b1", None)
+    obj_b = ChildB()
+    assert getattr(obj_b, "a_1", None) is None
+    assert getattr(obj_b, "b_1", None) == []
 
     try:
-        b.append("orange")
-    except AttributeError as ae :  #what happened here?
+        obj_b.append("orange")
+    except AttributeError:  #what happened here?
         pass
 
     # Since methods of A depend on init being called, we must always
     # chain __init__ to the base class if the derived class overrides it.
 
-    #lets redefine B now, to chain the inits to the base class.
-    class B(A):
+    #lets redefine ChildB now, to chain the inits to the base class.
+    class ChildB(ParentA):
+        '''child class'''
         def __init__(self):
-            A.__init__(self)
-            self.b1 = "b1"
+            ParentA.__init__(self)
+            self.b_1 = "b1"
 
-    b = B()
-    assert [] == getattr(b, "a1", None)
-    assert "b1" == getattr(b, "b1", None)
-    b.append("orange")
-    assert ["orange"] == b.a1
+    obj_b = ChildB()
+    assert getattr(obj_b, "a_1", None) == []
+    assert getattr(obj_b, "b_1", None) == "b1"
+    obj_b.append("orange")
+    assert obj_b.a_1 == ["orange"]
 
 def test_inheritance_invoking_using_super():
+    '''Testing inheritance using'''
     #super can be used instead of explicitly invoking base.
-    class A(object): # A inherits from object.
-        def f(self):
+    class ParentA: # ParentA inherits from object.
+        '''Parent class'''
+        def fun_f(self):
+            '''Parent A Function f'''
             return "A:f()"
 
-        def g(self):
+        def fun_g(self):
+            '''Parent A Function g'''
             return "A:g()"
 
-    class B(A):      #B can override A's methods
-        def g(self):
-            return super(B, self).g() + ":"+ "B:g()"
+    class ChildB(ParentA):      #ChildB can override ParentA's methods
+        '''child class'''
+        def fun_g(self):
+            '''Child B Function g'''
+            return super().fun_g() + ":"+ "B:g()"
 
-    b = B()
-    assert "A:g():B:g()" == b.g()
+    obj_b = ChildB()
+    assert obj_b.fun_g() == "A:g():B:g()"
 
 
-notes_1 = '''
+NOTES_1 = '''
  Inheritance if one of the most abused features of object oriented programming especially by novices.
  Think carefully before using it :). We will cover usage in assignments.
 '''
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -inheritance of classes
 -overriding
 -super keyword
 """
 
-time_taken_minutes = 30
+TIME_TAKEN_MINUTES = 30
