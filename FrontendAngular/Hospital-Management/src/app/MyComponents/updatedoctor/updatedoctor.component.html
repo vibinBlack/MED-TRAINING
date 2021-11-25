@@ -1,0 +1,24 @@
+<div class="centre" *ngIf="isSuperUser==='yes' else elseBlock">
+<form (ngSubmit)="onUpdate(id)" ngNativeValidate>
+    <div style="margin-left: 20px;">
+    <div class="mb-3">
+        <label for="first_name" class="form-label">First Name</label>
+        <input type="text" [(ngModel)]="first_name" class="form-control"  id="first_name" name="first_name" required />
+    </div>
+    <div class="mb-3">
+        <label for="last_name" class="form-label">Last Name</label>
+        <input type="text" [(ngModel)]="last_name" class="form-control"  id="last_name" name="last_name" required />
+    </div>
+    <div class="mb-3">
+        <label for="type" class="form-label" >Specialization</label>
+        <input type="text" [(ngModel)]="type" class="form-control"  id="type" name="type" required />
+    </div>
+    <button type="submit" class="btn btn-sm btn-primary">Update</button>
+</div>
+</form>
+</div>
+<ng-template #elseBlock>
+    <div class="alert alert-danger centremsg" role="alert">
+        You are not Authorized to Access this Page
+      </div>
+</ng-template>

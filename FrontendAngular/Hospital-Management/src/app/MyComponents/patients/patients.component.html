@@ -1,0 +1,69 @@
+<div class="centrelogin">
+    <form (ngSubmit)="Filters()">
+        <label for="time">Location</label>
+        <select class="form-select form-select-lg mb-3" name="time" id="time" [(ngModel)]="selectedLocation"
+            class="form-select">
+            <option *ngFor="let loc of availableLocations" [value]="loc">{{loc}}</option>
+        </select>
+        <button type="submit" class="btn btn-primary btn-sm" type="submit">Filter</button>
+    </form>
+</div>
+
+<div class="centre">
+    <form (ngSubmit)="getPatientsOnSearch()">
+        <div class="mb-3">
+            <label for="username" class="form-label"></label>
+            <input type="text" [(ngModel)]="patientSearch" placeholder="search Patient,Mobile Number,Email,Location"
+                class="form-control" name="username" id="username" required>
+        </div>
+        <button type="submit" class="btn btn-sm btn-primary">Search</button>
+    </form>
+</div>
+<div class="centre">
+    <button routerLink="/addpatient" type="submit" class="btn btn-sm btn-success">Add Patient</button>
+</div>
+<div class="centre">
+    <h4>
+        <!-- <div>{{app.patient}} {{app.doctor}} {{app.date}} {{app.time}}</div> -->
+        <div>
+            <div class="row" style="background-color:lavenderblush; text-align: center;">
+                <div class="col">
+                    Patient Name
+                </div>
+                <div class="col">
+                    Mobile Number
+                </div>
+                <div class="col">
+                    Email
+                </div>
+                <div class="col">
+                    Location
+                </div>
+            </div>
+        </div>
+    </h4>
+
+    <div *ngFor="let patient of patients">
+        <h5>
+            <div>
+                <!-- {{app.doctor}} {{app.date}} {{app.time}} -->
+                <div class="row" style="background-color:lavender; text-align: center;">
+                    <div class="col">
+                        {{patient.name}}
+                    </div>
+                    <div class="col">
+                        {{patient.mobile_number}}
+                    </div>
+                    <div class="col">
+                        {{patient.email}}
+                    </div>
+                    <div class="col">
+                        {{patient.location}}
+                    </div>
+                </div>
+                <!-- <button (click)="deleteAppointment(app.id)" class="btn btn-sm btn-danger">Delete Appointment</button> -->
+
+            </div>
+        </h5>
+    </div>
+</div>

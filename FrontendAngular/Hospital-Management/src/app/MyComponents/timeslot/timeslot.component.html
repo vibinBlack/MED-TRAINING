@@ -1,0 +1,37 @@
+<div class="centre" *ngIf="isSuperUser==='yes' else elseBlock">
+<form (ngSubmit)="onSubmit()" ngNativeValidate>
+    <div style="margin-left: 20px;">
+    <div class="mb-3">
+        <label for="intime" class="form-label">Intime</label>
+        <input type="time" [(ngModel)]="intime" class="form-control" id="intime" name="intime" required />
+    </div>
+    <div class="mb-3">
+        <label for="outime" class="form-label">Outime</label>
+        <input type="time" [(ngModel)]="outime" class="form-control" id="outime" name="outime" required />
+    </div>
+    <div class="mb-3">
+        <label for="each_slot_time" class="form-label" >Each Slot Time</label>
+        <input type="time" [(ngModel)]="each_slot_time" class="form-control" id="each_slot_time" name="each_slot_time" required />
+    </div>
+    <div class="mb-3">
+        <label for="break_time" class="form-label" >Break Time</label>
+        <textarea [(ngModel)]="break_time" id="break_time" class="form-control" name="break_time" required></textarea><br>
+        <sub>(Please enter in this format:12:00 13:00,14:00 14:20)</sub>
+    </div>
+    
+    <div class="mb-3">
+        <label for="date" class="form-label" >Date</label>
+        <input type="date" [(ngModel)]="date" id="date" class="form-control" name="date" min={{minDate}} max={{maxDate}} required />
+    </div>
+    <button type="submit" class="btn btn-sm btn-primary">Submit</button>
+</div>
+</form>
+</div>
+<ng-template #elseBlock>
+    <div class="alert alert-danger centremsg" role="alert">
+        You are not Authorized to Access this Page
+      </div>
+</ng-template>
+<div class="alert alert-danger centremsg" *ngIf=msg>
+    Time Slots Already Exist
+</div>

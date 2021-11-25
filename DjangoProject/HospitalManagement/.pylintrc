@@ -1,0 +1,16 @@
+[MASTER]
+load-plugins=pylint_django
+django-settings-module=HospitalManagement.settings
+
+
+[FORMAT]
+max-line-length=200
+
+[MESSAGES CONTROL]
+
+
+[DESIGN]
+
+
+[TYPECHECK]
+generated-members=REQUEST

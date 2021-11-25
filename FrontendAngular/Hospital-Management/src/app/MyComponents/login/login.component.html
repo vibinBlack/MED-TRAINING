@@ -1,0 +1,16 @@
+   <form (ngSubmit)="onSubmit()" ngNativeValidate>
+     <div class="centrelogin">
+    <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" [(ngModel)]="username" class="form-control" name="username"id="username" required>
+    </div>
+    <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" [(ngModel)]="password" class="form-control" name="password" id="password" required>
+    </div>
+    <button type="submit" class="btn btn-sm btn-primary">Login</button>
+  </div>
+</form>
+<div *ngIf='msg.length!=0' class="alert alert-danger centremsg" role="alert">
+  {{msg}}
+</div>

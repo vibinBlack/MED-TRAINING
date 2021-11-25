@@ -1,0 +1,30 @@
+<div *ngIf="slotsAvailabe else elseBlock">
+<div class="centre">
+<form (ngSubmit)="getSlots()">
+    <label for="time">Select Date</label>
+    <select class="form-select form-select-lg mb-3"  name="time" id="time" [(ngModel)]="selectedDate" class="form-select">
+        <option *ngFor="let time of AvailableDates" [value]="time">{{time}}</option>
+    </select>
+    <input class="btn btn-primary btn-sm" type="submit" value="Check Slots">
+</form>
+</div>
+
+<div class="centre">
+<form (ngSubmit)="putSlots()">
+    <label for="time">Select TimeSlot</label>
+    <select class="form-select form-select-lg mb-3" name="time" id="time" [(ngModel)]="selectedTimeSlot" class="form-select">
+        <option *ngFor="let time of TimeSlotsForSelecteddate" [value]="time">{{time}}</option>
+    </select>
+    <input class="btn btn-success btn-sm" type="submit" value="Book Appointment">
+</form>
+</div>
+</div>
+<div *ngIf='msg.length!=0' class="alert alert-danger centremsg" role="alert">
+    {{msg}}
+  </div>
+
+  <ng-template #elseBlock>
+    <div class="alert alert-primary centremsg" role="alert">
+        Appointments not opened yet
+      </div>
+</ng-template>

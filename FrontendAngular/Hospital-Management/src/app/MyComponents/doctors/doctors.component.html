@@ -1,0 +1,40 @@
+<div class="centrelogin">
+    <form (ngSubmit)="Filters()">
+        <label for="time">Specialization</label>
+        <select class="form-select form-select-lg mb-3" name="time" id="time" [(ngModel)]="selectedSpecialization"
+            class="form-select">
+            <option *ngFor="let spec of availableSpecializations" [value]="spec">{{spec}}</option>
+        </select>
+        <button type="submit" class="btn btn-primary btn-sm" type="submit">Filter</button>
+    </form>
+</div>
+
+<div class="centrelogin">
+    <form (ngSubmit)="getDoctorsOnSearch()">
+        <div class="mb-3">
+            <label for="username" class="form-label"></label>
+            <input type="text" [(ngModel)]="doctorSearch" placeholder="search Doctor,Specialization"
+                class="form-control" name="username" id="username" required>
+        </div>
+        <button type="submit" class="btn btn-sm btn-primary">Search</button>
+    </form>
+</div>
+
+
+<div class="centre">
+    <h3 *ngIf="isSuperUser==='yes'"><a routerLink="/adddoctor" class="btn btn-success adddoctor">Add Doctor</a></h3>
+    <h1>All Available Doctors</h1>
+    <ul>
+        <div *ngFor="let doc of doctors; index as i">
+            <li>
+                
+                <h4>{{doc.first_name}} {{doc.last_name}} ({{doc.type}})
+                    <a routerLink="/booking/{{doc.id}}" class="btn btn-primary btn-sm">Book Appointment</a>
+                    <a *ngIf="isSuperUser==='yes'" routerLink="/timeslot/{{doc.id}}" class="btn btn-primary btn-sm buttons">Slots</a>
+                    <a *ngIf="isSuperUser==='yes'" routerLink="/doctors" (click)="deleteDoctor(doc.id)" class="btn btn-danger btn-sm buttons">Delete Doctor</a>
+                    <a *ngIf="isSuperUser==='yes'" routerLink="/updatedoctor/{{doc.id}}" class="btn btn-warning btn-sm buttons">Update Doctor</a>
+                </h4>
+            </li>
+        </div>
+    </ul>
+</div>

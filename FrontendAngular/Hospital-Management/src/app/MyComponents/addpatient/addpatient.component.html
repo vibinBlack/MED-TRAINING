@@ -1,0 +1,37 @@
+<div class="centre" *ngIf="isSuperUser==='yes' else elseBlock">
+<form (ngSubmit)="onSubmit()" ngNativeValidate>
+    <div style="margin-left: 20px;">
+        <div class="mb-3">
+            <label for="username" class="form-label">Patient Name</label>
+            <input type="text" [(ngModel)]="username" class="form-control" id="username" name="username" required />
+        </div>
+        <div class="mb-3">
+            <label for="username" class="form-label">Mobile Number</label>
+            <input type="text" pattern="[6789][0-9]{9}" [(ngModel)]="mobilenumber" class="form-control" id="username" name="username" required />
+        </div>
+        <div class="mb-3">
+            <label for="username" class="form-label">Email</label>
+            <input type="email" [(ngModel)]="email" class="form-control" id="username" name="username" required />
+        </div>
+        <div class="mb-3">
+            <label for="username" class="form-label">Location</label>
+            <input type="text" [(ngModel)]="location" class="form-control" id="username" name="username" required />
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" [(ngModel)]="password" class="form-control" id="password" name="password" required />
+        </div>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-sm btn-primary">Add Patient</button>
+        </div>
+    </div>
+</form>
+</div>
+<div class="alert alert-danger centremsg" role="alert" *ngIf="msg.length!=0">
+    {{msg}}
+</div>
+<ng-template #elseBlock>
+    <div class="alert alert-danger centremsg" role="alert">
+        You are not Authorized to Access this Page
+      </div>
+</ng-template>

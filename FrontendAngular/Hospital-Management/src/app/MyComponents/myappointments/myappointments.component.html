@@ -1,0 +1,83 @@
+<div class="centrelogin">
+    <form (ngSubmit)="Filters()">
+        <label for="time">Specialization</label>
+        <select class="form-select form-select-lg mb-3" name="time" id="time" [(ngModel)]="selectedSpecialization"
+            class="form-select">
+            <option *ngFor="let spec of availableSpecializations" [value]="spec">{{spec}}</option>
+        </select>
+        <label for="time">Doctors</label>
+        <select class="form-select form-select-lg mb-3" name="doctors" id="doctors" [(ngModel)]="selectedDoctor"
+            class="form-select">
+            <option *ngFor="let doc of availableDoctors" [value]="doc.first_name+'.'+doc.last_name">{{doc.first_name+" "+doc.last_name}}</option>
+        </select>        
+        <button type="submit" class="btn btn-primary btn-sm" type="submit">Filter</button>
+    </form>
+</div>
+<div class="centrelogin">
+    <form (ngSubmit)="getAppointmentsOnSearch()">
+        <div class="mb-3">
+            <label for="username" class="form-label"></label>
+            <input type="text" [(ngModel)]="appointmentsSearch" placeholder="Search Doctor,Specialization,Date"
+                class="form-control" name="username" id="username" required>
+        </div>
+        <button type="submit" class="btn btn-sm btn-primary">Search</button>
+    </form>
+</div>
+
+<div class="centre" *ngIf="appointmentsExist else elseBlock">
+<h4>
+    <!-- <div>{{app.patient}} {{app.doctor}} {{app.date}} {{app.time}}</div> -->
+    <div>
+        <div class="row" style="background-color:lavenderblush; text-align: center; width: 70%;">
+            <div class="col">
+                Doctor Name
+            </div>
+            <div class="col">
+                Doctor Specialization
+            </div>
+            <div class="col">
+                Appointment Date (y-m-d)
+            </div>
+            <div class="col">
+                Appointment Time
+            </div>
+            <div class="col">
+                Action
+            </div>
+        </div>
+    </div>
+</h4> 
+ 
+ <div *ngFor="let app of appointments">
+    <h5> 
+     <div>
+         <!-- {{app.doctor}} {{app.date}} {{app.time}} -->
+         <div class="row" style="background-color:lavender; text-align: center; width: 70%;">
+            <div class="col">
+                {{app.doctor}} 
+            </div>
+            <div class="col">
+                {{app.type}} 
+            </div>
+            <div class="col">
+                {{app.date}}
+            </div>
+            <div class="col">
+                {{app.time}}
+            </div>
+            <div class="col">
+                <button (click)="deleteAppointment(app.id)" class="btn btn-sm btn-danger">Delete Appointment</button>
+            </div>
+        </div>
+        <!-- <button (click)="deleteAppointment(app.id)" class="btn btn-sm btn-danger">Delete Appointment</button> -->
+
+     </div>
+    </h5>
+ </div>
+</div>
+
+<ng-template #elseBlock>
+    <div class="alert alert-warning centremsg" role="alert">
+        You don't have any Appointments
+      </div>
+</ng-template>

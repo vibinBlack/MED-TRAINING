@@ -1,0 +1,42 @@
+<div class="centre container">
+    <h4>
+        <!-- <div>{{app.patient}} {{app.doctor}} {{app.date}} {{app.time}}</div> -->
+        <div>
+            <div class="row" style="background-color:lavenderblush; text-align: center; width: 70%;">
+                <div class="col">
+                    Patient Name
+                </div>
+                <div class="col">
+                    Doctor Name
+                </div>
+                <div class="col">
+                    Appointment Date (y-m-d)
+                </div>
+                <div class="col">
+                    Appointment Time
+                </div>
+            </div>
+        </div>
+    </h4>
+    <div *ngFor="let app of appointments">
+        <h5>
+            <!-- <div>{{app.patient}} {{app.doctor}} {{app.date}} {{app.time}}</div> -->
+            <div>
+                <div class="row" style="background-color:lavender; text-align: center; width: 70%">
+                    <div class="col">
+                        {{app.patient}}
+                    </div>
+                    <div class="col">
+                        {{app.doctor}} 
+                    </div>
+                    <div class="col">
+                        {{app.date}}
+                    </div>
+                    <div class="col">
+                        {{app.time}}
+                    </div>
+                </div>
+            </div>
+        </h5>
+    </div>
+    <div>

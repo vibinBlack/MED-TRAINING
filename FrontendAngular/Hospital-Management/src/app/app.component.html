@@ -1,0 +1,19 @@
+<html>
+<body>
+    <nav class="navbar navbar-lg navbar-light bg-light">
+        <div class>
+          <a class="navbar-brand navitems" routerLink="/">Home</a>
+          <a class="navbar-brand navitems" routerLink="/doctors">Doctors</a>
+          <a *ngIf='isAdmin == "yes"' class="navbar-brand navitems" routerLink="/patients">Patients</a>
+          <a class="navbar-brand navitems" routerLink="/myappointments">My Appointments</a>
+          <a *ngIf='isAdmin == "yes"' class="navbar-brand navitems" routerLink="/allappointments">All Appointments</a>
+          <a class="navbar-brand navitems" (click)="logout()">Logout</a>
+          <a class="navbar-brand navitems" routerLink="/login">Login</a>
+        </div>
+      </nav>
+      <router-outlet></router-outlet>
+      <div *ngIf='msg.length!=0' class="alert alert-danger centre" role="alert">
+        {{msg}}
+      </div>
+</body>
+</html>
