@@ -17,10 +17,8 @@ def schedule_meeting():
     print()
     csv_data.set_index(['id'], inplace=True)
     csv_data = csv_data.transpose()
-    # print(csv_data.to_string())
     csv_dict = csv_data.to_dict()
     print()
-    # print(csv_dict)
     for i in csv_dict.keys():
         j = [int(x) for x in csv_dict[i]['in time'].split(":")]
         k = [int(x) for x in csv_dict[i]['out time'].split(":")]
@@ -55,73 +53,44 @@ def schedule_meeting():
         meeting_start = csv_dict[meeting_bw[1]]['in time']
     else:
         meeting_start = csv_dict[meeting_bw[0]]['in time']
-    if len(csv_dict[meeting_bw[0]]['scheduled_in']) > len(csv_dict[meeting_bw[1]]['scheduled_in']):
-        temp_length = len(csv_dict[meeting_bw[0]]['scheduled_in'])
-    else:
-        temp_length = len(csv_dict[meeting_bw[1]]['scheduled_in'])
-    csv_dict[meeting_bw[0]]['scheduled_in'].sort()
-    csv_dict[meeting_bw[1]]['scheduled_in'].sort()
-    csv_dict[meeting_bw[0]]['scheduled_out'].sort()
-    csv_dict[meeting_bw[1]]['scheduled_out'].sort()
-    csv_dict[meeting_bw[0]]['scheduled_in'] = csv_dict[meeting_bw[0]]['scheduled_in'][::-1]
-    csv_dict[meeting_bw[1]]['scheduled_in'] = csv_dict[meeting_bw[1]]['scheduled_in'][::-1]
-    csv_dict[meeting_bw[0]]['scheduled_out'] = csv_dict[meeting_bw[0]]['scheduled_out'][::-1]
-    csv_dict[meeting_bw[1]]['scheduled_out'] = csv_dict[meeting_bw[1]]['scheduled_out'][::-1]
-    for i in range(temp_length):
-        for j in range(temp_length):
-            if j >= len(csv_dict[meeting_bw[0]]['scheduled_in']):
-                csv_dict[meeting_bw[0]]['scheduled_in'].append\
-                    (csv_dict[meeting_bw[0]]['scheduled_in'][j-1])
-                csv_dict[meeting_bw[0]]['scheduled_out'].append\
-                    (csv_dict[meeting_bw[0]]['scheduled_out'][j-1])
-            if meeting_start >=  csv_dict[meeting_bw[0]]['scheduled_in'][j]\
+    csv_dict[meeting_bw[0]]['scheduled_in'].extend(csv_dict[meeting_bw[1]]['scheduled_in'])
+    csv_dict[meeting_bw[0]]['scheduled_out'].extend(csv_dict[meeting_bw[1]]['scheduled_out'])
+    csv_dict[meeting_bw[0]]['scheduled_in'].append(csv_dict[meeting_bw[0]]['break_in'])
+    csv_dict[meeting_bw[0]]['scheduled_out'].append(csv_dict[meeting_bw[0]]['break_out'])
+    csv_dict[meeting_bw[0]]['scheduled_in'].append(csv_dict[meeting_bw[1]]['break_in'])
+    csv_dict[meeting_bw[0]]['scheduled_out'].append(csv_dict[meeting_bw[1]]['break_out'])
+
+    for i in range(len(csv_dict[meeting_bw[0]]['scheduled_out'])):
+        for j in range(len(csv_dict[meeting_bw[0]]['scheduled_out'])):
+            meeting_end = meeting_start + timedelta(minutes=duration)
+            if meeting_start >  csv_dict[meeting_bw[0]]['scheduled_in'][j]\
                  and meeting_start <=  csv_dict[meeting_bw[0]]['scheduled_out'][j]:
                 meeting_start = csv_dict[meeting_bw[0]]['scheduled_out'][j]
                 meeting_end = meeting_start + timedelta(minutes=duration)
-                if meeting_end >=  csv_dict[meeting_bw[0]]['scheduled_in'][j]\
+                if meeting_end >  csv_dict[meeting_bw[0]]['scheduled_in'][j]\
                      and meeting_end <=  csv_dict[meeting_bw[0]]['scheduled_out'][j]:
                     meeting_start = csv_dict[meeting_bw[0]]['scheduled_out'][j]
             meeting_end = meeting_start + timedelta(minutes=duration)
-            if meeting_end >=  csv_dict[meeting_bw[0]]['scheduled_in'][j]\
+            if meeting_end >  csv_dict[meeting_bw[0]]['scheduled_in'][j]\
                  and meeting_end <=  csv_dict[meeting_bw[0]]['scheduled_out'][j]:
                 meeting_start = csv_dict[meeting_bw[0]]['scheduled_out'][j]
-
-    if meeting_start >=  csv_dict[meeting_bw[0]]['break_in'] \
-        and meeting_start <=  csv_dict[meeting_bw[0]]['break_out']:
-        meeting_start = csv_dict[meeting_bw[0]]['break_out']
-    meeting_end = meeting_start + timedelta(minutes=duration)
-    if meeting_end >=  csv_dict[meeting_bw[0]]['break_in'] \
-        and meeting_end <=  csv_dict[meeting_bw[0]]['break_out']:
-        meeting_start = csv_dict[meeting_bw[0]]['break_out']
-
-    meeting_end = meeting_start + timedelta(minutes=duration)
-    for i in range(temp_length):
-        for j in range(temp_length):
-            if j >= len(csv_dict[meeting_bw[1]]['scheduled_in']):
-                csv_dict[meeting_bw[1]]['scheduled_in'].append\
-                    (csv_dict[meeting_bw[1]]['scheduled_in'][j-1])
-                csv_dict[meeting_bw[1]]['scheduled_out'].append\
-                    (csv_dict[meeting_bw[1]]['scheduled_out'][j-1])
-            if meeting_start >=  csv_dict[meeting_bw[1]]['scheduled_in'][j]\
-                 and meeting_start <=  csv_dict[meeting_bw[1]]['scheduled_out'][j]:
-                meeting_start = csv_dict[meeting_bw[1]]['scheduled_out'][j]
-                meeting_end = meeting_start + timedelta(minutes=duration)
-                if meeting_end >=  csv_dict[meeting_bw[1]]['scheduled_in'][j]\
-                     and meeting_end <=  csv_dict[meeting_bw[1]]['scheduled_out'][j]:
-                    meeting_start = csv_dict[meeting_bw[1]]['scheduled_out'][j]
+            
+                
             meeting_end = meeting_start + timedelta(minutes=duration)
-            if meeting_end >=  csv_dict[meeting_bw[1]]['scheduled_in'][j]\
-                 and meeting_end <=  csv_dict[meeting_bw[1]]['scheduled_out'][j]:
-                meeting_start = csv_dict[meeting_bw[1]]['scheduled_out'][j]
-
-    meeting_end = meeting_start + timedelta(minutes=duration)
-    if meeting_start >=  csv_dict[meeting_bw[1]]['break_in']\
-         and meeting_start <=  csv_dict[meeting_bw[1]]['break_out']:
-        meeting_start = csv_dict[meeting_bw[1]]['break_out']
-    meeting_end = meeting_start + timedelta(minutes=duration)
-    if meeting_end >=  csv_dict[meeting_bw[1]]['break_in']\
-         and meeting_end <=  csv_dict[meeting_bw[1]]['break_out']:
-        meeting_start = csv_dict[meeting_bw[1]]['break_out']
+            if meeting_end - meeting_start > csv_dict[meeting_bw[0]]['scheduled_out'][j]\
+                 - csv_dict[meeting_bw[0]]['scheduled_in'][j]:
+                if csv_dict[meeting_bw[0]]['scheduled_in'][j] > meeting_start\
+                    and csv_dict[meeting_bw[0]]['scheduled_in'][j] <= meeting_end:
+                    meeting_start = csv_dict[meeting_bw[0]]['scheduled_out'][j]
+                    meeting_end = meeting_start + timedelta(minutes=duration)
+                    if csv_dict[meeting_bw[0]]['scheduled_out'][j] > meeting_start\
+                        and csv_dict[meeting_bw[0]]['scheduled_out'][j] <= meeting_end:
+                        meeting_start = csv_dict[meeting_bw[0]]['scheduled_out'][j]
+                        
+                meeting_end = meeting_start + timedelta(minutes=duration)
+                if csv_dict[meeting_bw[0]]['scheduled_out'][j] > meeting_start\
+                    and csv_dict[meeting_bw[0]]['scheduled_out'][j] <= meeting_end:
+                    meeting_start = csv_dict[meeting_bw[0]]['scheduled_out'][j]
 
     meeting_end = meeting_start + timedelta(minutes=duration)
     if meeting_start > csv_dict[meeting_bw[0]]['out time']\
