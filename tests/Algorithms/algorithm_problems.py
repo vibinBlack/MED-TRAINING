@@ -397,36 +397,37 @@ def scrambled_words():
 
 def shift_matrix():
     # mat = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]]
-    mat = [[1, 2, 3, 4, 5], [6, 7, 8, 9, 10], [11, 12, 13, 14, 15], [16, 17, 18, 19, 20], [21, 22, 23, 24, 25]]
+    mat = [[1, 2, 3, 4, 5], [6, 7, 8, 9, 10], [11, 12, 13, 14, 15],
+           [16, 17, 18, 19, 20], [21, 22, 23, 24, 25]]
     for i in mat:
         for j in i:
-            print(j, end=" " * (4 - len(str(j))))
+            print(j, end=" " * (5 - len(str(j))))
         print("\n")
     length = len(mat)
-    m = 0
-    n = length
+    left = 0
+    right = length
     out = []
     for _ in range((length + 1) // 2):
         k = []
-        for i in range(m, n):
-            for j in range(m, n):
-                if i == m:
+        for i in range(left, right):
+            for j in range(left, right):
+                if i == left:
                     k.append(mat[i][j])
-        for i in range(m + 1, n):
-            for j in range(m, n):
-                if j == n - 1:
+        for i in range(left + 1, right):
+            for j in range(left, right):
+                if j == right - 1:
                     k.append(mat[i][j])
-        for i in range(m, n):
-            for j in range(n - 2, m - 1, -1):
-                if i == n - 1:
+        for i in range(left, right):
+            for j in range(right - 2, left - 1, -1):
+                if i == right - 1:
                     k.append(mat[i][j])
-        for i in range(n - 2, m, -1):
-            for j in range(m, n):
-                if j == m:
+        for i in range(right - 2, left, -1):
+            for j in range(left, right):
+                if j == left:
                     k.append(mat[i][j])
         out.append(k)
-        m = m + 1
-        n = n - 1
+        left = left + 1
+        right = right - 1
     print()
     final = []
     shift = int(input("How many digits it should be shifted "))
@@ -465,7 +466,7 @@ def shift_matrix():
                 status = "INC_J"
     for i in range(length):
         for j in range(length):
-            print(dic[(i, j)], end=" " * (4 - len(str(dic[(i, j)]))))
+            print(dic[(i, j)], end=" " * (5 - len(str(dic[(i, j)]))))
         print("\n")
     return 0
 
@@ -478,7 +479,8 @@ def select_problem():
         \n3.  Calculator\n4.  Fibonacci Numbers\n5.  Triangle Pattern\n6.  Binary Search\
         \n7.  Linear Search\n8.  Palindrome\n9.  Prime Numbers\n10. Right Angled Triangle\
         \n11. Scrambled Words\n12. Extract data from CSV file\n13. Spiral Matrix\
-        \n14. Rotation of Matrix (90 degrees)\n15. Shift the Matrix digits\nC.  Close the Program\n")
+        \n14. Rotation of Matrix (90 degrees)\n15. Shift the Matrix digits\
+        \nC.  Close the Program\n")
     try:
         select = input("Select the above number for corresponding problem : ")
     except KeyboardInterrupt:
