@@ -1,15 +1,16 @@
-'''
+"""
 Creating module named meetings to build the functionality of creating, reading, updating csv files\
     of Data consisting Employee, in time and out time.
-'''
+"""
 import csv
 from tempfile import NamedTemporaryFile
 import shutil
 import pandas
 
+
 def create_and_write_csv():
-    ''' function to create and write a csv file '''
-    filename = input("Give the filename : ")+".csv"
+    """ function to create and write a csv file """
+    filename = input("Give the filename : ") + ".csv"
     fieldnames = [i.strip() for i in input("Enter the column or fieldnames\
  separated with a comma : ").split(',')]
     rows = int(input("Enter the number of rows : "))
@@ -19,15 +20,16 @@ def create_and_write_csv():
         for j in fieldnames:
             mydict[j] = input(f"Enter the {j} for row {i} : ")
         mylist.append(mydict)
-    with open(filename, 'w', encoding = 'UTF-8') as file:
-        writer = csv.DictWriter(file, fieldnames = fieldnames)
+    with open(filename, 'w', encoding='UTF-8') as file:
+        writer = csv.DictWriter(file, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(mylist)
         file.close()
 
+
 def read_csv():
-    ''' function to read csv file '''
-    filename = input("Enter the filename you want to read : ")+".csv"
+    """ function to read csv file """
+    filename = input("Enter the filename you want to read : ") + ".csv"
     # with open(filename, 'r', encoding = 'UTF-8') as file:
     #     reader = csv.reader(file)
     #     print("\nReading csv in the form of lists ")
@@ -43,12 +45,13 @@ def read_csv():
     reader_pandas = pandas.read_csv(filename)
     return reader_pandas.to_string()
 
+
 def append_csv():
-    ''' function to append data in csv '''
-    filename = input("Enter the filename in which you want to append the data : ")+".csv"
+    """ function to append data in csv """
+    filename = input("Enter the filename in which you want to append the data : ") + ".csv"
     select = input("Do you want to add any extra column ? (Y for yes or any other key for No) ")
-    with open(filename, 'r', encoding = 'UTF-8') as file_read,\
-         open(filename, 'a', encoding = 'UTF-8', newline = '\n') as file:
+    with open(filename, 'r', encoding='UTF-8') as file_read, \
+            open(filename, 'a', encoding='UTF-8', newline='\n') as file:
         reader = csv.DictReader(file_read)
         field_names = reader.fieldnames
         total_rows = len(list(reader))
@@ -68,7 +71,7 @@ def append_csv():
             file_write = NamedTemporaryFile(mode='w', delete=False)
             with open(filename, 'r', encoding='UTF-8') as file_read_again, file_write:
                 reader = csv.DictReader(file_read_again)
-                writer = csv.DictWriter(file_write, fieldnames = field_names)
+                writer = csv.DictWriter(file_write, fieldnames=field_names)
                 writer.writeheader()
                 for i in new_columns:
                     for j in reader:
@@ -76,6 +79,6 @@ def append_csv():
                         writer.writerow(j)
                 file_write.close()
             shutil.move(file_write.name, filename)
-        writer = csv.DictWriter(file, fieldnames = field_names)
+        writer = csv.DictWriter(file, fieldnames=field_names)
         writer.writerows(mylist)
         file.close()

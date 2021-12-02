@@ -1,4 +1,4 @@
-''' Understanding Packages '''
+""" Understanding Packages """
 import sys
 
 __author__ = 'Hari'
@@ -14,12 +14,13 @@ NOTES = '''
  A module with name a.b.c is saying that c is a module in package b which is a sub-package of module a.
 '''
 
+
 # from placeholders import *
 
 # Look at the package1 and package2 directories before starting...
 
 def test_package_basic_import():
-    ''' testing package import '''
+    """ testing package import """
     clear_sys_modules()
 
     assert ("package1" in locals()) is False
@@ -40,10 +41,10 @@ def test_package_basic_import():
 
     try:
         print(package1.module1.__doc__)
-    except AttributeError :
+    except AttributeError:
         pass
 
-    #modules need explicit import generally.
+    # modules need explicit import generally.
     import package1.module1
     print(package1.module1.__doc__)
 
@@ -53,15 +54,16 @@ def test_package_basic_import():
 
 
 def clear_sys_modules():
-    ''' clearing sys modules '''
+    """ clearing sys modules """
     sys.modules.pop("module1", None)
     sys.modules.pop("package1", None)
     sys.modules.pop("package1.module1", None)
     sys.modules.pop("package1.subpackage", None)
     sys.modules.pop("package1.subpackage.m1", None)
 
+
 def test_package_from_import():
-    ''' testing package from import '''
+    """ testing package from import """
     clear_sys_modules()
 
     assert ("package1" in locals()) is False
@@ -80,7 +82,7 @@ def test_package_from_import():
 
 
 def test_package_import_failure():
-    ''' testing package import failure '''
+    """ testing package import failure """
     clear_sys_modules()
     try:
         import package2
@@ -91,8 +93,9 @@ def test_package_import_failure():
     # fill up reason for failure. why is package2 not a package
     why_it_failed = 'package2 does not have __init__.py'
 
+
 def test_package_sub_packages():
-    ''' testing subpackages from packages'''
+    """ testing subpackages from packages"""
     clear_sys_modules()
 
     assert ("package1" in locals()) is False
@@ -111,10 +114,11 @@ def test_package_sub_packages():
     assert ("package1.subpackage" in sys.modules) is True
     assert ("package1.subpackage.m1" in sys.modules) is True
 
-    #why is this not raising an exception here?
+    # why is this not raising an exception here?
     print(subpackage.m1.__doc__)
 
     assert ("package1.subpackage.m1" in sys.modules) is True
+
 
 THREE_THINGS_I_LEARNT = """
 - Importing Packages

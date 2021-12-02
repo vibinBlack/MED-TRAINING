@@ -1,6 +1,6 @@
-'''
+"""
 Exception Handling using try, except, else and finally statements
-'''
+"""
 __author__ = 'Hari'
 
 NOTES = """
@@ -10,31 +10,33 @@ Most modern languages like c#, java have a similar exception model, so your
 understanding will carry forward if you end up learning those languages.
 """
 
+
 # from placeholders import *
 
 def test_exception_flow_1():
-    ''' testing exception flow '''
+    """ testing exception flow """
     fruit = "orange"
     result = []
     try:
         fruit = fruit.upper()
         result.append("one")
-        fruit.missingmethod() # what happens to the control flow here?
+        fruit.missingmethod()  # what happens to the control flow here?
         result.append("two")
     except AttributeError:
         result.append("three")
 
     assert result == ['one', 'three']
 
+
 def test_exception_flow_2():
-    ''' testing exception flow'''
+    """ testing exception flow"""
     fruit = "orange"
     result = []
     try:
         result.append("one")
-        value = 1/0 #division by zero.
+        value = 1 / 0  # division by zero.
         result.append("two")
-        fruit.missingmethod() #missing attribute
+        fruit.missingmethod()  # missing attribute
         result.append("three")
     except AttributeError:
         result.append("four")
@@ -43,8 +45,9 @@ def test_exception_flow_2():
 
     assert result == ['one', 'five']
 
+
 def test_raise_error():
-    ''' raising an error'''
+    """ raising an error"""
     result = []
     try:
         result.append("one")
@@ -54,21 +57,23 @@ def test_raise_error():
 
     assert result == ['one', 'three']
 
+
 def test_missing_except():
-    ''' testing the missing method'''
+    """ testing the missing method"""
     result = []
     fruit = "orange"
     try:
         result.append("one")
-        #what happens now? fix it with an appropriate try except
+        # what happens now? fix it with an appropriate try except
         fruit.missingmethod()
     except AttributeError:
         result.append("two")
 
     assert result == ["one", "two"]
 
+
 def function_with_except(result):
-    ''' function with except'''
+    """ function with except"""
     fruit = "orange"
     result.append("f:enter")
     try:
@@ -78,15 +83,17 @@ def function_with_except(result):
 
     result.append("f:return")
 
+
 def function_without_except(result):
-    ''' funtion without except'''
+    """ function without except"""
     fruit = "orange"
     result.append("f:enter")
     fruit.missingmethod()
     result.append("f:return")
 
+
 def test_function_call_with_except():
-    ''' testing function call with except'''
+    """ testing function call with except"""
     result = []
     try:
         result.append("m:beforecall")
@@ -96,8 +103,9 @@ def test_function_call_with_except():
         result.append("m:except")
     assert result == ['m:beforecall', 'f:enter', 'f:except', 'f:return', 'm:aftercall']
 
+
 def test_function_call_without_except():
-    ''' testing fuction call without except'''
+    """ testing fuction call without except"""
     result = []
     try:
         result.append("m:beforecall")
@@ -107,8 +115,9 @@ def test_function_call_without_except():
         result.append("m:except")
     assert result == ['m:beforecall', 'f:enter', 'm:except']
 
+
 def test_else_on_exception():
-    ''' testing else on exception'''
+    """ testing else on exception"""
     result = []
     try:
         result.append("m:beforecall")
@@ -121,8 +130,9 @@ def test_else_on_exception():
 
     assert result == ['m:beforecall', 'f:enter', 'f:except', 'f:return', 'm:aftercall', 'm:else']
 
+
 def test_else_on_no_exception():
-    ''' testing else on no exception'''
+    """ testing else on no exception"""
     result = []
     try:
         result.append("m:beforecall")
@@ -135,8 +145,9 @@ def test_else_on_no_exception():
 
     assert result == ['m:beforecall', 'f:enter', 'm:except']
 
+
 def test_finally_on_exception():
-    ''' testing finally on exception'''
+    """ testing finally on exception"""
     result = []
     try:
         result.append("m:beforecall")
@@ -149,13 +160,12 @@ def test_finally_on_exception():
     finally:
         result.append("m:finally")
 
-    assert result == ['m:beforecall', 'f:enter', 'f:except', 'f:return',\
-         'm:aftercall', 'm:else', 'm:finally']
-
+    assert result == ['m:beforecall', 'f:enter', 'f:except', 'f:return', \
+                      'm:aftercall', 'm:else', 'm:finally']
 
 
 def test_finally_on_no_exception():
-    ''' testing finally on no exception'''
+    """ testing finally on no exception"""
     result = []
     try:
         result.append("m:beforecall")
@@ -170,12 +180,12 @@ def test_finally_on_no_exception():
 
     assert result == ['m:beforecall', 'f:enter', 'm:except', 'm:finally']
 
+
 NOTES2 = '''
 To understand why exceptions are a good thing for writing applications,
 read up the link below after finishing this module.
 http://blogs.msdn.com/b/brada/archive/2003/09/30/50403.aspx
 '''
-
 
 THREE_THINGS_I_LEARNT = """
 - Exception Handling try and except

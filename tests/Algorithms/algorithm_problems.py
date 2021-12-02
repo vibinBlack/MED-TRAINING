@@ -1,14 +1,15 @@
-'''
+"""
 Solving Assessment Problems
-'''
+"""
 import operator
 from itertools import permutations
 import pandas as pd
 
+
 def bin_to_dec():
-    '''
+    """
     Binary to Decimal Conversion
-    '''
+    """
     bin_num = input("Binary Input : ")
     for i in bin_num:
         if i not in ['0', '1']:
@@ -16,14 +17,15 @@ def bin_to_dec():
             return bin_to_dec()
 
     dec_num = 0
-    for i in range(len(bin_num)-1, -1, -1):
-        dec_num += int(bin_num[i]) * (2 ** (len(bin_num)-i-1))
+    for i in range(len(bin_num) - 1, -1, -1):
+        dec_num += int(bin_num[i]) * (2 ** (len(bin_num) - i - 1))
     return dec_num
 
+
 def dec_to_bin():
-    '''
+    """
     Decimal to Binary Conversion
-    '''
+    """
     try:
         dec_num = int(input("Decimal Input : "))
     except ValueError:
@@ -37,34 +39,37 @@ def dec_to_bin():
     bin_num = ''
     while dec_num >= 0:
         rem = dec_num % 2
-        dec_num = dec_num//2
+        dec_num = dec_num // 2
         bin_num += str(rem)
         if dec_num == 0:
             break
     return bin_num[::-1]
 
+
 ops = {
-    '+' : operator.add,
-    '-' : operator.sub,
-    '*' : operator.mul,
-    '/' : operator.truediv,
-    '%' : operator.mod,
-    '^' : operator.xor,
+    '+': operator.add,
+    '-': operator.sub,
+    '*': operator.mul,
+    '/': operator.truediv,
+    '%': operator.mod,
+    '^': operator.xor,
 }
 
+
 def temp_func(k, temp):
-    ''' temporary function for calculator function '''
-    temp1 = ops[temp[k]](float(temp[k-1]), float(temp[k+1]))
+    """ temporary function for calculator function """
+    temp1 = ops[temp[k]](float(temp[k - 1]), float(temp[k + 1]))
     temp[k] = temp1
-    temp.pop(k-1)
+    temp.pop(k - 1)
     temp.pop(k)
     return temp
 
+
 def calculator(temp):
-    '''
-    Calculator to solve arithematic expressions (For this options dictionary\
-        is defined above and we also imported operator in the beginning)
-    '''
+    """
+    Calculator to solve arithmetic expressions (For these options' dictionary\
+        is defined above, and we also imported operator in the beginning)
+    """
     try:
         if '/' in temp:
             k = temp.index('/')
@@ -81,14 +86,15 @@ def calculator(temp):
         if '+' in temp:
             k = temp.index('+')
             return calculator(temp_func(k, temp))
-        print("Output Value :", end = " ")
+        print("Output Value :", end=" ")
     except ValueError:
         print("You have given wrong input format")
         temp[0] = ''
     return temp[0]
 
+
 def fibonacci_series():
-    ''' Printing first N fibonacci series '''
+    """ Printing first N fibonacci series """
     try:
         size = int(input("How many fibonacci numbers to be printed? "))
     except ValueError:
@@ -101,27 +107,28 @@ def fibonacci_series():
         var_x, var_y = var_y, var_x + var_y
     return temp
 
-def traingle_pattern():
-    '''
-    Printing traingle pattern for given length is terms of *'s
-    '''
+
+def triangle_pattern():
+    """
+    Printing triangle pattern for given length is terms of *'s
+    """
     try:
         length = int(input(" Enter the length of the side : "))
     except ValueError:
         print("Invalid input the length must be an Integer")
-        return traingle_pattern()
+        return triangle_pattern()
     length = 2 * length - 1
-    (x_axis, y_axis) = (0, 0)
+    # (x_axis, y_axis) = (0, 0)
     temp = []
     for i in range(length):
         for j in range(0, length, 2):
             for k in range(0, length, 2):
                 if k == i:
-                    (x_axis, y_axis) = (i, length//2-k//2)
+                    (x_axis, y_axis) = (i, length // 2 - k // 2)
                     temp.append((x_axis, y_axis))
-                    (x_axis, y_axis) = (i, length//2+k//2)
+                    (x_axis, y_axis) = (i, length // 2 + k // 2)
                     temp.append((x_axis, y_axis))
-            if i == length-1:
+            if i == length - 1:
                 (x_axis, y_axis) = (i, j)
                 temp.append((x_axis, y_axis))
     for i in range(length):
@@ -133,33 +140,37 @@ def traingle_pattern():
                 print("   ", end="")
     return None
 
+
 def binary_search():
-    ''' Searching the element using Binary Search '''
+    """ Searching the element using Binary Search """
     try:
-        arr = [int(i) for i in input("Enter the elements of the \
+        arr1 = [int(i) for i in input("Enter the elements of the \
 array with a white space each : ").split()]
-        search = int(input("The element you want to search ? "))
+        search1 = int(input("The element you want to search ? "))
     except ValueError:
         print("Invalid input the elements must be Integer")
         return binary_search()
-    arr.sort()
+    arr1.sort()
+
     def inner_binary(arr, search):
         if len(arr) == 1:
             if arr[0] != search:
                 return f"The Element {search} is not found in the given array"
             return f"The Element {search} is found in the given array"
         if len(arr) > 1:
-            if arr[(len(arr)-1)//2] > search:
-                arr = arr[0:(len(arr)-1)//2]
-            elif arr[(len(arr)-1)//2] < search:
-                arr = arr[(len(arr)-1)//2 + 1 : len(arr)]
+            if arr[(len(arr) - 1) // 2] > search:
+                arr = arr[0:(len(arr) - 1) // 2]
+            elif arr[(len(arr) - 1) // 2] < search:
+                arr = arr[(len(arr) - 1) // 2 + 1: len(arr)]
             else:
                 return f"The Element {search} is found in the given array"
         return inner_binary(arr, search)
-    return inner_binary(arr, search)
+
+    return inner_binary(arr1, search1)
+
 
 def linear_search():
-    ''' Searching the element using Linear Search '''
+    """ Searching the element using Linear Search """
     try:
         arr = [int(i) for i in input("Enter the elements of the \
 array with a white space each : ").split()]
@@ -173,8 +184,9 @@ array with a white space each : ").split()]
 
     return f"The Element {search} is not found in the given array"
 
+
 def palindrome():
-    ''' function to check for palindrome '''
+    """ function to check for palindrome """
     input1 = input("Enter your input to check for palindrome ? ")
     if input1 == input1[::-1]:
         print(" Your given input is a palindrome !")
@@ -182,8 +194,9 @@ def palindrome():
         print(" Your given input is not a palindrome !")
     return 0
 
+
 def prime_numbers():
-    ''' function to print prime numbers between the given range '''
+    """ function to print prime numbers between the given range """
     try:
         arr = [int(i) for i in input("Enter the 2 numbers with a white\
              space to print prime numbers between them : ").split()]
@@ -195,74 +208,76 @@ def prime_numbers():
         return prime_numbers()
     arr.sort()
     temp = set()
-    for i in range(arr[0], arr[1]+1):
+    for i in range(arr[0], arr[1] + 1):
         if i == 2:
             temp.add(i)
         for j in range(2, i):
-            if i%j == 0:
+            if i % j == 0:
                 break
         else:
             if i not in (0, 1):
                 temp.add(i)
     return temp
 
-def right_angled_traingle():
-    ''' Printing pattern for right angled triangled triangle for given height '''
+
+def right_angled_triangle():
+    """ Printing pattern for right-angled triangle for given height """
     try:
         height = int(input(" Enter the height of the triangle : "))
     except ValueError:
         print("Invalid input the height must be an Integer")
-        return right_angled_traingle()
+        return right_angled_triangle()
     temp = []
-    (i, j) = (0, 0)
+    # (i, j) = (0, 0)
     for i in range(height):
         for j in range(height):
             if i == j:
                 temp.append((i, j))
             if j == 0:
                 temp.append((i, j))
-            if i == height-1:
+            if i == height - 1:
                 temp.append((i, j))
     for i in range(-2, height):
         for j in range(height):
             if (i, j) in temp:
-                print(" # ", end = " ")
+                print(" # ", end=" ")
             else:
-                print("   ", end = " ")
-        print(" | ", end ="")
+                print("   ", end=" ")
+        print(" | ", end="")
         for j in range(height):
-            if (i, height-j-1) in temp:
-                print(" # ", end = " ")
+            if (i, height - j - 1) in temp:
+                print(" # ", end=" ")
             else:
-                print("   ", end = " ")
-        print(" | ", end ="")
+                print("   ", end=" ")
+        print(" | ", end="")
         for j in range(height):
             if (j, i) in temp:
-                print(" # ", end = " ")
+                print(" # ", end=" ")
             else:
-                print("   ", end = " ")
-        print(" | ", end ="")
+                print("   ", end=" ")
+        print(" | ", end="")
         for j in range(height):
-            if (height-j-1, i) in temp:
-                print(" # ", end = " ")
+            if (height - j - 1, i) in temp:
+                print(" # ", end=" ")
             else:
-                print("   ", end = " ")
-        print(" | ", end ="")
+                print("   ", end=" ")
+        print(" | ", end="")
         print()
         for _ in range(4):
             if i == -2:
-                print("____" * height, end = "___")
-            elif i < height-1:
-                print("    " * height, end = " | ")
+                print("____" * height, end="___")
+            elif i < height - 1:
+                print("    " * height, end=" | ")
             else:
-                print("____" * height, end = "_|_")
+                print("____" * height, end="_|_")
         print()
     return 0
 
+
 def spiral_matrix():
-    ''' function to print Spiral Matrix for the given size '''
+    """ function to print Spiral Matrix for the given size """
     try:
-        length = int(input("Enter the length of the Integer : "))
+        length = int(input("Enter the length of the Matrix : "))
     except ValueError:
         print("Invalid Input the length must be an integer")
         return spiral_matrix()
@@ -294,12 +309,13 @@ def spiral_matrix():
                 status = "INC_J"
     for i in range(length):
         for j in range(length):
-            print(dic[(i, j)], end =" "*(4 - len(str(dic[(i, j)]))))
+            print(dic[(i, j)], end=" " * (4 - len(str(dic[(i, j)]))))
         print("\n")
     return 0
 
+
 def rotation_of_matrix():
-    ''' Matrix rotation '''
+    """ Matrix rotation """
     row = int(input("Enter the Number of Rows of the matrix : "))
     col = int(input("Enter the Number of Columns of the matrix : "))
     lis = []
@@ -319,22 +335,23 @@ def rotation_of_matrix():
                 i.insert(j, ' ')
     for i in lis:
         for j in i:
-            print(f" {j} ", end = " "*(3-len(j)))
+            print(f" {j} ", end=" " * (3 - len(j)))
         print("\n")
     for i in range(max(r_c)):
         temp = []
-        for j in range(max(r_c)-1, -1, -1):
+        for j in range(max(r_c) - 1, -1, -1):
             temp.append(lis[j][i])
         rot_lis.append(temp)
     print("\n")
     for i in rot_lis:
         for j in i:
-            print(f" {j} ", end = " "*(3-len(j)))
+            print(f" {j} ", end=" " * (3 - len(j)))
         print("\n")
     return 0
 
+
 def extract_csv():
-    ''' Extracting CSV file using pandas '''
+    """ Extracting CSV file using pandas """
     data = pd.read_csv("student.csv")
     data = data.set_index('Student')
     data = data.to_dict('dict')
@@ -344,56 +361,53 @@ def extract_csv():
     print(data['English'])
     print()
     for i in data.keys():
-        print(i, data[i]['Student 2'], sep = " : ")
+        print(i, data[i]['Student 2'], sep=" : ")
     return 0
 
+
 def scrambled_words():
-    ''' Printing the Scrambled words of a Sentence '''
+    """ Printing the Scrambled words of a Sentence """
     words = list(word for word in input("Enter the sentence with only\
  these punctuations. (, . ? ; !) : ").split())
     for i in words:
-        if i[len(i)-1] in (',', '?', '.', ';', '!'):
-            k = i[len(i)-1]
-            i = i[0:len(i)-1]
-            if len(i)<= 3:
-                print(i + k, end = " ")
+        if i[len(i) - 1] in (',', '?', '.', ';', '!'):
+            k = i[len(i) - 1]
+            i = i[0:len(i) - 1]
+            if len(i) <= 3:
+                print(i + k, end=" ")
             else:
-                perm = permutations(i[1:len(i)-1])
+                perm = permutations(i[1:len(i) - 1])
                 perm = set(perm)
                 for j in list(perm):
-                    if ''.join(j) != i[1:len(i)-1]:
-                        print(i[0]+''.join(j)+i[len(i)-1] + k, end = " ")
+                    if ''.join(j) != i[1:len(i) - 1]:
+                        print(i[0] + ''.join(j) + i[len(i) - 1] + k, end=" ")
                         break
-                else:
-                    print(i[0]+''.join(j)+i[len(i)-1] + k, end = " ")
-
         else:
-            if len(i)<= 3:
-                print(i, end = " ")
+            if len(i) <= 3:
+                print(i, end=" ")
             else:
-                perm = permutations(i[1:len(i)-1])
+                perm = permutations(i[1:len(i) - 1])
                 perm = set(perm)
                 for j in list(perm):
-                    if ''.join(j) != i[1:len(i)-1]:
-                        print(i[0]+''.join(j)+i[len(i)-1], end = " ")
+                    if ''.join(j) != i[1:len(i) - 1]:
+                        print(i[0] + ''.join(j) + i[len(i) - 1], end=" ")
                         break
-                else:
-                    print(i[0]+''.join(j)+i[len(i)-1], end = " ")
     return 0
 
+
 def select_problem():
-    '''
+    """
     Select the Problem
-    '''
+    """
     print("\n\n1.  Binary to Decimal Conversion\n2.  Decimal to Binary Conversion\
-        \n3.  Calculator\n4.  Fibbonaci Numbers\n5.  Traingle Pattern\n6.  Binary Search\
-        \n7.  Linear Search\n8.  Palindrome\n9.  Prime Numbers\n10. Right Angled Traingle\
+        \n3.  Calculator\n4.  Fibonacci Numbers\n5.  Triangle Pattern\n6.  Binary Search\
+        \n7.  Linear Search\n8.  Palindrome\n9.  Prime Numbers\n10. Right Angled Triangle\
         \n11. Scrambled Words\n12. Extract data from CSV file\n13. Spiral Matrix\
         \n14. Rotation of Matrix (90 degrees)\nC.  Close the Program\n")
     try:
         select = input("Select the above number for corresponding problem : ")
     except KeyboardInterrupt:
-        print("\nKeyboard Interrupt occured, Please restart the program")
+        print("\nKeyboard Interrupt occurred, Please restart the program")
         return 0
 
     if select == '1':
@@ -418,16 +432,16 @@ def select_problem():
         print(calculator(string.split()))
 
     if select == '4':
-        print("\n-------** Fibbonaci Numbers **--------\n")
+        print("\n-------** Fibonacci Numbers **--------\n")
         for i in fibonacci_series():
-            print(i, end = " ")
+            print(i, end=" ")
 
     if select == '5':
-        print("\n-------** Traingle Pattern **--------\n")
+        print("\n-------** Triangle Pattern **--------\n")
         try:
-            traingle_pattern()
+            triangle_pattern()
         except KeyboardInterrupt:
-            print("\nKeyboard Interrupt occured, Please restart the program")
+            print("\nKeyboard Interrupt occurred, Please restart the program")
             return 0
 
     if select == '6':
@@ -445,11 +459,11 @@ def select_problem():
     if select == '9':
         print("\n-------** Prime Numbers **--------\n")
         for i in prime_numbers():
-            print(i, end = " ")
+            print(i, end=" ")
 
     if select == '10':
-        print("\n-------** Right Angled Traingle **--------\n")
-        right_angled_traingle()
+        print("\n-------** Right Angled Triangle **--------\n")
+        right_angled_triangle()
 
     if select == '11':
         print("\n-------** Scrambled Words **--------\n")
@@ -471,5 +485,6 @@ def select_problem():
         return 0
 
     return select_problem()
+
 
 select_problem()
