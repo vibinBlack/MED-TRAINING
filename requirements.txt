@@ -54,7 +54,6 @@ pycparser==2.20
 pycrypto==2.6
 pydocstyle==6.1.1
 pydub==0.23.1
-pyflakes==2.4.0
 PyJWT==1.7.1
 pylint==2.11.1
 pylint-celery==0.3
