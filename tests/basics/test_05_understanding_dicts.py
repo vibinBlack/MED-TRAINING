@@ -66,7 +66,7 @@ def test_dictionary_is_unordered():
     dict2 = { 'two': 2, 'one': 1}
 
     equal = (dict1 == dict2)
-    assert True == equal # True or False?
+    assert True == equal # True or False? True
 
 def test_dictionary_keys_and_values():
     word_to_digit = { "one" : 1, "two" : 2}
@@ -124,12 +124,12 @@ def test_valid_dictionary_keys():
 
 
 three_things_i_learnt = """
--
--
--
+-Dict is unordered and mutable.
+-Operations on Dict
+-Dict Membership
 """
 
-time_taken_minutes = ___
+time_taken_minutes = "4 Mins"
 
 notes2= '''
 It is  a good idea to figure out how dictionaries are generally implemented

@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-from placeholders import *
+#from placeholders import *
 
 notes = '''
 Just like C, python has notions on what values are considered true
@@ -72,9 +72,9 @@ def test_equality():
 
 
 three_things_i_learnt = """
--
--
+-Test equality
+-test truth None
 -
 """
 
-time_taken_minutes = ___
+time_taken_minutes = "2 mins"

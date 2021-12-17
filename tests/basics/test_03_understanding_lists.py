@@ -145,9 +145,9 @@ def test_list_range():
     assert range(1,5,2)== numbers
 
 three_things_i_learnt = """
--
--
--
+-List Operations like Slicing,length,index
+-List Modifications like append,insert,sort,reverse
+-range function
 """
 
-time_taken_minutes = __
+time_taken_minutes = "3 Mins"

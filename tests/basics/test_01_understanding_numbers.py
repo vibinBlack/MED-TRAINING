@@ -39,12 +39,12 @@ def test_numbers_long():
 
 
 three_things_i_learnt = """
--
--
--
+-Int can convert string to any base.
+-In python3 the long datatypes has been removed.
+-Long in not the long in C
 """
 
-time_taken_minutes = __
+time_taken_minutes = "2 Mins"
 
 
 

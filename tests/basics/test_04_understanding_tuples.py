@@ -96,9 +96,9 @@ def test_sequence_conversion():
     assert 'testing' == word4
 
 three_things_i_learnt = """
--
--
--
+-tuple unpacking
+-tuple operations like lindexing,slicing, length
+-tuple in immutable
 """
 
-time_taken_minutes = __
+time_taken_minutes = "3 Mins"

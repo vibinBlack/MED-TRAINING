@@ -158,9 +158,9 @@ def test_string_membership():
 
 
 three_things_i_learnt = """
--
--
--
+-strings operations like length, slicing,concat,membership an strings are immutable.
+-difference between single quote,double quote and triple quoote
+-isinstance function
 """
 
-time_taken_minutes = __
+time_taken_minutes = "3 Mins"

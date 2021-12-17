@@ -35,10 +35,10 @@ def test_make_assert_true_3():
     assert s1 == s2
 
 three_things_i_learnt = """
--
--
--
+-If expression evaluates to False them AssertionError is Raised with message 
+-If expression evaluates to True then Nothing Happens
+-assert
 """
 
-time_taken_minutes = __
+time_taken_minutes = "2 min"
 

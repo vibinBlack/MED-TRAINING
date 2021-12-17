@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-from placeholders import *
+#from placeholders import *
 
 notes = '''
 python has support for standard control flow statements similar to other languages.
@@ -183,9 +183,9 @@ def test_while_loop_else():
 
 
 three_things_i_learnt = """
--
--
+-Control flow for If-else,nested if-else,for loops,nested for loops and While loops
+-break,continue
 -
 """
 
-time_taken_minutes = ___
+time_taken_minutes = "4 Mins"
