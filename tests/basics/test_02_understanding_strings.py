@@ -71,7 +71,7 @@ def test_strings_can_be_indexed():
     assert 'l' == string[-3]
     assert 'e' == string[-4]
     assert 'H' == string[-5]
-    assert 'H' == string[-0]  # hint -0 is 0
+    assert 'H' == string[-0]  
     assert 5 == len(string)
     try:
         out_of_bounds = string[5] #raises an error, we will revisit exceptions later
