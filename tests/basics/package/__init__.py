@@ -1,3 +1,3 @@
 __author__ = 'Hari'
 
-import m1
+print("Inside m1")

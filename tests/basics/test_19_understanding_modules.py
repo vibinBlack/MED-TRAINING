@@ -18,12 +18,12 @@ All these tests uses module1.py to module4.py. Take a look at them before starti
 import sys
 
 import placeholders
-from placeholders import *
+#from placeholders import *
 
 def test_module_without_import():
     try:
         module1.greet("jack")
-    except NameError :
+    except NameError as e :
         print(type(e))
         assert True
 
@@ -62,9 +62,9 @@ def test_module_type():
     assert "module" == type(placeholders).__name__
 
 def test_module_is_an_object():
-    assert 12 == len(dir(placeholders))
-    assert "placeholders" == placeholders.__name__
-    assert "placeholders" == placeholders.__doc__
+    assert len(dir(placeholders)) == 12
+    assert placeholders.__name__ == "placeholders"
+    assert  None == placeholders.__doc__ 
 
 def test_module_from_import():
     from module1 import greet
@@ -124,8 +124,8 @@ s3 = set(dir())
 
 def test_module_star_import():
     # * imports are not allowed within functions, so we had to do it at global scope
-    assert {'module3_func1','module3_func2'} == (s2 - s1)  # what did module3 import bring in.
-    assert {'module4_func1','module4_func3'} == (s3 - s2)  # what did module4 import bring in.
+    assert {'m3_func2','m3_func1'} == (s2 - s1)  # what did module3 import bring in.
+    assert {'m4_func1','_m4_func3'} == (s3 - s2)  # what did module4 import bring in.
 
 notes_2 = '''
 http://effbot.org/zone/import-confusion.htm
