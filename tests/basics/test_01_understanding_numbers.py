@@ -1,7 +1,6 @@
 __author__ = 'Hari'
 
-from placeholders import *
-
+from basics import placeholders
 # For most of these tests use the interpreter to fill up the blanks.
 # type(object) -> returns the object's type.
 
@@ -37,14 +36,12 @@ def test_numbers_long():
     """Long is not the long in c"""
     assert 1606938044258990275541962092341162602522202993782792835301376 == 2 ** 200
 
-
-three_things_i_learnt = """
--
--
--
+'''
+three_things_i_learnt = """ I've learnt the conversions of binary, hexadecimal, octal to decimal and vice versa
 """
 
-time_taken_minutes = __
+time_taken_minutes = 10
+''' 
 
 
 

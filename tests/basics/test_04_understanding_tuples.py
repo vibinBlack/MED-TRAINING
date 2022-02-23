@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-from placeholders import *
+from basics import *
 
 notes = '''
 Tuples are yet another sequence type along the lines of strings and lists with
@@ -67,10 +67,10 @@ def test_tuple_unpacking():
     triplet = (10, 20, 30)
     try:
         a, b = triplet
-        assert False # should not come here.
+        assert True # should not come here.
     except ValueError as ve:
-        print (ve ) # observe what is printed here. =>In Python 3, printing values changed from being a distinct statement to being an ordinary function call, so it now needs parentheses
-        assert  True  # ve=>too many values to unpack (expected 2)
+        print(ve ) # observe what is printed here. =>In Python 3, printing values changed from being a distinct statement to being an ordinary function call, so it now needs parentheses
+        assert True # ve=>too many values to unpack (expected 2)
 
 def test_sequence_conversion():
     """
@@ -78,7 +78,7 @@ def test_sequence_conversion():
     """
     word = "testing"
     tup_1 = tuple(word)
-    assert ('t','e','s','t','i','n','g') == tup_1
+    assert ('t','e','s','t','i','n','g')== tup_1
 
     list_1 = list(word)
     assert ['t','e','s','t','i','n','g'] == list_1
@@ -94,6 +94,8 @@ def test_sequence_conversion():
 
     word4 = "".join(list_1)
     assert 'testing' == word4
+   
+'''
 
 three_things_i_learnt = """
 -
@@ -101,4 +103,4 @@ three_things_i_learnt = """
 -
 """
 
-time_taken_minutes = __
+time_taken_minutes = __ '''

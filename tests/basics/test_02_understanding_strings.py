@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-from placeholders import *
+from basics import *
 
 notes = """string is one of the most commonly used data types, it has different
 behavior than a char* in C."""
@@ -47,7 +47,7 @@ def test_triple_quoted_strings_can_span_lines():
     tq_str = """Hello
 World"""
     dq_str = "Hello\nWorld"   # what is the double quoted form of tq_str
-    assert (tq_str == dq_str)
+    assert True == (tq_str == dq_str)
 
 def test_string_len():
     assert 13 == len("Hello 'world'")
@@ -105,7 +105,7 @@ def test_string_slicing():
     """ Slicing creates new strings """
     string = "Hello world"
     #with begin : end
-    assert '' == string[0:0]
+    assert ''== string[0:0]
 
     assert 'He' == string[0:2]
     assert 'ello' == string[1:5]
@@ -130,7 +130,7 @@ def test_string_slicing():
 
 
 def test_string_repeat():
-    assert "HelloHelloHello" == "Hello" * 3
+    assert 'HelloHelloHello' == "Hello" * 3
     assert 12 == len("Hello " * 2)
 
 def test_string_combine():
@@ -139,7 +139,7 @@ def test_string_combine():
     """
     hello = "Hello World"
     bye = "Goodbye moon"
-    assert  bye[0:8] + hello[6:]  == "Goodbye World"
+    assert  bye[:8]+hello[6:]  == "Goodbye World"
 
 def test_string_formatting():
     greeting = "Hello '{0}'".format("learner")
@@ -156,11 +156,11 @@ def test_string_membership():
     assert True == ('a' in 'apple')
     assert True == ('app' in 'apple')  # '==' and 'in' operators have same precedence are interpreted from left to right in the expression
 
-
+'''
 three_things_i_learnt = """
 -
 -
 -
 """
 
-time_taken_minutes = __
+time_taken_minutes = '''

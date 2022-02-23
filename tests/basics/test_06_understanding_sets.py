@@ -5,7 +5,7 @@ sets are  unordered collection of elements without duplicates. Conceptually they
 the keys are not associated with any values.
 '''
 
-from placeholders import  *
+from basics import  *
 
 def test_set_type():
     test_set = {"one", "two", "three"}   # note the new syntax
@@ -36,7 +36,7 @@ def test_set_creation():
 
     test_string = "apple"
     set2 = set(test_string)
-    assert {'a','p','p','l','e'} == set2
+    assert {'a','p','l','e'} == set2
 
     test_dict = { 1: "one", 2 : "two"}
     set3 = set(test_dict)
@@ -50,7 +50,7 @@ def test_set_creation():
 
 def test_set_membership():
     fruits = {"apple", "mango", "kiwi"}
-    assert 'apple' == "apple" in fruits
+    assert True == ("apple" in fruits)
     assert False == ("dog" in fruits)
 
 def test_set_operations():
@@ -58,7 +58,7 @@ def test_set_operations():
     set2  =  {"three", "four"}
 
     all = set1 | set2 # union
-    assert {'one','two','three','four'} == all
+    assert {"one", "two", "three","four"} == all
 
     common = set1 & set2
     assert {'three'} == common
@@ -67,7 +67,7 @@ def test_set_operations():
     assert {'one','two'} == diff1
 
     diff2 = set2 - set1
-    assert {'four'} == diff2
+    assert {"four"} == diff2
 
     diff3 = set1 - set1
     assert set() == diff3
@@ -93,16 +93,18 @@ def test_set_valid_members():
         test_set.add((1,[]))   #  TypeError: unhashable type: 'list'
     except TypeError as te:
         print (te)
-        assert True  
+        assert True
 
-    assert {1,'hello',(1,2)} == test_set
-
+    assert {'hello', 1, (1,2)} == test_set
+'''
 three_things_i_learnt = """
 -
 -
 -
 """
 
+
 time_taken_minutes = ___
+'''
 
 

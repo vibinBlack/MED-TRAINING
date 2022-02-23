@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-from placeholders import *
+from basics import *
 
 notes = '''
 Just like C, python has notions on what values are considered true
@@ -38,17 +38,17 @@ def truth_test(object, description):
 
 def test_truth_values():
     assert 'empty string is treated as false' == truth_test("", "empty string")
-    assert  'empty tuple is treated as false' == truth_test((), "empty tuple")
-    assert  'empty list is treated as false' == truth_test([], "empty list")
+    assert 'empty tuple is treated as false' == truth_test((), "empty tuple")
+    assert 'empty list is treated as false' == truth_test([], "empty list")
     assert 'empty dict is treated as false' == truth_test({}, "empty dict")
     assert 'empty set is treated as false' == truth_test(set(), "empty set")
     assert 'white space is treated as true' == truth_test(" ", "white space")
     assert '0 is treated as false' == truth_test(0, "0")
-    assert '1 is treated as true' == truth_test(1, "1")
+    assert '1 is treated as true'  == truth_test(1, "1")
     assert 'non-empty-string is treated as true' == truth_test("a", "non-empty-string")
-    assert 'non-empty-tuple is treated as true' == truth_test((1,2), "non-empty-tuple")
+    assert 'non-empty-tuple is treated as true'  == truth_test((1,2), "non-empty-tuple")
     assert 'non-empty-list is treated as true' == truth_test([1], "non-empty-list")
-    assert 'non-empty-dict is treated as true' == truth_test({1:2}, "non-empty-dict")
+    assert 'non-empty-dict is treated as true'== truth_test({1:2}, "non-empty-dict")
     assert 'non-empty-set is treated as true' == truth_test({1}, "non-empty-set")
 
 # The fact that certain things are treated as True or False by
@@ -70,6 +70,7 @@ def test_equality():
     assert False == ([1] == True)
     assert False == ({1} == True)
 
+'''
 
 three_things_i_learnt = """
 -
@@ -78,3 +79,5 @@ three_things_i_learnt = """
 """
 
 time_taken_minutes = ___
+
+'''

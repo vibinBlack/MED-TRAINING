@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-from placeholders import *
+from basics import *
 
 notes = '''
 dicts are unordered sets of key value pairs which facilitate
@@ -18,7 +18,7 @@ def test_dictionary_empty():
     empty_dict_2 = dict() # another way of creating empty dict
     assert 0 == len(empty_dict_2)
 
-    assert empty_dict_1 == empty_dict_2
+    assert  {} == empty_dict_2
 
 def test_dictionary_create():
     dict_1 = { 1 : "one", 2 : "two" }
@@ -49,13 +49,13 @@ def test_dictionary_is_mutable():
     word_to_digit = { "one" : 1, "two" : 2}
 
     word_to_digit["three"] = 3
-    assert {"one" : 1, "two" : 2,"three":3} == word_to_digit
+    assert { "one" : 1, "two" : 2, "three" : 3} == word_to_digit
 
     del word_to_digit["one"]
-    assert {"two" : 2,"three":3} == word_to_digit
+    assert  { "two" : 2, "three" : 3}== word_to_digit
 
     word_to_digit["one"] = 10
-    assert {"two" : 2,"three":3,"one":10} == word_to_digit
+    assert { "two" : 2, "three" : 3,"one" : 10} == word_to_digit
     #  A regular dictionary doesn’t track the insertion order.
     #  So when iterating over it, items are returned in an arbitrary order.
     #  When we want to make sure that items are returned in the order they were inserted, we can use OrderedDict.
@@ -71,7 +71,7 @@ def test_dictionary_is_unordered():
 def test_dictionary_keys_and_values():
     word_to_digit = { "one" : 1, "two" : 2}
     assert 2 == len(word_to_digit.keys())
-    assert 2== len(word_to_digit.values())
+    assert 2 == len(word_to_digit.values())
     keys = list(word_to_digit.keys())
     #sort to get a deterministic order
     keys.sort()
@@ -103,7 +103,7 @@ def test_valid_dictionary_keys():
         key = []
         test_dict[key] = "list"
     except TypeError as te:
-        print (te)  #observe the error message.
+        print (te)  #observe the error message.      lists are unhashable
         assert True
 
     try:
@@ -111,18 +111,18 @@ def test_valid_dictionary_keys():
         test_dict[key] = "tuple with immutable elements"
     except TypeError as te:
         print (te)
-        assert False # do we reach here?
+        assert False # do we reach here?   Noooooooo
 
     try:
         key = (1, [])
         test_dict[key] = "tuple with mutable element"
     except TypeError as te:
         print (te)
-        assert True #do we reach here?
+        assert True    #do we reach here?          Yesss
 
-    assert {1:1,'one':'string',(1, 2): 'tuple with immutable elements'} == test_dict
+    assert {1: 1, 'one': 'string', (1,2): 'tuple with immutable elements'} == test_dict
 
-
+'''
 three_things_i_learnt = """
 -
 -
@@ -131,7 +131,7 @@ three_things_i_learnt = """
 
 time_taken_minutes = ___
 
-notes2= '''
+notes2= 
 It is  a good idea to figure out how dictionaries are generally implemented
 under the hood. Go through the thread at
 http://stackoverflow.com/questions/730620/how-does-a-hash-table-work

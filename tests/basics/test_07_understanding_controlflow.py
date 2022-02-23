@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-from placeholders import *
+from basics import *
 
 notes = '''
 python has support for standard control flow statements similar to other languages.
@@ -36,7 +36,7 @@ def test_if_elif_else():
     else:
         str = "positive"
 
-    assert 'positive' == str
+    assert "positive" == str
 
 def test_for_loop_range():
     """
@@ -58,7 +58,7 @@ def test_for_loop_list():
     result = ""
     for fruit in ["orange", "banana", "apple"]:
         result += fruit
-    assert "orangebananaapple" == result
+    assert 'orangebananaapple' == result
 
 def test_for_loop_list_with_enumerate():
     words = ["one", "two", "three"]
@@ -66,9 +66,9 @@ def test_for_loop_list_with_enumerate():
     for p in enumerate(words):
         result.append(p)
 
-    assert [(0,'one'), (1,'two'), (2,'three')] == result
+    assert [(0,'one'),(1,'two'),(2,'three')] == result
     mapping = dict(result)
-    assert {0 : 'one', 1:'two', 2:'three' } == mapping
+    assert {0:'one',1:'two',2:'three'} == mapping
 
 def test_for_loop_dict():
     num_to_word = {1 : "one", 2 : "two", 3 : "three"}
@@ -141,7 +141,7 @@ def test_for_loop_else_plain():
     else:
         result.append(10)
 
-    assert [0,1,2,3,4,10] == result
+    assert [0,1,2,3,4,10]== result
 
 def test_for_loop_else_break():
     result = []
@@ -158,7 +158,7 @@ def test_for_loop_else_break():
 def test_for_loop_else_continue():
     result = []
     for x in range(5):
-        if x %3 == 0:
+        if x%3 == 0:
             continue
         result.append(x)
         print (x)
@@ -180,8 +180,10 @@ def test_while_loop_else():
         result.append(10)
 
     assert [1,2,3] == result
+    
 
 
+'''
 three_things_i_learnt = """
 -
 -
@@ -189,3 +191,5 @@ three_things_i_learnt = """
 """
 
 time_taken_minutes = ___
+
+'''
